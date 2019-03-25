@@ -1,0 +1,17 @@
+{
+  "PAGES": {
+    "HOME": {
+        "TITLE": "Inicio - HiCut",
+        "WELCOME": "Bienvenido a HiCut",
+        "WHAT_NEED": "Que necesitas?",
+        "FOR_WOMEN": "Para Mujeres",
+        "FOR_MEN": "Para Hombres",
+        "FOR_ALL": "Todos"
+      },        
+      "TABS": {
+        "HOME": "Inicio",
+        "PROFILE": "Perfil",
+        "HISTORY": "Mis citas"
+      }
+    }
+  }
