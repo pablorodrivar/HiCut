@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Globals } from '../app.module';
 
 @Component({
   selector: 'app-tab1',
@@ -7,12 +8,18 @@ import { Router } from '@angular/router';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  constructor(
-    private router: Router
-  ){}
+  private globals;
+  constructor(private router: Router){
+    this.globals = Globals;
+  }
 
   pushListMen(){
-    console.log("xxxxxxxxx");
+    if (this.globals.api.isLoged()){
+      console.log("loged");
+    }
+    else{
+      console.log("not loged");
+    }
     this.router.navigate(["/list",0]);
   }
 
