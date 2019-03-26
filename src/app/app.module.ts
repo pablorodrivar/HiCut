@@ -17,6 +17,8 @@ import { ApiController } from '../classes/api.controller';
 import { DatePicker } from '@ionic-native/date-picker/ngx';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator/ngx';
 
+import { IonicStorageModule,Storage } from '@ionic/storage';
+
 export function customTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -26,7 +28,8 @@ export function customTranslateLoader(http: HttpClient) {
   entryComponents: [],
   imports: [
     BrowserModule, 
-    IonicModule.forRoot(), 
+    IonicModule.forRoot(),
+    IonicStorageModule.forRoot(),
     AppRoutingModule, 
     HttpClientModule,
     TranslateModule.forRoot({
@@ -47,8 +50,11 @@ export function customTranslateLoader(http: HttpClient) {
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(public stor:Storage){
+    Globals.api = new ApiController(stor);
+  }
 }
 
 export class Globals {
-  public static api:ApiController = new ApiController();
+  public static api:ApiController;
 }

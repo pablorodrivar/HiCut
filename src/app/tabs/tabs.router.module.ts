@@ -35,6 +35,24 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../login/login.module#loginPageModule'
+          },
+          {
+            path: 'register',
+            children: [
+              {
+                path: '',
+                loadChildren: '../register/register.module#RegisterPageModule'
+              }
+            ]
+          },
+          {
+            path: 'profile',
+            children: [
+              {
+                path: '',
+                loadChildren: '../profile/profile.module#ProfilePageModule'
+              }
+            ]
           }
         ]
       },

@@ -1,23 +1,23 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Profile - HiCut
+        {{ 'PAGES.LOGIN.TITLE' | translate }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <div class="ion-text-center">
-    <h1>Login</h1>
+    <h1>{{ 'PAGES.LOGIN.TITLE2' | translate }}</h1>
     <br>
     <ion-item>
-        <ion-input type="text" placeholder="Your nickname or email"></ion-input>
+        <ion-input type="text" placeholder="{{ 'PAGES.LOGIN.USERNAME_PLACEHOLDER' | translate }}"></ion-input>
     </ion-item>
     <ion-item>
-        <ion-input type="password" placeholder="Your password"></ion-input>
+        <ion-input type="password" placeholder="{{ 'PAGES.LOGIN.PASSWORD_PLACEHOLDER' | translate }}"></ion-input>
     </ion-item>
     <br>
-    <ion-button fill="outline" color="primary">Login</ion-button>
-    <ion-button fill="outline" color="primary" (click)="goToRegister()">Register</ion-button>
+    <ion-button fill="outline" color="primary" (click)="processLoginData()">{{ 'PAGES.LOGIN.LOGIN_BTN' | translate }}</ion-button>
+    <ion-button fill="outline" color="primary" (click)="goToRegister()">{{ 'PAGES.LOGIN.REGISTER_BTN' | translate }}</ion-button>
   </div>
 </ion-content>

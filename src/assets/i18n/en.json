@@ -7,7 +7,15 @@
         "FOR_WOMEN": "For Women",
         "FOR_MEN": "For Men",
         "FOR_ALL": "All"
-      },        
+      },
+      "LOGIN": {
+        "TITLE": "Login - HiCut",
+        "LOGIN_BTN": "Login",
+        "REGISTER_BTN": "Register",
+        "USERNAME_PLACEHOLDER": "Your username or email...",
+        "PASSWORD_PLACEHOLDER": "Your password...",
+        "TITLE2": "Login"
+      },   
       "TABS": {
         "HOME": "Home",
         "PROFILE": "Profile",
