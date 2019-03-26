@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tab1Page } from './tab1.page';
+import { homePage } from './home.page';
 
 import { HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -23,10 +23,10 @@ import { customTranslateLoader } from '../app.module';
         deps: [HttpClient]
       }
     }),
-    RouterModule.forChild([{ path: '', component: Tab1Page }])
+    RouterModule.forChild([{ path: '', component: homePage }])
   ],
-  declarations: [Tab1Page]
+  declarations: [homePage]
 })
-export class Tab1PageModule {
+export class homePageModule {
   
 }

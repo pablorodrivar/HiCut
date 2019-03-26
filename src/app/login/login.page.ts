@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { Globals } from '../app.module';
 
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  selector: 'app-login',
+  templateUrl: 'login.page.html',
+  styleUrls: ['login.page.scss']
 })
-export class Tab2Page {
+export class loginPage {
   private globals;
   constructor(){
     this.globals = Globals;

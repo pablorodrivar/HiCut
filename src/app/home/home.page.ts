@@ -3,23 +3,23 @@ import { Router } from '@angular/router';
 import { Globals } from '../app.module';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss']
 })
-export class Tab1Page {
+export class homePage {
   private globals;
   constructor(private router: Router){
     this.globals = Globals;
   }
 
   pushListMen(){
-    if (this.globals.api.isLoged()){
+    /*if (this.globals.api.isLoged()){
       console.log("loged");
     }
     else{
       console.log("not loged");
-    }
+    }*/
     this.router.navigate(["/list",0]);
   }
 
