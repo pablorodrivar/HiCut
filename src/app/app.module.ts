@@ -14,6 +14,8 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { ApiController } from '../classes/api.controller';
+import { DatePicker } from '@ionic-native/date-picker/ngx';
+import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator/ngx';
 
 export function customTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -36,8 +38,10 @@ export function customTranslateLoader(http: HttpClient) {
     })
   ],
   providers: [
+    DatePicker,
     StatusBar,
     SplashScreen,
+    LaunchNavigator,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

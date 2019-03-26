@@ -10,6 +10,7 @@ import { Globals } from '../app.module';
 
 export class ListPage implements OnInit {
   private globals;
+  type:number = 2;
   constructor(private router: Router) { 
     this.globals = Globals;
   }
