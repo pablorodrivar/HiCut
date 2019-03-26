@@ -13,6 +13,19 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../home/home.module#homePageModule'
+          },
+          {
+            path: 'list/:id',
+            children: [
+              {
+                path: '',
+                loadChildren: '../list/list.module#ListPageModule'
+              },
+              {
+                path: 'detail/:detail_id',
+                loadChildren: '../brbshop-detail/brbshop-detail.module#BrbshopDetailPageModule'
+              }
+            ]
           }
         ]
       },

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs"></ion-back-button>
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
     </ion-buttons>
     <ion-title>BarberShops</ion-title>
   </ion-toolbar>
@@ -20,7 +20,7 @@
   <!-- <ion-buttons> <button ion-button item-right (click)=“refreshData()”> <ion-icon name=“refresh”></ion-icon> </button> </ion-buttons> -->
 
   <ion-searchbar animated></ion-searchbar>
-  <ion-card (click)="toDetail()">
+  <ion-card (click)="toDetail(1)">
       <ion-item>
         <img src="./assets/imgs/barber1.jpg" style="width: 100%;height: 40vh;">
       </ion-item>
@@ -35,7 +35,7 @@
         </ion-item>
   </ion-card>
 
-  <ion-card (click)="toDetail()">
+  <ion-card (click)="toDetail(2)">
       <ion-item>
         <img src="./assets/imgs/barber2.jpg" style="width: 100%;height: 40vh;">
       </ion-item>
@@ -50,7 +50,7 @@
       </ion-item>
   </ion-card>
 
-  <ion-card (click)="toDetail()">
+  <ion-card (click)="toDetail(3)">
       <ion-item>
         <img src="./assets/imgs/barber3.jpg" style="width: 100%;height: 40vh;">
       </ion-item>

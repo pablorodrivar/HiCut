@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePicker } from '@ionic-native/date-picker/ngx';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator/ngx';
-
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-brbshop-detail',
   templateUrl: './brbshop-detail.page.html',
@@ -11,7 +11,9 @@ import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-na
 export class BrbshopDetailPage implements OnInit {
   dateOfevent:string= new Date().toISOString();
   text: string = "";
-  constructor(private datePicker: DatePicker, private launchNavigator: LaunchNavigator) { }
+  public list_id:number;
+  public id:number;
+  constructor(private datePicker: DatePicker, private launchNavigator: LaunchNavigator, private route:ActivatedRoute,private router: Router) { }
 
   options: LaunchNavigatorOptions = {
     start: 'Spain, ON'
@@ -30,6 +32,9 @@ export class BrbshopDetailPage implements OnInit {
   ]
 
   ngOnInit() {
+    this.list_id=parseInt(this.route.snapshot.paramMap.get('id'));
+    this.id=parseInt(this.route.snapshot.paramMap.get('detail_id'));
+    console.log("LISTA: "+this.list_id+" BARBERIA: "+this.id);
   }
 
   date () {

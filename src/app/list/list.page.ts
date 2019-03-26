@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { Globals } from '../app.module';
 
 @Component({
@@ -10,12 +10,15 @@ import { Globals } from '../app.module';
 
 export class ListPage implements OnInit {
   private globals;
+  public list_id;
   type:number = 2;
-  constructor(private router: Router) { 
+  constructor(private route:ActivatedRoute,private router: Router) { 
     this.globals = Globals;
   }
 
   ngOnInit() {
+    this.list_id=this.route.snapshot.paramMap.get('id');
+    console.log(this.list_id);
   }
 
   doRefresh(event) {
@@ -27,7 +30,7 @@ export class ListPage implements OnInit {
     }, 2000);
   }
 
-  toDetail() {
-    this.router.navigate(["/brbshop-detail"]);
+  toDetail(detail_id) {
+    this.router.navigate(["/tabs/home/list/"+this.list_id+"/detail",detail_id]);
   }
 }

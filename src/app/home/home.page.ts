@@ -20,14 +20,14 @@ export class homePage {
     else{
       console.log("not loged");
     }*/
-    this.router.navigate(["/list",0]);
+    this.router.navigate(["/tabs/home/list",1]);
   }
 
   pushListWoman(){
-    this.router.navigate(["/list",1]);
+    this.router.navigate(["/tabs/home/list",2]);
   }
 
   pushListEveryOne(){
-    this.router.navigate(["/list",2]);
+    this.router.navigate(["/tabs/home/list",3]);
   }
 }

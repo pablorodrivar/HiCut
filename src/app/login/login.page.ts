@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Globals } from '../app.module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,12 +9,11 @@ import { Globals } from '../app.module';
 })
 export class loginPage {
   private globals;
-  constructor(){
+  constructor(private router:Router){
     this.globals = Globals;
   }
 
-  modGlobal(){
-    this.globals.isLoged=!this.globals.isLoged;
-    console.log(this.globals.isLoged)
+  goToRegister(){
+    this.router.navigate(["/register"]);
   }
 }
