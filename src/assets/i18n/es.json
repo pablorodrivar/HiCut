@@ -44,6 +44,24 @@
         "FOR_MEN": "para Hombres",
         "FOR_WOMEN": "para Mujeres",
         "ALL": "Todas"        
+      },
+      "ACCOUNTSETTINGS": {
+        "TITLE": "Tu Perfil",
+        "EDIT_PROFILE":"Editar Perfil",
+        "LAST_BRBSHOPS":"Ultimas Peluquerias Visitadas",
+        "LAST_APPOINTMENTS":"Ultimas citas",
+        "SERVICES_RECEIVED":"Servicios"
+      },
+      "EDIT_PROFILE": {
+        "TITLE":"Editar Perfil",
+        "CHANGE_AVATAR":"Cambiar Avatar",
+        "NAME":"Nombre",
+        "PHONE_NUMBER":"Telefono",
+        "EMAIL":"Email",
+        "GENDER":"Genero",
+        "FEMALE":"Mujer",
+        "MALE":"Hombre",
+        "OTHER":"Otro"
       }
     }
   }

@@ -44,6 +44,24 @@
         "FOR_MEN": "for Men",
         "FOR_WOMEN": "for Women",
         "ALL": "All"        
+      },
+      "ACCOUNTSETTINGS": {
+        "TITLE": "Your Profile",
+        "EDIT_PROFILE":"Edit Profile",
+        "LAST_BRBSHOPS":"Last BarberShops Visited",
+        "LAST_APPOINTMENTS":"Last Appointments",
+        "SERVICES_RECEIVED":"Services Received"
+      },
+      "EDIT_PROFILE": {
+        "TITLE":"Edit Profile",
+        "CHANGE_AVATAR":"Change Avatar",
+        "NAME":"Name",
+        "PHONE_NUMBER":"Phone Number",
+        "EMAIL":"Email",
+        "GENDER":"Gender",
+        "FEMALE":"Female",
+        "MALE":"Male",
+        "OTHER":"Other"
       }
     }
  }
