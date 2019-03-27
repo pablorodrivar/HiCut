@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit Profile</ion-title>
+    <ion-buttons slot="start">
+        <ion-button defaultHref="/account-settings">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+        <ion-button defaultHref="/account-settings">
+            <ion-icon slot="icon-only" name="checkmark"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-item lines="none" class="user-head">
+        <img class="circle-pic" src="./assets/imgs/avatar.jpg" />
+    </ion-item>    
+    <ion-item style="margin-left: auto;margin-right: auto;" lines="none">
+      <ion-button block clear class="button-no-background" color="transparent">Change avatar</ion-button>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label class="label">Name</ion-label>      
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Name"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label class="label">Phone Number</ion-label>      
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Phone Number"></ion-input>
+    </ion-item>        
+
+    <ion-item lines="none">
+      <ion-label class="label">Email</ion-label>      
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Email"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+        <ion-label class="label">Gender</ion-label>      
+      </ion-item>
+    <ion-select placeholder="Gender" class="selector">
+      <ion-select-option value="f">Female</ion-select-option>
+      <ion-select-option value="m">Male</ion-select-option>
+    </ion-select>
+</ion-content>

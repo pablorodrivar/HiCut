@@ -6,7 +6,8 @@ const routes: Routes = [
   { path: 'list/:mode', loadChildren: './list/list.module#ListPageModule' },  { path: 'brbshop-detail', loadChildren: './brbshop-detail/brbshop-detail.module#BrbshopDetailPageModule' },
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
   { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
-  { path: 'account-settings', loadChildren: './account-settings/account-settings.module#AccountSettingsPageModule' }
+  { path: 'account-settings', loadChildren: './account-settings/account-settings.module#AccountSettingsPageModule' },
+  { path: 'edit-profile', loadChildren: './edit-profile/edit-profile.module#EditProfilePageModule' }
 
 ];
 @NgModule({
