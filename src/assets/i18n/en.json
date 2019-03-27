@@ -20,6 +20,25 @@
         "HOME": "Home",
         "PROFILE": "Profile",
         "HISTORY": "History"
+      },
+      "BRBDETAILS": {
+        "TITLE": "Barbershop",
+        "SHOW_LOCATION": "Show Location",
+        "CHOOSE_DATE": "Choose a date: ",
+        "CHOOSE_HOUR": "Choose an available hour: ",
+        "HOUR": "Hour",
+        "BRBSHOP_OPTIONS": "Barbershop Options",
+        "HAIR_CUT": "Hair Cut",
+        "SHAVING": "Shaving",
+        "YOUR_NAME": "Your Name: ",
+        "FINAL_PRIZE": "Final Prize: ",
+        "PAY": "Pay",
+        "COMMENTS": "Comments"
+      },
+      "LIST": {
+        "TITLE": "BarberShops",
+        "BARBERSHOP": "Barbershop",
+        "APP_TODAY": "Appointment for today: "        
       }
     }
  }

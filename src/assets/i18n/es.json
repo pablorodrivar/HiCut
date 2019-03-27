@@ -20,6 +20,25 @@
         "HOME": "Inicio",
         "PROFILE": "Perfil",
         "HISTORY": "Mis citas"
+      },
+      "BRBDETAILS": {
+        "TITLE": "Peluqueria",
+        "SHOW_LOCATION": "Localizacion",
+        "CHOOSE_DATE": "Elige una fecha: ",
+        "CHOOSE_HOUR": "Elige una hora disponible: ",
+        "HOUR": "Hora",
+        "BRBSHOP_OPTIONS": "Servicios",
+        "HAIR_CUT": "Corte de Pelo",
+        "SHAVING": "Afeitado",
+        "YOUR_NAME": "Tu Nombre: ",
+        "FINAL_PRIZE": "Precio Final: ",
+        "PAY": "Pagar",
+        "COMMENTS": "Comentarios"        
+      },
+      "LIST": {
+        "TITLE": "Peluquerias",
+        "BARBERSHOP": "Peluqueria",
+        "APP_TODAY": "Cita para hoy: "        
       }
     }
   }
