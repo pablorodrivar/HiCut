@@ -19,25 +19,18 @@
       </ion-item>
       <ion-item>
         <ion-label>Barbershop</ion-label>
-        <ion-button block (click)="showLocation()">{{ 'PAGES.BRBDETAILS.' | translate }}</ion-button>
+        <ion-button block (click)="showLocation()">{{ 'PAGES.BRBDETAILS.SHOW_LOCATION' | translate }}</ion-button>
       </ion-item>
 
-      <ion-item class="center_row">
-        <ion-item>
-          <ion-label >{{ 'PAGES.BRBDETAILS.CHOOSE_DATE' | translate }}</ion-label>
-          <ion-button expand="full" (click)="datePick()">
-            <ion-icon icon-only name="calendar" position="stacked"></ion-icon>
-          </ion-button>           
-        </ion-item>
-        <ion-label text-center position="stacked">DD/MM/YYYY</ion-label>
-        <ion-item>
-          <ion-label position="stacked">{{ 'PAGES.BRBDETAILS.CHOOSE_HOUR' | translate }}</ion-label>
-          <ion-select placeholder="Select One">
-              <ion-select-option value="1">Hour 1</ion-select-option>
-              <ion-select-option value="2">Hour 2</ion-select-option>
-          </ion-select>  
-        </ion-item>                 
-      </ion-item>
+      <ion-item>
+       <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_DATE' | translate }}</ion-label>
+        <ion-datetime displayFormat="DD MM YY" placeholder="Select Date"></ion-datetime>
+      </ion-item>  
+
+      <ion-item>
+        <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_HOUR' | translate }}</ion-label>
+        <ion-datetime displayFormat="HH:mm"></ion-datetime>
+      </ion-item>    
 
       <ion-item>
         <ion-label text-center position="stacked">{{ 'PAGES.BRBDETAILS.BRBSHOP_OPTIONS' | translate }}</ion-label> 

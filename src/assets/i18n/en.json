@@ -38,7 +38,10 @@
       "LIST": {
         "TITLE": "BarberShops",
         "BARBERSHOP": "Barbershop",
-        "APP_TODAY": "Appointment for today: "        
+        "APP_TODAY": "Appointment for today: ",
+        "FOR_MEN": "for Men",
+        "FOR_WOMEN": "for Women",
+        "ALL": "All"        
       }
     }
  }

@@ -11,13 +11,12 @@ import { Globals } from '../app.module';
 export class ListPage implements OnInit {
   private globals;
   public list_id;
-  type:number = 2;
   constructor(private route:ActivatedRoute,private router: Router) { 
     this.globals = Globals;
   }
 
   ngOnInit() {
-    this.list_id=this.route.snapshot.paramMap.get('id');
+    this.list_id=this.route.snapshot.paramMap.get('id');    
     console.log(this.list_id);
   }
 

@@ -38,7 +38,10 @@
       "LIST": {
         "TITLE": "Peluquerias",
         "BARBERSHOP": "Peluqueria",
-        "APP_TODAY": "Cita para hoy: "        
+        "APP_TODAY": "Cita para hoy: ",
+        "FOR_MEN": "para Hombres",
+        "FOR_WOMEN": "para Mujeres",
+        "ALL": "Todas"        
       }
     }
   }
