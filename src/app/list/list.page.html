@@ -23,48 +23,56 @@
   <!-- <ion-buttons> <button ion-button item-right (click)=“refreshData()”> <ion-icon name=“refresh”></ion-icon> </button> </ion-buttons> -->
 
   <ion-searchbar animated></ion-searchbar>
-  <ion-card (click)="toDetail(1)">
-      <ion-item>
-        <img src="./assets/imgs/barber1.jpg" style="width: 100%;height: 40vh;">
-      </ion-item>
-
-      <ion-card-header>
-          <ion-card-title>{{ 'PAGES.LIST.BARBERSHOP' | translate }} 1</ion-card-title>
-        </ion-card-header>
-    
+  <div
+    class="search-results"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScroll()"
+  >
+    <ion-card (click)="toDetail(1)">
         <ion-item>
-            <ion-label>{{ 'PAGES.LIST.APP_TODAY' | translate }} </ion-label>
-            <ion-icon name="checkbox-outline"></ion-icon>
+          <img src="./assets/imgs/barber1.jpg" style="width: 100%;height: 40vh;">
         </ion-item>
-  </ion-card>
 
-  <ion-card (click)="toDetail(2)">
-      <ion-item>
-        <img src="./assets/imgs/barber2.jpg" style="width: 100%;height: 40vh;">
-      </ion-item>
+        <ion-card-header>
+            <ion-card-title>{{ 'PAGES.LIST.BARBERSHOP' | translate }} 1</ion-card-title>
+          </ion-card-header>
+      
+          <ion-item>
+              <ion-label>{{ 'PAGES.LIST.APP_TODAY' | translate }} </ion-label>
+              <ion-icon name="checkbox-outline"></ion-icon>
+          </ion-item>
+    </ion-card>
 
-      <ion-card-header>
-          <ion-card-title>{{ 'PAGES.LIST.BARBERSHOP' | translate }} 2</ion-card-title>
-        </ion-card-header>
-    
-      <ion-item>
-        <ion-label>{{ 'PAGES.LIST.APP_TODAY' | translate }} </ion-label>
-        <ion-icon name="checkbox-outline"></ion-icon>
-      </ion-item>
-  </ion-card>
-
-  <ion-card (click)="toDetail(3)">
-      <ion-item>
-        <img src="./assets/imgs/barber3.jpg" style="width: 100%;height: 40vh;">
-      </ion-item>
-
-      <ion-card-header>
-          <ion-card-title>{{ 'PAGES.LIST.BARBERSHOP' | translate }} 3</ion-card-title>
-        </ion-card-header>
-    
+    <ion-card (click)="toDetail(2)">
         <ion-item>
-            <ion-label>{{ 'PAGES.LIST.APP_TODAY' | translate }} </ion-label>
-            <ion-icon name="checkbox-outline"></ion-icon>
+          <img src="./assets/imgs/barber2.jpg" style="width: 100%;height: 40vh;">
         </ion-item>
-  </ion-card>
+
+        <ion-card-header>
+            <ion-card-title>{{ 'PAGES.LIST.BARBERSHOP' | translate }} 2</ion-card-title>
+          </ion-card-header>
+      
+        <ion-item>
+          <ion-label>{{ 'PAGES.LIST.APP_TODAY' | translate }} </ion-label>
+          <ion-icon name="checkbox-outline"></ion-icon>
+        </ion-item>
+    </ion-card>
+
+    <ion-card (click)="toDetail(3)">
+        <ion-item>
+          <img src="./assets/imgs/barber3.jpg" style="width: 100%;height: 40vh;">
+        </ion-item>
+
+        <ion-card-header>
+            <ion-card-title>{{ 'PAGES.LIST.BARBERSHOP' | translate }} 3</ion-card-title>
+          </ion-card-header>
+      
+          <ion-item>
+              <ion-label>{{ 'PAGES.LIST.APP_TODAY' | translate }} </ion-label>
+              <ion-icon name="checkbox-outline"></ion-icon>
+          </ion-item>
+    </ion-card>
+  </div>
 </ion-content>

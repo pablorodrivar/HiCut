@@ -37,23 +37,6 @@ export class BrbshopDetailPage implements OnInit {
     console.log("LISTA: "+this.list_id+" BARBERIA: "+this.id);
   }
 
-  date () {
-    this.text = this.dateOfevent.substr(0,10);
-    console.log("Date Picked ", this.dateOfevent.substr(0,10));
-  }
-
-  datePick() {
-    console.log("clickao")
-    this.datePicker.show({
-      date: new Date(),
-      mode: 'date',
-      androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
-    }).then(
-      date => console.log('Got date: ', date),
-      err => console.log('Error occurred while getting date: ', err)
-    );
-  }
-
   showLocation() {
     this.launchNavigator.navigate('Toronto, ON', this.options)
     .then(

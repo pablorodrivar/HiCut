@@ -22,6 +22,9 @@
         <ion-button block (click)="showLocation()">{{ 'PAGES.BRBDETAILS.SHOW_LOCATION' | translate }}</ion-button>
       </ion-item>
 
+      <!-- CUANDO ME PONGA CON ACTUALIZAR LOS CALENDARIOS Y HORAS DE LAS BARBERIAS LE TENGO QUE ECHAR UN OJO A ESTO: -->
+      <!-- https://ionicframework.com/docs/api/datetime LA PARTE DE Properties/hourValues que puede ser un array de horas,
+      igual con las fechas. -->
       <ion-item>
        <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_DATE' | translate }}</ion-label>
         <ion-datetime displayFormat="DD MM YY" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_DATE' | translate }}"></ion-datetime>

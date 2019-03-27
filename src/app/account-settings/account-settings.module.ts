@@ -2,21 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ListPage } from './list.page';
+import { AccountSettingsPage } from './account-settings.page';
 import { HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 // Configuración de traducción
-import { customTranslateLoader, AppModule } from '../app.module';
+import { customTranslateLoader } from '../app.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: ListPage
+    component: AccountSettingsPage
   }
 ];
 
@@ -32,9 +31,8 @@ const routes: Routes = [
         deps: [HttpClient]
       }
     }),
-    RouterModule.forChild(routes),
-    InfiniteScrollModule
+    RouterModule.forChild(routes)
   ],
-  declarations: [ListPage]
+  declarations: [AccountSettingsPage]
 })
-export class ListPageModule {}
+export class AccountSettingsPageModule {}
