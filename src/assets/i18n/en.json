@@ -33,7 +33,9 @@
         "YOUR_NAME": "Your Name: ",
         "FINAL_PRIZE": "Final Prize: ",
         "PAY": "Pay",
-        "COMMENTS": "Comments"
+        "COMMENTS": "Comments",
+        "SELECT_DATE": "Select Date",
+        "SELECT_HOUR": "Select Hour"
       },
       "LIST": {
         "TITLE": "BarberShops",

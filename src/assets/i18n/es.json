@@ -33,7 +33,9 @@
         "YOUR_NAME": "Tu Nombre: ",
         "FINAL_PRIZE": "Precio Final: ",
         "PAY": "Pagar",
-        "COMMENTS": "Comentarios"        
+        "COMMENTS": "Comentarios",
+        "SELECT_DATE": "Elige Fecha",
+        "SELECT_HOUR": "Elige Hora"        
       },
       "LIST": {
         "TITLE": "Peluquerias",
