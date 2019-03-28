@@ -50,11 +50,14 @@ export function customTranslateLoader(http: HttpClient) {
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(public stor:Storage){
+  constructor(public stor:Storage,public http:HttpClient){
+    Globals.http = http;
     Globals.api = new ApiController(stor);
+    
   }
 }
 
 export class Globals {
   public static api:ApiController;
+  public static http: HttpClient;
 }

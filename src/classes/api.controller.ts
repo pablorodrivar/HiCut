@@ -1,6 +1,7 @@
 import { User } from './pojo/user';
-import { Rest } from './rest';
+import { Globals } from '../app/app.module';
 import { Storage } from '@ionic/storage';
+
 
 export class ApiController{
 
@@ -23,13 +24,9 @@ export class ApiController{
         return this.currentUser!=null;
     }
 
-    public login(login:string,password:string,callback:void){
-        var data = new Array();
-        data["something"]="some2";
-        var headers = new Array();
-        headers["something"]="some2";
-        Rest.http("POST","url", data,headers,function(data){
-
+    public login(login:string,password:string,callback:()=>void){
+        Globals.http.post("https://api.ipify.org/",null,{responseType: 'text'}).subscribe((x)=>{
+            console.log(x);
         });
     }
 
