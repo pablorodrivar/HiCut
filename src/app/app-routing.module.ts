@@ -18,7 +18,8 @@ const routes: Routes = [
   {
     path: 'tutorial',
     loadChildren: './tutorial/tutorial.module#TutorialPageModule'
-  }
+  },  { path: 'history-detail', loadChildren: './history-detail/history-detail.module#HistoryDetailPageModule' }
+
 
 ];
 @NgModule({

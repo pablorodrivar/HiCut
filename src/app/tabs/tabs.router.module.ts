@@ -62,6 +62,10 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../history/history.module#HistoryPageModule'
+          },
+          {
+            path: 'history_detail/:id',
+            loadChildren: '../history-detail/history-detail.module#HistoryDetailPageModule'
           }
         ]
       },
