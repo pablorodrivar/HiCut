@@ -31,6 +31,7 @@
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
     "cordova-android": "8.0.0",
+    "cordova-browser": "6.0.0",
     "cordova-ios": "5.0.0",
     "cordova-plugin-datepicker": "0.9.3",
     "cordova-plugin-device": "^2.0.2",
@@ -95,7 +96,8 @@
     },
     "platforms": [
       "android",
-      "ios"
+      "ios",
+      "browser"
     ]
   }
 }
