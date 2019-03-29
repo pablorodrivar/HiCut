@@ -35,7 +35,8 @@
         "PAY": "Pay",
         "COMMENTS": "Comments",
         "SELECT_DATE": "Select Date",
-        "SELECT_HOUR": "Select Hour"
+        "SELECT_HOUR": "Select Hour",
+        "COMMENT": "Comment"
       },
       "LIST": {
         "TITLE": "BarberShops",

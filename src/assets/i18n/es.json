@@ -35,7 +35,8 @@
         "PAY": "Pagar",
         "COMMENTS": "Comentarios",
         "SELECT_DATE": "Elige Fecha",
-        "SELECT_HOUR": "Elige Hora"        
+        "SELECT_HOUR": "Elige Hora",
+        "COMMENT": "Comentar"        
       },
       "LIST": {
         "TITLE": "Peluquerias",
