@@ -21,4 +21,8 @@ export class AccountSettingsPage implements OnInit {
   toDetail(detail_id) {
     this.router.navigate(["/tabs/home/list/"+this.list_id+"/detail",detail_id]);
   }
+
+  toEdit() {
+    this.router.navigate(["/edit-profile"]);
+  }
 }
