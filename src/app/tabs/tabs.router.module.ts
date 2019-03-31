@@ -35,24 +35,24 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../login/login.module#loginPageModule'
-          },
+          }
+        ]
+      },
+      {
+        path: 'profile',
+        children: [
           {
-            path: 'register',
-            children: [
-              {
-                path: '',
-                loadChildren: '../register/register.module#RegisterPageModule'
-              }
-            ]
-          },
+            path: '',
+            loadChildren: '../profile/profile.module#ProfilePageModule'
+          }
+        ]
+      },
+      {
+        path: 'register',
+        children: [
           {
-            path: 'profile',
-            children: [
-              {
-                path: '',
-                loadChildren: '../profile/profile.module#ProfilePageModule'
-              }
-            ]
+            path: '',
+            loadChildren: '../register/register.module#RegisterPageModule'
           }
         ]
       },

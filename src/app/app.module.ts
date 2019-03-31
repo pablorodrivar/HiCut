@@ -18,6 +18,7 @@ import { DatePicker } from '@ionic-native/date-picker/ngx';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator/ngx';
 
 import { IonicStorageModule,Storage } from '@ionic/storage';
+import { TabsPage } from './tabs/tabs.page';
 
 export function customTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -61,4 +62,5 @@ export class AppModule {
 export class Globals {
   public static api:ApiController;
   public static http: HttpClient;
+
 }

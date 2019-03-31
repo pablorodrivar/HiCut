@@ -21,6 +21,14 @@
         "PROFILE": "Profile",
         "HISTORY": "History"
       },
+      "HISTORY":{
+        "TITLE":"My reservations",
+        "DATE":"Date",
+        "VIEW":"View"
+      },
+      "HISTORY_DETAILS":{
+        "TITLE":"Info of the reservation"
+      },
       "BRBDETAILS": {
         "TITLE": "Barbershop",
         "SHOW_LOCATION": "Show Location",

@@ -13,18 +13,13 @@ export class loginPage {
   }
 
   processLoginData(){
-    console.log("login...");
     Globals.api.login("paco","123",(()=>{
-      console.log("finished");
+      this.router.navigate(["/tabs/profile"]);
     }));
-    this.stor.set("user","something").then((data)=>{
-      this.router.navigate(["/tabs/login/profile"]);
-    },(error)=>{
-      console.log(error);
-    })
   }
 
   goToRegister(){
-    this.router.navigate(["/tabs/login/register"]);
+    Globals.api.logout();
+    this.router.navigate(["/tabs/register"]);
   }
 }

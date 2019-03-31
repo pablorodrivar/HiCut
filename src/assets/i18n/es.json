@@ -21,6 +21,14 @@
         "PROFILE": "Perfil",
         "HISTORY": "Mis citas"
       },
+      "HISTORY":{
+        "TITLE":"Mis citas",
+        "DATE":"Fecha",
+        "VIEW":"Ver"
+      },
+      "HISTORY_DETAILS":{
+        "TITLE":"Información de la reserva"
+      },
       "BRBDETAILS": {
         "TITLE": "Peluqueria",
         "SHOW_LOCATION": "Localizacion",

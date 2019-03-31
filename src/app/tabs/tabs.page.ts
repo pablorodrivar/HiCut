@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Globals } from '../app.module';
 
 @Component({
@@ -7,11 +7,8 @@ import { Globals } from '../app.module';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
-  private globals;
+  public globals;
   constructor(){
-    this.globals = Globals;
-  }
-  checkIsLoged() : boolean{
-    return this.globals.api.isLoged();
+    this.globals=Globals;
   }
 }
