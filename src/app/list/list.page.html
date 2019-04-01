@@ -1,13 +1,20 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>      
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="funnel"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title>{{ 'PAGES.LIST.TITLE' | translate }}</ion-title>
     <ion-title *ngIf="list_id == 1"><div class="subtitle">{{ 'PAGES.LIST.FOR_MEN' | translate }}</div></ion-title>
     <ion-title *ngIf="list_id == 2"><div class="subtitle">{{ 'PAGES.LIST.FOR_WOMEN' | translate }}</div></ion-title>
     <ion-title *ngIf="list_id == 3"><div class="subtitle">{{ 'PAGES.LIST.ALL' | translate }}</div></ion-title>
   </ion-toolbar>
+
+
 </ion-header>
 
 <ion-content>
