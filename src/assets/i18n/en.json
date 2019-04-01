@@ -53,7 +53,8 @@
         "FOR_MEN": "for Men",
         "FOR_WOMEN": "for Women",
         "ALL": "All",
-        "OPEN_TODAY": "Opened Today:",
+        "OPEN_TODAY": "Opened Today",
+        "CLOSE_TODAY": "Closed Today",
         "LOCATION": "Location"        
       },
       "ACCOUNTSETTINGS": {

@@ -43,15 +43,16 @@
             <ion-label>{{ 'PAGES.LIST.APP_TODAY' | translate }} </ion-label>
             <ion-icon name="checkbox-outline"></ion-icon>              
         </ion-item>
+        
         <ion-item color="primary" lines="none">
-            <ion-label>{{ 'PAGES.LIST.OPEN_TODAY' | translate }} </ion-label>
-            <ion-icon name="checkbox-outline"></ion-icon>              
-        </ion-item>
-        <ion-item color="primary">
           <ion-label>{{ 'PAGES.LIST.LOCATION' | translate }} 1 Km.</ion-label>
-          <ion-icon name="pin"></ion-icon>
+          <ion-icon name="walk"></ion-icon>
         </ion-item>
-                
+        
+        <ion-item color="success" lines="none">
+            <ion-label>{{ 'PAGES.LIST.OPEN_TODAY' | translate }} </ion-label>
+            <ion-icon name="done-all"></ion-icon>              
+        </ion-item>
     </ion-card>
 
     <ion-card (click)="toDetail(2)">
@@ -67,9 +68,15 @@
           <ion-label>{{ 'PAGES.LIST.APP_TODAY' | translate }} </ion-label>
           <ion-icon name="checkbox-outline"></ion-icon>
         </ion-item>
-        <ion-item color="primary">
-            <ion-label>Location: 1 Km.</ion-label>
-            <ion-icon name="pin"></ion-icon>
+
+        <ion-item color="primary" lines="none">
+            <ion-label>{{ 'PAGES.LIST.LOCATION' | translate }} 1 Km.</ion-label>
+            <ion-icon name="walk"></ion-icon>
+        </ion-item>
+
+        <ion-item color="danger" lines="none">
+            <ion-label>{{ 'PAGES.LIST.CLOSE_TODAY' | translate }} </ion-label>
+            <ion-icon name="close-circle-outline"></ion-icon>              
         </ion-item>
     </ion-card>
 
@@ -86,10 +93,15 @@
               <ion-label>{{ 'PAGES.LIST.APP_TODAY' | translate }} </ion-label>
               <ion-icon name="checkbox-outline"></ion-icon>
           </ion-item>
-          <ion-item color="primary">
-              <ion-label>Location: 1 Km.</ion-label>
-              <ion-icon name="pin"></ion-icon>
+          <ion-item color="primary" lines="none">
+              <ion-label>{{ 'PAGES.LIST.LOCATION' | translate }} 1 Km.</ion-label>
+              <ion-icon name="walk"></ion-icon>
           </ion-item>
+
+          <ion-item color="success" lines="none">
+              <ion-label>{{ 'PAGES.LIST.OPEN_TODAY' | translate }} </ion-label>
+              <ion-icon name="done-all"></ion-icon>              
+          </ion-item>          
     </ion-card>
   </div>
 </ion-content>
