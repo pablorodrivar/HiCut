@@ -19,15 +19,6 @@ import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-na
 
 import { IonicStorageModule,Storage } from '@ionic/storage';
 import { TabsPage } from './tabs/tabs.page';
-import { Firebase } from '@ionic-native/firebase/ngx';
-
-import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { FcmService } from './fcm.service';
-
-const firebase = {
- // your firebase web config
-}
 
 export function customTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -42,8 +33,6 @@ export function customTranslateLoader(http: HttpClient) {
     IonicStorageModule.forRoot(),
     AppRoutingModule, 
     HttpClientModule,
-    AngularFireModule.initializeApp(firebase), 
-    AngularFirestoreModule,
     TranslateModule.forRoot({
          loader: {
             provide: TranslateLoader,
@@ -58,8 +47,6 @@ export function customTranslateLoader(http: HttpClient) {
     SplashScreen,
     AlertController,
     LaunchNavigator,
-    Firebase,
-    FcmService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
