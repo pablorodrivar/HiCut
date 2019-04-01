@@ -35,11 +35,11 @@
         "CHOOSE_DATE": "Choose a date: ",
         "CHOOSE_HOUR": "Choose an available hour: ",
         "HOUR": "Hour",
-        "BRBSHOP_OPTIONS": "Barbershop Options",
+        "BRBSHOP_OPTIONS": "Barbershop Services",
         "HAIR_CUT": "Hair Cut",
         "SHAVING": "Shaving",
         "YOUR_NAME": "Your Name: ",
-        "FINAL_PRIZE": "Final Prize: ",
+        "FINAL_PRIZE": "Final Prize ",
         "PAY": "Pay",
         "COMMENTS": "Comments",
         "SELECT_DATE": "Select Date",
@@ -57,7 +57,7 @@
       "ACCOUNTSETTINGS": {
         "TITLE": "Your Profile",
         "EDIT_PROFILE":"Edit Profile",
-        "LAST_BRBSHOPS":"Last BarberShops Visited",
+        "LAST_BRBSHOPS":"Last Barbershops Visited",
         "LAST_APPOINTMENTS":"Last Appointments",
         "SERVICES_RECEIVED":"Services Received"
       },

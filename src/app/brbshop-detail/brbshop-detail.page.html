@@ -37,7 +37,10 @@
       </ion-item>    
 
       <ion-item>
-        <ion-label text-center position="stacked">{{ 'PAGES.BRBDETAILS.BRBSHOP_OPTIONS' | translate }}</ion-label> 
+        <div class="title">
+            <ion-label text-center class="title" position="stacked">{{ 'PAGES.BRBDETAILS.BRBSHOP_OPTIONS' | translate }}</ion-label> 
+        </div>
+        
         <div class="center_row">                                   
           <ion-item text-center class="my-checkbox">
               <ion-checkbox name="hair_cut"></ion-checkbox>
@@ -51,11 +54,15 @@
       </ion-item>
 
       <ion-item>
-          <ion-label text-center position="stacked">{{ 'PAGES.BRBDETAILS.FINAL_PRIZE' | translate }}</ion-label>
-          <ion-label text-center position="stacked" name="prize">Prize</ion-label>         
-          <ion-button>{{ 'PAGES.BRBDETAILS.PAY' | translate }}</ion-button>
+        <div class="title">
+          <ion-label class="title" text-center>{{ 'PAGES.BRBDETAILS.FINAL_PRIZE' | translate }}</ion-label>
+        </div>        
+        <ion-label text-center position="stacked" name="prize">Prize</ion-label>         
+        <ion-button expand="full" size="default">{{ 'PAGES.BRBDETAILS.PAY' | translate }}</ion-button>
       </ion-item>
-        <ion-label text-center class="title">{{ 'PAGES.BRBDETAILS.COMMENTS' | translate }}</ion-label>      
+      <div class="title">
+        <ion-label text-center class="title">{{ 'PAGES.BRBDETAILS.COMMENTS' | translate }}</ion-label>
+      </div>        
         <ion-card>
             <ion-avatar padding>
               <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">

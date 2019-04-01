@@ -31,47 +31,60 @@
     (scrolled)="onScroll()"
   >
     <ion-card (click)="toDetail(1)">
-        <ion-item>
-          <img src="./assets/imgs/barber1.jpg" class="brb-img">
-        </ion-item>
-
         <ion-card-header>
             <ion-card-title>{{ 'PAGES.LIST.BARBERSHOP' | translate }} 1</ion-card-title>
-          </ion-card-header>
-      
-          <ion-item>
-              <ion-label>{{ 'PAGES.LIST.APP_TODAY' | translate }} </ion-label>
-              <ion-icon name="checkbox-outline"></ion-icon>
-          </ion-item>
+        </ion-card-header>
+
+        <ion-item lines="none">
+          <img src="./assets/imgs/barber1.jpg" class="brb-img">
+        </ion-item>        
+        
+        <ion-item color="primary" lines="none">
+            <ion-label>{{ 'PAGES.LIST.APP_TODAY' | translate }} </ion-label>
+            <ion-icon name="checkbox-outline"></ion-icon>              
+        </ion-item>
+        <ion-item color="primary">
+          <ion-label>Location: 1 Km.</ion-label>
+          <ion-icon name="pin"></ion-icon>
+        </ion-item>
+                
     </ion-card>
 
     <ion-card (click)="toDetail(2)">
-        <ion-item>
-          <img src="./assets/imgs/barber2.jpg" class="brb-img">
-        </ion-item>
-
         <ion-card-header>
             <ion-card-title>{{ 'PAGES.LIST.BARBERSHOP' | translate }} 2</ion-card-title>
-          </ion-card-header>
+        </ion-card-header>
+
+        <ion-item lines="none">
+          <img src="./assets/imgs/barber2.jpg" class="brb-img">
+        </ion-item>        
       
-        <ion-item>
+        <ion-item lines="none" color="primary">
           <ion-label>{{ 'PAGES.LIST.APP_TODAY' | translate }} </ion-label>
           <ion-icon name="checkbox-outline"></ion-icon>
+        </ion-item>
+        <ion-item color="primary">
+            <ion-label>Location: 1 Km.</ion-label>
+            <ion-icon name="pin"></ion-icon>
         </ion-item>
     </ion-card>
 
     <ion-card (click)="toDetail(3)">
-        <ion-item>
-          <img src="./assets/imgs/barber3.jpg" class="brb-img">
-        </ion-item>
-
         <ion-card-header>
             <ion-card-title>{{ 'PAGES.LIST.BARBERSHOP' | translate }} 3</ion-card-title>
-          </ion-card-header>
+        </ion-card-header>
+
+        <ion-item lines="none">
+          <img src="./assets/imgs/barber3.jpg" class="brb-img">
+        </ion-item>        
       
-          <ion-item>
+          <ion-item color="primary" lines="none">
               <ion-label>{{ 'PAGES.LIST.APP_TODAY' | translate }} </ion-label>
               <ion-icon name="checkbox-outline"></ion-icon>
+          </ion-item>
+          <ion-item color="primary">
+              <ion-label>Location: 1 Km.</ion-label>
+              <ion-icon name="pin"></ion-icon>
           </ion-item>
     </ion-card>
   </div>
