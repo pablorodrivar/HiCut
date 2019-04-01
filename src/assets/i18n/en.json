@@ -52,7 +52,9 @@
         "APP_TODAY": "Appointment for today: ",
         "FOR_MEN": "for Men",
         "FOR_WOMEN": "for Women",
-        "ALL": "All"        
+        "ALL": "All",
+        "OPEN_TODAY": "Opened Today:",
+        "LOCATION": "Location"        
       },
       "ACCOUNTSETTINGS": {
         "TITLE": "Your Profile",

@@ -32,10 +32,10 @@
   >
     <ion-card (click)="toDetail(1)">
         <ion-card-header>
-            <ion-card-title>{{ 'PAGES.LIST.BARBERSHOP' | translate }} 1</ion-card-title>
+          <ion-card-title>{{ 'PAGES.LIST.BARBERSHOP' | translate }} 1</ion-card-title>
         </ion-card-header>
 
-        <ion-item lines="none">
+        <ion-item>
           <img src="./assets/imgs/barber1.jpg" class="brb-img">
         </ion-item>        
         
@@ -43,8 +43,12 @@
             <ion-label>{{ 'PAGES.LIST.APP_TODAY' | translate }} </ion-label>
             <ion-icon name="checkbox-outline"></ion-icon>              
         </ion-item>
+        <ion-item color="primary" lines="none">
+            <ion-label>{{ 'PAGES.LIST.OPEN_TODAY' | translate }} </ion-label>
+            <ion-icon name="checkbox-outline"></ion-icon>              
+        </ion-item>
         <ion-item color="primary">
-          <ion-label>Location: 1 Km.</ion-label>
+          <ion-label>{{ 'PAGES.LIST.LOCATION' | translate }} 1 Km.</ion-label>
           <ion-icon name="pin"></ion-icon>
         </ion-item>
                 

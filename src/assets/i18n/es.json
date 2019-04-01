@@ -52,7 +52,9 @@
         "APP_TODAY": "Cita para hoy: ",
         "FOR_MEN": "para Hombres",
         "FOR_WOMEN": "para Mujeres",
-        "ALL": "Todas"        
+        "ALL": "Todas",
+        "OPEN_TODAY": "Abierto Hoy:",
+        "LOCATION": "Localizacion"         
       },
       "ACCOUNTSETTINGS": {
         "TITLE": "Tu Perfil",
