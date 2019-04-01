@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "290699870498",
+    "firebase_url": "https://hicut-31bd7.firebaseio.com",
+    "project_id": "hicut-31bd7",
+    "storage_bucket": "hicut-31bd7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290699870498:android:0de05dd40da5f672",
+        "android_client_info": {
+          "package_name": "com.angularfirebase.hicut"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "290699870498-80gvp5sksjqbo5eggdvh2gdclgrqnv4c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBEQYY-M4651tCC503yVc3c-RSMNjxPQY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
