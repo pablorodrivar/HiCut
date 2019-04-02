@@ -8,7 +8,7 @@ contact with them easily and clearly.
 * [Ionic](https://ionicframework.com/) - The framework used
 * [Angular](https://angular.io/) - Mobile Application framework (front-end)
 * [AngularFirebase](https://angularfirebase.com/) - Notifications System
-* [Ngx-Translate](https://github.com/ngx-translate/core) - Traduction System
+* [Ngx-Translate](https://github.com/ngx-translate/core) - Translations System
 
 ## Versioning
 
