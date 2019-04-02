@@ -19,13 +19,16 @@ export class ModalComponent implements OnInit {
   constructor(navParams: NavParams, public modalController: ModalController) {
     // componentProps can also be accessed at construction time using NavParams
     console.log('values', navParams.get('value'))
-    modalController.dismiss();
   }
 
   ngOnInit() {}
 
-  dismiss() {
+  dismissData() {
     this.data = [this.distance, this.services];
     this.modalController.dismiss(this.data);
+  }
+
+  dismiss(){
+    this.modalController.dismiss();
   }
 }
