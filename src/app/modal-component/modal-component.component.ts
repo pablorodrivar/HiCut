@@ -7,6 +7,14 @@ import { NavParams, ModalController } from '@ionic/angular';
   styleUrls: ['./modal-component.component.scss'],
 })
 export class ModalComponent implements OnInit {
+  public data = [];
+  public distance: number;
+  public services = [{
+    "hair_cut": 0,
+    "shaving": 0,
+    "beard_trim": 0,
+    "hair_dying": 0,
+  }];
 
   constructor(navParams: NavParams, public modalController: ModalController) {
     // componentProps can also be accessed at construction time using NavParams
@@ -16,7 +24,8 @@ export class ModalComponent implements OnInit {
 
   ngOnInit() {}
 
-  closeModal() {
-    this.modalController.dismiss();
+  dismiss() {
+    this.data = [this.distance, this.services];
+    this.modalController.dismiss(this.data);
   }
 }

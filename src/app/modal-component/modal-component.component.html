@@ -2,7 +2,7 @@
     <ion-toolbar>
         <ion-title>Search Options</ion-title>
         <ion-buttons slot="start">
-            <ion-button (click)="closeModal()">
+            <ion-button (click)="dismiss()">
               <ion-icon slot="icon-only" name="close"></ion-icon>
             </ion-button>
           </ion-buttons>
@@ -16,7 +16,7 @@
         <ion-label>{{ 'PAGES.MODAL.DISTANCE' | translate }} (km.)</ion-label>
       </ion-item>
       <ion-item>
-        <ion-range pin min="0" max="20" color="primary">
+        <ion-range [(ngModel)]="distance" pin min="0" max="20" color="primary">
             <ion-icon size="small" slot="start" name="locate"></ion-icon>
             <ion-icon slot="end" name="locate"></ion-icon>
         </ion-range>
@@ -28,21 +28,21 @@
       </ion-item>
       <ion-item lines="none">
         <ion-item lines="none">
-          <ion-checkbox color="primary"></ion-checkbox>
+          <ion-checkbox [(ngModel)]="services['hair_cut']" color="primary"></ion-checkbox>
           <ion-label>{{ 'PAGES.MODAL.HAIR_CUT' | translate }}</ion-label>
         </ion-item>        
         <ion-item lines="none">
-          <ion-checkbox color="primary"></ion-checkbox>
+          <ion-checkbox [(ngModel)]="services['shaving']" color="primary"></ion-checkbox>
           <ion-label>{{ 'PAGES.MODAL.SHAVING' | translate }}</ion-label>
         </ion-item>        
         <ion-item lines="none">
-          <ion-checkbox color="primary"></ion-checkbox>
+          <ion-checkbox [(ngModel)]="services['beard_trim']" color="primary"></ion-checkbox>
           <ion-label>{{ 'PAGES.MODAL.BEARD_TRIM' | translate }}</ion-label>
         </ion-item>                       
       </ion-item> 
       <ion-item lines="none">
         <ion-item lines="none">
-          <ion-checkbox color="primary"></ion-checkbox>
+          <ion-checkbox [(ngModel)]="services['hair_dying']" color="primary"></ion-checkbox>
           <ion-label>{{ 'PAGES.MODAL.HAIR_DYING' | translate }}</ion-label>
         </ion-item> 
       </ion-item>           

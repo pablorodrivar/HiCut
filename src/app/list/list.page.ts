@@ -20,11 +20,11 @@ export class ListPage implements OnInit {
   public list_id;  
 
   constructor(private route:ActivatedRoute, private router: Router, public alertController: AlertController, public modalController: ModalController) { 
-    this.globals = Globals;
+    this.globals = Globals;    
   }
 
   ngOnInit() {
-    this.list_id=this.route.snapshot.paramMap.get('id');    
+    this.list_id = this.route.snapshot.paramMap.get('id');
     console.log(this.list_id);
   }
 
@@ -46,6 +46,11 @@ export class ListPage implements OnInit {
       component: ModalComponent,
       componentProps: { value: 123 }
     });
+
+    modal.onDidDismiss().then((data) => {
+      console.log("dismiss " + data['data'])
+    })
+
     return await modal.present();
   }
 }
