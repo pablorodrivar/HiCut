@@ -4,7 +4,7 @@
       <ion-back-button defaultHref="/tabs/home"></ion-back-button>      
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button (click)="presentModal()">
         <ion-icon slot="icon-only" name="funnel"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -16,7 +16,6 @@
 
 
 </ion-header>
-
 <ion-content>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content

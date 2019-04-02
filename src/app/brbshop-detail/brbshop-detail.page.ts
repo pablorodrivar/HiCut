@@ -3,6 +3,8 @@ import { DatePicker } from '@ionic-native/date-picker/ngx';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator/ngx';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { MbscEventcalendarOptions } from '@mobiscroll/angular';
+import { Jsonp } from '@angular/http';
 
 @Component({
   selector: 'app-brbshop-detail',
@@ -15,8 +17,9 @@ export class BrbshopDetailPage implements OnInit {
   text: string = "";
   public list_id:number;
   public id:number;
+  //public events:any;
   constructor(private datePicker: DatePicker, private launchNavigator: LaunchNavigator, private route:ActivatedRoute,private router: Router,
-    public alertController: AlertController) { }
+    public alertController: AlertController/*, private jsonp: Jsonp*/) { }
 
   options: LaunchNavigatorOptions = {
     start: 'Spain, ON'
@@ -37,10 +40,23 @@ export class BrbshopDetailPage implements OnInit {
   ]
 
   ngOnInit() {
-    this.list_id=parseInt(this.route.snapshot.paramMap.get('id'));
-    this.id=parseInt(this.route.snapshot.paramMap.get('detail_id'));
+    this.list_id = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.id = parseInt(this.route.snapshot.paramMap.get('detail_id'));
     console.log("LISTA: "+this.list_id+" BARBERIA: "+this.id);
+    /*this.jsonp.request('https://trial.mobiscroll.com/events/?callback=JSONP_CALLBACK').subscribe((res: any) => {
+            this.events = res._body;
+        });*/
   }
+
+  /*eventSettings: MbscEventcalendarOptions = {
+    lang: 'de',
+    theme: 'ios',
+    display: 'inline',
+    view: {
+        calendar: { type: 'month' },
+        eventList: { type: 'month', scrollable: true }
+    }
+  };*/
 
   showLocation() {
     this.launchNavigator.navigate('Toronto, ON', this.options)

@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Search Options</ion-title>
+        <ion-buttons slot="start">
+            <ion-button (click)="closeModal()">
+              <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+      <ion-item lines="none">
+        <ion-icon name="pin"></ion-icon>
+        <ion-label>Distance (km.)</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-range pin min="0" max="20" color="primary">
+            <ion-icon size="small" slot="start" name="locate"></ion-icon>
+            <ion-icon slot="end" name="locate"></ion-icon>
+        </ion-range>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-icon name="cut"></ion-icon>
+        <ion-label>Services</ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-item lines="none">
+          <ion-checkbox color="primary"></ion-checkbox>
+          <ion-label>Hair Cut</ion-label>
+        </ion-item>        
+        <ion-item lines="none">
+          <ion-checkbox color="primary"></ion-checkbox>
+          <ion-label>Shaving</ion-label>
+        </ion-item>        
+        <ion-item lines="none">
+          <ion-checkbox color="primary"></ion-checkbox>
+          <ion-label>Beard Trim</ion-label>
+        </ion-item>                       
+      </ion-item> 
+      <ion-item lines="none">
+        <ion-item lines="none">
+          <ion-checkbox color="primary"></ion-checkbox>
+          <ion-label>Hair Dying</ion-label>
+        </ion-item> 
+      </ion-item>           
+  </ion-list>
+</ion-content>
+

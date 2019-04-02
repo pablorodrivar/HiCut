@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { MbscModule } from '@mobiscroll/angular';
+import { ModalComponent } from '../modal-component/modal-component.component';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -24,6 +26,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    MbscModule,
     IonicModule,
     TranslateModule.forChild({
       loader: {
@@ -35,6 +38,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     InfiniteScrollModule
   ],
-  declarations: [ListPage]
+  declarations: [ListPage, ModalComponent],
+  entryComponents: [ModalComponent]
 })
 export class ListPageModule {}
