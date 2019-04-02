@@ -5,8 +5,8 @@ contact with them easily and clearly.
 
 ## Built With
 
-* [Ionic](https://ionicframework.com/) - The web framework used
-* [Angular](https://angular.io/) - Mobile Application framework
+* [Ionic](https://ionicframework.com/) - The framework used
+* [Angular](https://angular.io/) - Mobile Application framework (front-end)
 * [AngularFirebase](https://angularfirebase.com/) - Notifications System
 
 ## Versioning
