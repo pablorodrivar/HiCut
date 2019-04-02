@@ -7,7 +7,7 @@ contact with them easily and clearly.
 
 * [Ionic](https://ionicframework.com/) - The web framework used
 * [Angular](https://angular.io/) - Mobile Application framework
-* [AngularFirebase]https://angularfirebase.com/) - Notifications System
+* [AngularFirebase](https://angularfirebase.com/) - Notifications System
 
 ## Versioning
 
