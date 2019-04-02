@@ -74,6 +74,14 @@
         "FEMALE":"Mujer",
         "MALE":"Hombre",
         "OTHER":"Otro"
+      },
+      "MODAL": {
+        "DISTANCE": "Distancia",
+        "SERVICES": "Servicios",
+        "HAIR_CUT": "Corte de Pelo",
+        "SHAVING": "Afeitado",
+        "BEARD_TRIM": "Recorte de barba",
+        "HAIR_DYING": "Tinte de pelo"
       }
     }
   }

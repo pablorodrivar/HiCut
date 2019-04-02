@@ -74,6 +74,14 @@
         "FEMALE":"Female",
         "MALE":"Male",
         "OTHER":"Other"
+      },
+      "MODAL": {
+        "DISTANCE": "Distance",
+        "SERVICES": "Services",
+        "HAIR_CUT": "Hair Cut",
+        "SHAVING": "Shaving",
+        "BEARD_TRIM": "Beard Trim",
+        "HAIR_DYING": "Hair Dying"
       }
     }
  }
