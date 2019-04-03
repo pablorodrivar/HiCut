@@ -79,6 +79,10 @@ export class ApiController {
         }, (error) => {
             console.log(error);
         });
+        this.currentStorage.set("token", null).then((data) => {
+        }, (error) => {
+            console.log(error);
+        });
         this.currentUser = null;
     }
 
