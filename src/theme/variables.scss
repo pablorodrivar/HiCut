@@ -74,4 +74,34 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  --ion-font-family: 'Raleway';
+}
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../assets/fonts/Raleway-Regular.ttf');
+}
+    
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: bold;
+  src: url('../assets/fonts/Raleway-Bold.ttf');
+}
+    
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: normal;
+  src: url('../assets/fonts/Raleway-Italic.ttf');
+}
+    
+@font-face {
+  font-family: 'My Custom Font';
+  font-style: italic;
+  font-weight: bold;
+  src: url('../assets/fonts/Raleway-BoldItalic.ttf');
 }
