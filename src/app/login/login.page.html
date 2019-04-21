@@ -11,10 +11,11 @@
     <h1>{{ 'PAGES.LOGIN.TITLE2' | translate }}</h1>
     <br>
     <ion-item>
-        <ion-input type="text" placeholder="{{ 'PAGES.LOGIN.USERNAME_PLACEHOLDER' | translate }}"></ion-input>
+      
+        <ion-input id="email" [(ngModel)]="email" type="text" placeholder="{{ 'PAGES.LOGIN.USERNAME_PLACEHOLDER' | translate }}"></ion-input>
     </ion-item>
     <ion-item>
-        <ion-input type="password" placeholder="{{ 'PAGES.LOGIN.PASSWORD_PLACEHOLDER' | translate }}"></ion-input>
+        <ion-input id="password" [(ngModel)]="password" type="password" placeholder="{{ 'PAGES.LOGIN.PASSWORD_PLACEHOLDER' | translate }}"></ion-input>
     </ion-item>
     <br>
     <ion-button fill="outline" color="primary" (click)="processLoginData()">{{ 'PAGES.LOGIN.LOGIN_BTN' | translate }}</ion-button>

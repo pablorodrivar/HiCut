@@ -8,7 +8,6 @@ const routes: Routes = [
   { path: 'brbshop-detail', loadChildren: './brbshop-detail/brbshop-detail.module#BrbshopDetailPageModule' },
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
   { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
-  { path: 'account-settings', loadChildren: './account-settings/account-settings.module#AccountSettingsPageModule' },
   { path: 'edit-profile', loadChildren: './edit-profile/edit-profile.module#EditProfilePageModule' },
   {
     path: '',
@@ -18,7 +17,8 @@ const routes: Routes = [
   {
     path: 'tutorial',
     loadChildren: './tutorial/tutorial.module#TutorialPageModule'
-  },  { path: 'history-detail', loadChildren: './history-detail/history-detail.module#HistoryDetailPageModule' }
+  },
+  { path: 'history-detail', loadChildren: './history-detail/history-detail.module#HistoryDetailPageModule' }
 
 
 ];

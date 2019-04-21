@@ -23,6 +23,11 @@ export class ProfilePage implements OnInit {
   }
 
   toEdit() {
-    this.router.navigate(["/edit-profile"]);
+    this.router.navigate(["/tabs/edit-profile"]);
+  }
+
+  logout() {
+    Globals.api.doLogout();
+    this.router.navigate(["/tabs/login"]);
   }
 }
