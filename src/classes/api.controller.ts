@@ -43,20 +43,25 @@ export class ApiController {
         });
     }
 
-    public getlist(filter:Filter, callback: (list) => void) {
-        var filterData = JSON.stringify(filter);
-        Globals.http.post(ApiController.api_url+"list", filterData).subscribe((data) => {
-            console.log(data);
-            //TODO: devolver lista peluquerias
-            callback(null);
-        },(error)=>{
-            console.log(error);
-            callback(null);
-        });
-    }
+
 
 
     //done
+    
+    public getHairdressing(filter:Filter, callback: (list,error) => void) {
+        var filterData = JSON.stringify(filter);
+        Globals.http.post(ApiController.api_url+"hairdressing", filterData,{headers:new HttpHeaders().set("Content-Type",'application/json')}).subscribe((data:any) => {
+            if (data.status == 200 && data.msg == "OK"){
+                callback(data.list,"")
+                return;
+            }
+            callback(null,"error.unknown");
+        },(error)=>{
+            console.log(error);
+            callback(null,error.error.msg);
+            return;
+        });
+    }
 
     constructor(public currentStorage: Storage) {
         currentStorage.get("token").then((data) => {
