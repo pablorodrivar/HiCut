@@ -13,9 +13,7 @@ export class ApiController {
     private static api_url="http://127.0.0.1:81/api/v1/";
 
 
-/*     public doRegister(user:User,callback:(user:User,msg)=>void){
-
-    } */
+//TODO: getRating(id,callback)
 
     public getListReservations(callback: (list,msg) => void){
         if (!this.isLoged()){
@@ -47,7 +45,46 @@ export class ApiController {
 
 
     //done
-    
+    public doRegister(user:User,password:string,password_confirmation:string,callback:(token,msg)=>void){
+        var u:any = JSON.stringify(user);
+        if (password != password_confirmation){
+            callback(null,"error.password_not_match");
+            return;
+        }
+        u = JSON.parse(u);
+        u.password = password;
+        u.password_confirmation = password_confirmation;
+        u = JSON.stringify(u);
+        Globals.http.put(ApiController.api_url+"register", u,{headers:new HttpHeaders().set("Content-Type",'application/json')}).subscribe((data:any) => {
+            if (data.status == 201 && data.msg == "OK"){
+                this.token=data.token;
+                this.getProfile((user,msg)=>{
+                    if(user!=null){
+                        this.currentUser=user;
+                        this.currentStorage.set("token", this.token).then((data) => {
+                            callback("OK","");
+                            return;
+                        }, (error) => {
+                            this.token=null;
+                            this.currentUser=null;
+                            callback(null,"error.error_saving");
+                            return;
+                        });
+                        return;
+                    }
+                    else{
+                        callback(null,"error.connecting");
+                    }
+                });
+                return;
+            }
+            callback(null,"error.unknown");
+        },(error)=>{
+            console.log(error);
+            callback(null,error.error.msg);
+            return;
+        });
+    }
     public getHairdressing(filter:Filter, callback: (list,error) => void) {
         var filterData = JSON.stringify(filter);
         Globals.http.post(ApiController.api_url+"hairdressing", filterData,{headers:new HttpHeaders().set("Content-Type",'application/json')}).subscribe((data:any) => {
