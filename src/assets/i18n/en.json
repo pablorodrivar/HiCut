@@ -15,7 +15,23 @@
         "USERNAME_PLACEHOLDER": "Your email...",
         "PASSWORD_PLACEHOLDER": "Your password...",
         "TITLE2": "Login"
-      },   
+      },      
+      "REGISTER": {
+        "TITLE": "Register - HiCut",
+        "REGISTER_BTN": "Register",
+        "USERNAME_PLACEHOLDER": "Email",
+        "PASSWORD_PLACEHOLDER": "Password",
+        "TITLE2": "Register",
+        "PASSWORD_CONFIRMATION_PLACEHOLDER": "Confirm password",
+        "ADDRESS_PLACEHOLDER": "Address",
+        "CITY_PLACEHOLDER": "City",
+        "STATE_PLACEHOLDER": "State",
+        "COUNTRY_PLACEHOLDER": "Country",
+        "PHONE_PLACEHOLDER": "Mobile Phone",
+        "DNI_PLACEHOLDER": "Identity card",
+        "SURNAME_PLACEHOLDER": "Surname",
+        "NAME_PLACEHOLDER": "First Name"
+      },
       "TABS": {
         "HOME": "Home",
         "PROFILE": "Profile",

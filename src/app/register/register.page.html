@@ -3,10 +3,48 @@
     <ion-buttons slot="start">
         <ion-back-button defaultHref="/tabs/login"></ion-back-button>
     </ion-buttons>
-    <ion-title>Registration</ion-title>
+    <ion-title>{{ 'PAGES.REGISTER.TITLE' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content padding>
+  <div class="ion-text-center">
+    <h1>{{ 'PAGES.REGISTER.TITLE2' | translate }}</h1>
+    <br>
+    <ion-item>
+      <ion-input id="name" [(ngModel)]="name" type="text" placeholder="{{ 'PAGES.REGISTER.NAME_PLACEHOLDER' | translate }}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input id="surname" [(ngModel)]="surname" type="text" placeholder="{{ 'PAGES.REGISTER.SURNAME_PLACEHOLDER' | translate }}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input id="dni" [(ngModel)]="dni" type="text" placeholder="{{ 'PAGES.REGISTER.DNI_PLACEHOLDER' | translate }}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input id="phone" [(ngModel)]="phone" type="text" placeholder="{{ 'PAGES.REGISTER.PHONE_PLACEHOLDER' | translate }}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input id="country" [(ngModel)]="country" type="text" placeholder="{{ 'PAGES.REGISTER.COUNTRY_PLACEHOLDER' | translate }}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input id="state" [(ngModel)]="state" type="text" placeholder="{{ 'PAGES.REGISTER.STATE_PLACEHOLDER' | translate }}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input id="city" [(ngModel)]="city" type="text" placeholder="{{ 'PAGES.REGISTER.CITY_PLACEHOLDER' | translate }}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input id="address" [(ngModel)]="address" type="text" placeholder="{{ 'PAGES.REGISTER.ADDRESS_PLACEHOLDER' | translate }}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input id="email" [(ngModel)]="email" type="text" placeholder="{{ 'PAGES.REGISTER.USERNAME_PLACEHOLDER' | translate }}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input id="password" [(ngModel)]="password" type="password" placeholder="{{ 'PAGES.REGISTER.PASSWORD_PLACEHOLDER' | translate }}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input id="password_confirmation" [(ngModel)]="password_confirmation" type="password" placeholder="{{ 'PAGES.REGISTER.PASSWORD_CONFIRMATION_PLACEHOLDER' | translate }}"></ion-input>
+    </ion-item>
+    <br>
+    <ion-button fill="outline" color="primary" (click)="doRegister()">{{ 'PAGES.REGISTER.REGISTER_BTN' | translate }}</ion-button>
+  </div>
 </ion-content>

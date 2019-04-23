@@ -9,6 +9,18 @@ import { Globals } from '../app.module';
 })
 export class RegisterPage implements OnInit {
 
+  name: string = "";
+  surname: string = "";
+  country: string = "";
+  state: string = "";
+  city: string = "";
+  address: string = "";
+  phone: string = "";
+  dni: string = "";
+  email: string = "";
+  password: string = "";
+  password_confirmation: string = "";
+
   constructor() { }
 
   ngOnInit() {
