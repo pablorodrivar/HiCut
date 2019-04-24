@@ -3,6 +3,7 @@ import { Globals } from '../app/app.module';
 import { Storage } from '@ionic/storage';
 import { HttpHeaders } from '@angular/common/http';
 import { Filter } from './pojo/filter';
+import { Rate } from './pojo/rate';
 
 
 export class ApiController {
@@ -13,7 +14,6 @@ export class ApiController {
     private static api_url="http://127.0.0.1:81/api/v1/";
 
 
-//TODO: getRating(id,callback)
 
     public getListReservations(callback: (list,msg) => void){
         if (!this.isLoged()){
@@ -45,6 +45,21 @@ export class ApiController {
 
 
     //done
+    
+    public getRating(hairdressing_id, callback: (rate:Rate,error) => void) {
+        Globals.http.get(ApiController.api_url+"rating/"+hairdressing_id,{headers:new HttpHeaders().set("Content-Type",'application/json')}).subscribe((data:any) => {
+            if (data.status == 200 && data.msg == "OK"){
+                callback(data.rating,"")
+                return;
+            }
+            callback(null,"error.unknown");
+        },(error)=>{
+            console.log(error);
+            callback(null,error.error.msg);
+            return;
+        });
+    }
+
     public doRegister(user:User,password:string,password_confirmation:string,callback:(token,msg)=>void){
         var u:any = JSON.stringify(user);
         if (password != password_confirmation){

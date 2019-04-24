@@ -4,6 +4,7 @@ import { User } from 'classes/pojo/user';
 import { Globals } from '../app.module';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { Rate } from 'classes/pojo/rate';
 
 @Component({
   selector: 'app-register',
@@ -25,7 +26,6 @@ export class RegisterPage {
   password_confirmation: string = "";
 
   constructor(private router:Router,public toastController: ToastController) { 
-
   }
 
   doRegister(){
