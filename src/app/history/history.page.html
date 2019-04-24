@@ -8,21 +8,21 @@
 
 <ion-content padding>
   <ion-grid>
-    <ion-row style="border-bottom: 1px solid gray;" (click)="goToHistoryDetail($event,item)">
-      <ion-col style="display: flex!important;align-content: center!important;align-items: center!important;"><span>{{ 'PAGES.HISTORY.DATE' | translate }}: 27/03/2019</span></ion-col>
+    <ion-row style="border-bottom: 1px solid gray;" (click)="goToHistoryDetail($event,item)" *ngFor="let item of history_list">
+      <ion-col style="display: flex!important;align-content: center!important;align-items: center!important;"><span>{{ 'PAGES.HISTORY.DATE' | translate }}: {{ item.date | date: 'dd-MM-yyyy' }}</span></ion-col>
       <ion-col>
         <div class="ion-text-right">
             <ion-button fill="outline">{{ 'PAGES.HISTORY.VIEW' | translate }}</ion-button>
         </div>
       </ion-col>
     </ion-row>
-    <ion-row style="border-bottom: 1px solid gray;" (click)="goToHistoryDetail($event,item)">
+<!--     <ion-row style="border-bottom: 1px solid gray;" (click)="goToHistoryDetail($event,item)">
       <ion-col style="display: flex!important;align-content: center!important;align-items: center!important;"><span style="color:gray">{{ 'PAGES.HISTORY.DATE' | translate }}: 12/02/2019</span></ion-col>
       <ion-col>
         <div class="ion-text-right">
             <ion-button fill="outline">{{ 'PAGES.HISTORY.VIEW' | translate }}</ion-button>
         </div>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
   </ion-grid>
 </ion-content>

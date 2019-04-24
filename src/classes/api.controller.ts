@@ -15,21 +15,9 @@ export class ApiController {
 
 
 
-    public getListReservations(callback: (list,msg) => void){
-        if (!this.isLoged()){
-            callback(null,"user.not_loged");
-        }
-        Globals.http.get(ApiController.api_url+"reservations",{headers:new HttpHeaders().set("Authorization",this.token)}).subscribe((data) => {
-            console.log(data);
-            //TODO:devolver lista de reservas
-            callback(null,"");
-        },(error)=>{
-            console.log(error)
-            //callback(null,error.error.msg);
-        });
-    }
 
-    public setProfile(user:User, callback: (editedUser) => void){
+
+/*     public setProfile(user:User, callback: (editedUser) => void){
         var newUserData = JSON.stringify(user);
         Globals.http.post(ApiController.api_url+"editprofile", newUserData,{headers:new HttpHeaders().set("Authorization",this.token)}).subscribe((data) => {
             console.log(data);
@@ -39,13 +27,27 @@ export class ApiController {
             console.log(error);
             callback(null);
         });
-    }
+    } */
 
 
 
 
     //done
     
+    public getListReservations(callback: (list,msg) => void){
+        if (!this.isLoged()){
+            callback(null,"user.not_loged");
+            return;
+        }
+        Globals.http.get(ApiController.api_url+"reservations",{headers:new HttpHeaders().set("Authorization",this.token)}).subscribe((data:any) => {
+            callback(data.reservations,"");
+            return;
+        },(error)=>{
+            console.log(error)
+            callback(null,error.error.msg);
+        });
+    }
+
     public getRating(hairdressing_id, callback: (rate:Rate,error) => void) {
         Globals.http.get(ApiController.api_url+"rating/"+hairdressing_id,{headers:new HttpHeaders().set("Content-Type",'application/json')}).subscribe((data:any) => {
             if (data.status == 200 && data.msg == "OK"){
@@ -143,6 +145,7 @@ export class ApiController {
     public getProfile(callback: (profile,msg) => void){
         if (!this.isLoged()){
             callback(null,"user.not_loged");
+            return;
         }
         Globals.http.get(ApiController.api_url+"profile",{headers:new HttpHeaders().set("Authorization",this.token)}).subscribe((data:any) => {
             callback(User.fromArray(data.user),"");

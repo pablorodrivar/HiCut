@@ -1,9 +1,12 @@
 
 export class Reservation {
+    public current_amount:number;
+    public date:string;
+    public from:number;
+    public hairdresser:number;
     public id:number;
-    public date:number;
-    public forDate:number;
-    public options:string[];
-    public price:number;
-  
+    public paid:number;
+    public services:number[];
+    public user:number;
+
 }
