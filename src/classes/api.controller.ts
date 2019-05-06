@@ -36,7 +36,7 @@ export class ApiController {
 
     public getListReservations(callback: (list, msg) => void) {
         if (!this.isLoged()) {
-            callback(null, "user.not_loged");
+            callback(null, this.errorParse("error.not_loged"));
             return;
         }
         Globals.http.get(ApiController.api_url + "reservations", {headers: new HttpHeaders().set("Authorization", this.token)}).subscribe((data: any) => {

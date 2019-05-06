@@ -24,7 +24,7 @@ export class HistoryPage {
     Globals.api.getListReservations((list,msg)=>{
       this.history_list = list;
       if (list==null){
-        if (msg!=="user.not_loged"){
+        if (msg!=="error.not_loged"){
           this.presentToast(msg);
         }
       }
