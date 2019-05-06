@@ -14,6 +14,11 @@ export class ApiController {
     private static api_url = "http://80.211.65.79:8000/api/v1/";
 
 
+
+    //TODO: cancelReservation
+    //TODO: editReservation
+    //TODO: getReservationDetail
+
     /*     public setProfile(user:User, callback: (editedUser) => void){
             var newUserData = JSON.stringify(user);
             Globals.http.post(ApiController.api_url+"editprofile", newUserData,{headers:new HttpHeaders().set("Authorization",this.token)}).subscribe((data) => {
