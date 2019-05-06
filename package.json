@@ -65,7 +65,7 @@
         "@angular-devkit/build-angular": "^0.13.7",
         "@angular-devkit/core": "~7.2.3",
         "@angular-devkit/schematics": "~7.2.3",
-        "@angular/cli": "~7.3.1",
+        "@angular/cli": "7.3.8",
         "@angular/compiler": "~7.2.2",
         "@angular/compiler-cli": "~7.2.2",
         "@angular/language-service": "~7.2.2",
@@ -94,9 +94,7 @@
             "cordova-plugin-statusbar": {},
             "cordova-plugin-device": {},
             "cordova-plugin-splashscreen": {},
-            "cordova-plugin-ionic-webview": {
-                "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
-            },
+            "cordova-plugin-ionic-webview": {},
             "cordova-plugin-ionic-keyboard": {},
             "cordova-plugin-datepicker": {},
             "uk.co.workingedge.phonegap.plugin.launchnavigator": {},

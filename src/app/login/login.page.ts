@@ -19,6 +19,8 @@ export class loginPage {
   processLoginData(){
     Globals.api.doLogin(this.email,this.password,((loged,msg)=>{
       if (loged){
+        this.email = "";
+        this.password = "";
         this.router.navigate(["/tabs/profile"]);
       }
       else{

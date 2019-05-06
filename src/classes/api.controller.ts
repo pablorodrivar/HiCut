@@ -11,7 +11,7 @@ export class ApiController {
     public currentUser: User = null;
     public token:string=null;
 
-    private static api_url="http://127.0.0.1:81/api/v1/";
+    private static api_url="http://80.211.65.79:8000/api/v1/";
 
 
 
