@@ -1,28 +1,37 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      {{ 'PAGES.HISTORY.TITLE' | translate }}
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            {{ 'PAGES.HISTORY.TITLE' | translate }}
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-grid>
-    <ion-row style="border-bottom: 1px solid gray;" (click)="goToHistoryDetail($event,item)" *ngFor="let item of history_list">
-      <ion-col style="display: flex!important;align-content: center!important;align-items: center!important;"><span>{{ 'PAGES.HISTORY.DATE' | translate }}: {{ item.date | date: 'dd-MM-yyyy' }}</span></ion-col>
-      <ion-col>
-        <div class="ion-text-right">
-            <ion-button fill="outline">{{ 'PAGES.HISTORY.VIEW' | translate }}</ion-button>
-        </div>
-      </ion-col>
-    </ion-row>
-<!--     <ion-row style="border-bottom: 1px solid gray;" (click)="goToHistoryDetail($event,item)">
-      <ion-col style="display: flex!important;align-content: center!important;align-items: center!important;"><span style="color:gray">{{ 'PAGES.HISTORY.DATE' | translate }}: 12/02/2019</span></ion-col>
-      <ion-col>
-        <div class="ion-text-right">
-            <ion-button fill="outline">{{ 'PAGES.HISTORY.VIEW' | translate }}</ion-button>
-        </div>
-      </ion-col>
-    </ion-row> -->
-  </ion-grid>
+    <ion-grid>
+        <ion-row style="border-bottom: 1px solid gray;" (click)="goToHistoryDetail($event,item)"
+                 *ngFor="let item of history_list">
+            <ion-col style="display: flex!important;align-content: center!important;align-items: center!important;">
+                <span *ngIf="!isOld(item.date)">{{ 'PAGES.HISTORY.DATE' | translate }}
+                    : {{ item.date | date: 'dd-MM-yyyy' }}</span>
+                <span *ngIf="isOld(item.date)" style="color:gray">{{ 'PAGES.HISTORY.DATE' | translate }}
+                    : {{ item.date | date: 'dd-MM-yyyy' }}</span>
+            </ion-col>
+            <ion-col>
+                <div class="ion-text-right">
+                    <ion-button fill="outline">{{ 'PAGES.HISTORY.VIEW' | translate }}</ion-button>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ng-template [ngIf]="history_list === undefined || history_list === null" [ngIfElse]="noEntries">
+        <h1 style="text-align: center">Vaya!, Parece que aun no has entrado en tu cuenta o no estas registrado...</h1>
+        <h1 style="text-align: center"><a (click)="goToRegister($event)">Toca aqui para
+            registrate ahora!</a></h1>
+    </ng-template>
+    <ng-template #noEntries>
+        <h1 style="text-align: center" *ngIf="history_list.length<=0">Vaya!, Parece que aun no has
+            reservado nada...</h1>
+    </ng-template>
+
 </ion-content>

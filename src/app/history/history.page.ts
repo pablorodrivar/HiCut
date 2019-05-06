@@ -14,20 +14,33 @@ import { ToastController } from '@ionic/angular';
 
 export class HistoryPage {
   public history_list:Reservation[];
-
+  public currentDate = new Date();
   constructor(private router:Router,public toastController: ToastController){
+
+  }
+
+  ionViewWillEnter(){
+    this.currentDate=new Date();
     Globals.api.getListReservations((list,msg)=>{
-      if (list!=null){
-        this.history_list = list;
-      }
-      else{
-        this.presentToast(msg);
+      this.history_list = list;
+      if (list==null){
+        if (msg!=="user.not_loged"){
+          this.presentToast(msg);
+        }
       }
     });
   }
 
+  isOld(date){
+    return Date.parse(date)<this.currentDate.getTime();
+  }
+
+  goToRegister(event){
+    this.router.navigate(["/tabs/register"]);
+  }
+
   goToHistoryDetail(event, item){
-    this.router.navigate(["/tabs/history/history_detail/1"]);
+    this.router.navigate(["/tabs/history/history_detail/"+item.id]);
   }
   
   async presentToast(msg) {

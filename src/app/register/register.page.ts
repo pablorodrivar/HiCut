@@ -25,7 +25,22 @@ export class RegisterPage {
   password: string = "";
   password_confirmation: string = "";
 
-  constructor(private router:Router,public toastController: ToastController) { 
+  constructor(private router:Router,public toastController: ToastController) {
+
+  }
+
+  ionViewWillEnter(){
+    this.name = "";
+    this.surname = "";
+    this.country = "";
+    this.state = "";
+    this.city = "";
+    this.address = "";
+    this.phone = "";
+    this.dni = "";
+    this.email = "";
+    this.password = "";
+    this.password_confirmation = "";
   }
 
   doRegister(){

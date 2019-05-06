@@ -16,6 +16,11 @@ export class loginPage {
   constructor(private router:Router,private stor:Storage,public toastController: ToastController){
   }
 
+  ionViewWillEnter(){
+    this.email = "";
+    this.password = "";
+  }
+
   processLoginData(){
     Globals.api.doLogin(this.email,this.password,((loged,msg)=>{
       if (loged){
