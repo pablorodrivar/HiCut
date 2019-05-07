@@ -1,7 +1,7 @@
 import * as tslib_1 from "tslib";
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Globals } from '../app.module';
+import { Globals } from '../globals';
 var homePage = /** @class */ (function () {
     function homePage(router) {
         this.router = router;

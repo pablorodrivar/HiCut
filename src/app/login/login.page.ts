@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Globals } from '../app.module';
+import { Globals } from '../globals';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';

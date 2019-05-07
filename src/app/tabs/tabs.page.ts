@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { Globals } from '../app.module';
+import { Globals } from '../globals';
 
 @Component({
   selector: 'app-tabs',

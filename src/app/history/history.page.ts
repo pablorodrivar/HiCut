@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Reservation } from '../../classes/pojo/reservation';
 import { Router } from '@angular/router';
-import { Globals } from 'app/app.module';
+import { Globals } from '../globals';
 import { ToastController } from '@ionic/angular';
 
 @Component({

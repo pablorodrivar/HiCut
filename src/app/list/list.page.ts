@@ -3,7 +3,7 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ModalComponent } from '../modal-component/modal-component.component';
 import { ModalController } from '@ionic/angular';
-import { Globals } from '../app.module';
+import { Globals } from '../globals';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Filter } from '../../classes/pojo/filter';
 import { LoadingController } from '@ionic/angular';

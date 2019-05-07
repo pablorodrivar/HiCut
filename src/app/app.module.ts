@@ -27,6 +27,8 @@ import { SearchFilterPipe } from './pipes/search-filter.pipe';
 import { AutoCompleteModule, AutoCompleteService } from 'ionic4-auto-complete';
 import { BarRatingModule } from "ngx-bar-rating";
 
+import { Globals } from "./globals";
+
 export function customTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -69,11 +71,6 @@ export class AppModule {
   constructor(public stor:Storage,public http:HttpClient){
     Globals.http = http;
     Globals.api = new ApiController(stor);
-    
   }
 }
 
-export class Globals {
-  public static api:ApiController;
-  public static http: HttpClient;
-}

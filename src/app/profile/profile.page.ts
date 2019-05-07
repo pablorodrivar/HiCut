@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
-import { Globals } from '../app.module';
+import { Globals } from '../globals';
 
 @Component({
   selector: 'app-profile',

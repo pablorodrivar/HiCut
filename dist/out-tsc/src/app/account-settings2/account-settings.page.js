@@ -1,7 +1,7 @@
 import * as tslib_1 from "tslib";
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Globals } from '../app.module';
+import { Globals } from '../globals';
 var AccountSettingsPage = /** @class */ (function () {
     function AccountSettingsPage(route, router) {
         this.route = route;

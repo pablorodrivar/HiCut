@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Filter } from 'classes/pojo/filter';
 import { User } from 'classes/pojo/user';
-import { Globals } from '../app.module';
+import { Globals } from '../globals';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Rate } from 'classes/pojo/rate';

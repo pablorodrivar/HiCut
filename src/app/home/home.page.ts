@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Globals } from '../app.module';
+import { Globals } from '../globals';
 
 @Component({
   selector: 'app-home',

@@ -1,9 +1,7 @@
 import {User} from './pojo/user';
-import {Globals} from '../app/app.module';
+import {Globals} from '../app/globals';
 import {Storage} from '@ionic/storage';
 import {HttpHeaders} from '@angular/common/http';
-import {Filter} from './pojo/filter';
-import {Rate} from './pojo/rate';
 
 
 export class ApiController {
@@ -17,12 +15,12 @@ export class ApiController {
     //TODO: cancelReservation
     //TODO: editReservation
     //TODO: getReservationDetail
-    //TODO: getHairDressingById(id: number)
     //TODO: getHours(brb_id: number)
     //TODO: getServices(brb_id: number)
     //TODO: getComments(brb_id: number)
     //TODO: postComment(brb_id: number)
     //TODO: postRating(brb_id: number)
+    //TODO: setProfile
 
     /* public setProfile(user:User, callback: (editedUser) => void){
             var newUserData = JSON.stringify(user);
@@ -37,6 +35,10 @@ export class ApiController {
             });
         } */
 
+
+    public getHours(brb_id: number){
+
+    }
 
     // done
 
@@ -59,7 +61,7 @@ export class ApiController {
         });
     }
 
-    public getRating(hairdressing_id, callback: (rate: Rate, error) => void) {
+    public getRating(hairdressing_id, callback: (rate, error) => void) {
         Globals.http.get(ApiController.api_url + 'rating/' + hairdressing_id, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
             if (data.status === 200 && data.msg === 'OK') {
                 callback(data.rating, '');
@@ -128,8 +130,9 @@ export class ApiController {
         });
     }
 
-    public getHairdressing(filter: Filter, callback: (list, error) => void) {
+    public getHairdressing(filter, callback: (list, error) => void) {
         const filterData = JSON.stringify(filter);
+        console.log(filterData);
         Globals.http.post(ApiController.api_url + 'hairdressing', filterData, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
             if (data.status === 200 && data.msg === 'OK') {
                 callback(data.list, '');
