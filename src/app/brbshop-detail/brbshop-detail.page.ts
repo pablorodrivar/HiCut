@@ -3,8 +3,6 @@ import { DatePicker } from '@ionic-native/date-picker/ngx';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator/ngx';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { MbscEventcalendarOptions } from '@mobiscroll/angular';
-import { Jsonp } from '@angular/http';
 
 @Component({
   selector: 'app-brbshop-detail',
@@ -15,6 +13,7 @@ import { Jsonp } from '@angular/http';
 export class BrbshopDetailPage implements OnInit {
   dateOfevent:string= new Date().toISOString();
   text: string = "";
+  public comment: any;
   public list_id:number;
   public id:number;
   //public events:any;

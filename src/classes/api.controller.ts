@@ -18,6 +18,12 @@ export class ApiController {
     //TODO: cancelReservation
     //TODO: editReservation
     //TODO: getReservationDetail
+    //TODO: getHairDressingById(id: number)
+    //TODO: getHours(brb_id: number)
+    //TODO: getServices(brb_id: number)
+    //TODO: getComments(brb_id: number)
+    //TODO: postComment(brb_id: number)
+    //TODO: postRating(brb_id: number)
 
     /*     public setProfile(user:User, callback: (editedUser) => void){
             var newUserData = JSON.stringify(user);

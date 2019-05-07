@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NO_ERRORS_SCHEMA } from '@angular/core';
 import { NavParams, ModalController } from '@ionic/angular';
 
 @Component({
@@ -8,7 +8,9 @@ import { NavParams, ModalController } from '@ionic/angular';
 })
 export class ModalComponent implements OnInit {
   public data = [];
+  public location: string;
   public distance: number;
+  public list_id: number;
   public services = [{
     "hair_cut": 0,
     "shaving": 0,
@@ -18,17 +20,14 @@ export class ModalComponent implements OnInit {
 
   constructor(navParams: NavParams, public modalController: ModalController) {
     // componentProps can also be accessed at construction time using NavParams
-    console.log('values', navParams.get('value'))
+    //console.log('values', navParams.get('value'))
+    this.list_id = navParams.get('id');
   }
 
   ngOnInit() {}
 
   dismissData() {
-    this.data = [this.distance, this.services];
+    this.data = [this.location, this.distance, this.services];
     this.modalController.dismiss(this.data);
-  }
-
-  dismiss(){
-    this.modalController.dismiss();
   }
 }

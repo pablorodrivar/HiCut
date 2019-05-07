@@ -60,7 +60,16 @@
         "COMMENTS": "Comentarios",
         "SELECT_DATE": "Elige Fecha",
         "SELECT_HOUR": "Elige Hora",
-        "COMMENT": "Comentar"        
+        "COMMENT": "Comentar",
+        "LEAVE_YOUR_COMMENT": "Deja tu comentario",
+        "RATE_EXPERIENCE": "Valora tu experiencia",
+        "EXCELLENT": "Genial",
+        "SO_GOOD": "Muy buena",
+        "NOT_BAD": "No esta mal",
+        "SO_BAD": "Muy mal",
+        "HORRIBLE": "Fatal",
+        "SELECT_ONE": "Elige una",
+        "COMMENT": "Comenta"        
       },
       "LIST": {
         "TITLE": "Peluquerias",
@@ -71,7 +80,9 @@
         "ALL": "Todas",
         "OPEN_TODAY": "Abierto Hoy",
         "CLOSE_TODAY": "Cerrado Hoy",
-        "LOCATION": "Localizacion"         
+        "LOCATION": "Localizacion",
+        "MEN": "Hombre",
+        "WOMEN": "Mujer"         
       },
       "ACCOUNTSETTINGS": {
         "TITLE": "Tu Perfil",
@@ -97,7 +108,8 @@
         "HAIR_CUT": "Corte de Pelo",
         "SHAVING": "Afeitado",
         "BEARD_TRIM": "Recorte de barba",
-        "HAIR_DYING": "Tinte de pelo"
+        "HAIR_DYING": "Tinte de pelo",
+        "LOCATION": "Localizacion"
       }
     }
   }
