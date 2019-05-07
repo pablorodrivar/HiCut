@@ -28,6 +28,6 @@ export class homePage {
   }
 
   pushListEveryOne(){
-    this.router.navigate(["/tabs/home/list",3]);
+    this.router.navigate(["/tabs/home/list",0]);
   }
 }

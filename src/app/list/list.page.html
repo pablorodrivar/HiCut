@@ -46,8 +46,8 @@
     <ion-card *ngFor="let brb of list" (click)="toDetail(brb.id)">
         <ion-card-header>
           <ion-card-title>{{ brb.name }}
-              <ion-chip *ngIf="brb.genre == 0" color="secondary"><ion-icon name="male"></ion-icon><ion-label>{{ 'PAGES.LIST.MEN' | translate }}</ion-label></ion-chip>
-              <ion-chip *ngIf="brb.genre == 1" color="secondary"><ion-icon name="female"></ion-icon><ion-label>{{ 'PAGES.LIST.WOMEN' | translate }}</ion-label></ion-chip>
+              <ion-chip *ngIf="brb.genre == 1" color="secondary"><ion-icon name="male"></ion-icon><ion-label>{{ 'PAGES.LIST.MEN' | translate }}</ion-label></ion-chip>
+              <ion-chip *ngIf="brb.genre == 2" color="secondary"><ion-icon name="female"></ion-icon><ion-label>{{ 'PAGES.LIST.WOMEN' | translate }}</ion-label></ion-chip>
           </ion-card-title>          
         </ion-card-header>
 
