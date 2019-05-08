@@ -2,6 +2,7 @@ import {User} from './pojo/user';
 import {Globals} from '../app/globals';
 import {Storage} from '@ionic/storage';
 import {HttpHeaders} from '@angular/common/http';
+import { Comment } from './pojo/comment';
 
 
 export class ApiController {
@@ -15,10 +16,9 @@ export class ApiController {
     //TODO: cancelReservation
     //TODO: editReservation
     //TODO: getReservationDetail
-    //TODO: getServices(brb_id: number)
-    //TODO: getComments(brb_id: number)
     //TODO: postComment(brb_id: number)
     //TODO: postRating(brb_id: number)
+    //TODO: getHairdressers(hairdressing_id: number)
     //TODO: setProfile
 
     /* public setProfile(user:User, callback: (editedUser) => void){
@@ -34,7 +34,20 @@ export class ApiController {
             });
         } */
 
-
+    public comment(comment: Comment,callback: (msg) => void){
+        if (!this.isLoged()) {
+            callback(this.errorParse('error.not_loged'));
+            return;
+        }
+        var c: any = JSON.stringify(comment);
+        Globals.http.put(ApiController.api_url + 'comment',c, {headers: new HttpHeaders().set('Content-Type', 'application/json').set(
+            'Authorization', this.token)}).subscribe((data: any) => {
+            callback(data.msg);
+        }, (error) => {
+            console.log(error);
+            callback(this.errorParse(error.error.msg));
+        });
+    }
 
     // done
 
@@ -56,8 +69,26 @@ export class ApiController {
         return hours;
     }
 
+    public getComments(brb_id: number,callback: (comments, msg) => void){
+        Globals.http.get(ApiController.api_url + 'getcomments/'+brb_id, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
+            callback(data.comments,"");
+        }, (error) => {
+            console.log(error);
+            callback(null, this.errorParse(error.error.msg));
+        });
+    }
+    
+    public getServices(brb_id: number,callback: (services, msg) => void){
+        Globals.http.get(ApiController.api_url + 'getservices/'+brb_id, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
+            callback(data.services,"");
+        }, (error) => {
+            console.log(error);
+            callback(null, this.errorParse(error.error.msg));
+        });
+    }
+
     public getHours(brb_id: number,callback: (hours, msg) => void){
-        Globals.http.get(ApiController.api_url + 'gethours/'+brb_id).subscribe((data: any) => {
+        Globals.http.get(ApiController.api_url + 'gethours/'+brb_id, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
             for (var key in data.hours) {
                 var day = data.hours[key];
                 for(var i = 0;i<day.length;i++){

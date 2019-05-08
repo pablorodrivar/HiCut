@@ -3,6 +3,7 @@ import { Globals } from '../globals';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';
+import { Comment } from 'classes/pojo/comment';
 
 @Component({
   selector: 'app-login',
