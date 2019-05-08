@@ -16,8 +16,7 @@ export class ApiController {
     //TODO: cancelReservation
     //TODO: editReservation
     //TODO: getReservationDetail
-    //TODO: postComment(brb_id: number)
-    //TODO: postRating(brb_id: number)
+    //TODO: putRating(brb_id: number)
     //TODO: getHairdressers(hairdressing_id: number)
     //TODO: setProfile
 
