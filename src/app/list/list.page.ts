@@ -31,6 +31,7 @@ export class ListPage implements OnInit {
   public distances: any[] = [];
   public brbshops: any[] = [];
   public ratings: any[] = [];
+  public sort_opt: string;
 
   constructor(private route:ActivatedRoute, private router: Router, 
     public alertController: AlertController, public modalController: ModalController,
@@ -39,6 +40,7 @@ export class ListPage implements OnInit {
     this.filter.lat = 37.183054;
     this.filter.lng = -3.6021928;
     this.mdChipText = 20+"";
+    this.sort_opt = "dist";
   }
 
   ngOnInit() {
@@ -46,6 +48,7 @@ export class ListPage implements OnInit {
     this.list = [];
     this.distances = [];
     this.brbshops = [];
+    this.ratings = [];
     this.presentLoading();
     this.list_id = this.route.snapshot.paramMap.get('id');    
     this.filter.genre = this.list_id;   
@@ -73,26 +76,17 @@ export class ListPage implements OnInit {
       }
 
       this.list.forEach(val => {
-        this.distances.push(this.distance(val.lat, val.lng, this.filter.lat, this.filter.lng, "K"));
+        Globals.api.getRating(val.id, (rate, error) => {
+          this.ratings.push(rate);          
+        });
       });
 
       this.list.forEach(val => {
-        Globals.api.getRating(val.id, (rate, error) => {
-          this.ratings.push(rate.stars);
-        });
-      });
+        this.distances.push(this.distance(val.lat, val.lng, this.filter.lat, this.filter.lng, "K"));
+      });      
 
-      for(var _i = 0; _i < this.list.length; _i++) {
-        this.brbshops.push({
-          brb: this.list[_i],
-          dist: this.distances[_i],
-          rate: this.ratings[_i]
-        });
-      }      
-
-      this.sort(this.brbshops, "dist", true, (brbs, error) => {
-        this.brbshops = brbs;
-      });
+      this.merge(this.sort_opt, true);      
+      
       console.log(this.brbshops)
     });
   }
@@ -112,6 +106,22 @@ export class ListPage implements OnInit {
     }, 1000);
   }
 
+  merge(opt: string, asc: boolean) {
+    setTimeout(() => {
+      for(var _i = 0; _i < this.list.length; _i++) {
+        this.brbshops.push({
+          brb: this.list[_i],
+          dist: this.distances[_i],
+          rate: this.ratings[_i]
+        });
+      }
+
+      this.sort(this.brbshops, opt, asc, (brbs, error) => {
+        this.brbshops = brbs;
+      });
+    }, 1000);
+  }
+
   toDetail(detail_id) {
     this.router.navigate(["/tabs/home/list/"+this.list_id+"/detail",detail_id]);
   }
@@ -123,28 +133,23 @@ export class ListPage implements OnInit {
     });
 
     modal.onDidDismiss().then((data) => {
-      console.log(data.data[0])
-      if(typeof data.data[0] !== undefined || data.data[0] !== undefined) {
-        this.filter.text = data.data[0];
-        if(this.filter.text != "") {
-          this.locationChip = true;
-          this.locChipText = this.filter.text;
-        } else {
-          this.locationChip = false;
+      if(data.data){
+        if(typeof data.data[0].distance !== undefined || data.data[0].distance != undefined) {
+          this.filter.max_km = data.data[0].distance;
+          if(this.filter.max_km > 20) {
+            this.maxDistChip = true;
+            this.mdChipText = this.filter.max_km + "";
+          } else {
+            this.maxDistChip = false;
+          }        
         }
-      }
-
-      if(typeof data.data[1] !== undefined || data.data[1] != undefined) {
-        this.filter.max_km = data.data[1];
-        if(this.filter.max_km > 20) {
-          this.maxDistChip = true;
-          this.mdChipText = this.filter.max_km + "";
-        } else {
-          this.maxDistChip = false;
-        }        
-      }
-
-      this.refresh();
+  
+        if(typeof data.data[0].sort_opt !== undefined || data.data[0].sort_opt != undefined) {
+          this.sort_opt = data.data[0].sort_opt;        
+        }
+  
+        this.refresh();
+      }      
     })
 
     return await modal.present();
@@ -163,7 +168,6 @@ export class ListPage implements OnInit {
   }
 
   async getLocation(lat: any, long: any) {
-    //let url = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+long+"&sensor=false";
     let url = "https://api.opencagedata.com/geocode/v1/json?q="+lat+"+"+long+"&key=497316bc880f4aafb1357e3185e95d01";
     // START FETCH
     return fetch(url, {
@@ -213,7 +217,9 @@ export class ListPage implements OnInit {
         return item1.dist - item2.dist;
       });  
     } else if (opt == "rat") {
-      console.log("ON PROGRESS")
+      array = array.sort((item1, item2) => {
+        return item1.rate.stars + item2.rate.stars;
+      });
     }
 
     if(!asc) {

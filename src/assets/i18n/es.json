@@ -82,7 +82,12 @@
         "CLOSE_TODAY": "Cerrado Hoy",
         "LOCATION": "Localizacion",
         "MEN": "Hombre",
-        "WOMEN": "Mujer"         
+        "WOMEN": "Mujer",
+        "VALUATIONS": "valoraciones"    ,
+        "SORT_BY": "Ordenar por:",
+        "DISTANCE": "Distancia",
+        "RATING": "Valoracion",
+        "ALPHA": "Alfabeticamente"              
       },
       "ACCOUNTSETTINGS": {
         "TITLE": "Tu Perfil",
@@ -109,7 +114,13 @@
         "SHAVING": "Afeitado",
         "BEARD_TRIM": "Recorte de barba",
         "HAIR_DYING": "Tinte de pelo",
-        "LOCATION": "Localizacion"
+        "LOCATION": "Localizacion",
+        "SEARCH_OPTIONS": "Opciones de Busqueda",
+        "SORT_BY": "Filtrar por",
+        "RATING": "Valoracion",
+        "ALPHA": "Alfabeticamente",
+        "APPLY": "Aplicar",
+        "SELECT_SERVICES": "Selecciona Servicios"
       }
     }
   }

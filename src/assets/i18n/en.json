@@ -82,7 +82,12 @@
         "CLOSE_TODAY": "Closed Today",
         "LOCATION": "Location",
         "MEN": "Men",
-        "WOMEN": "Women"        
+        "WOMEN": "Women",
+        "VALUATIONS": "valuations",
+        "SORT_BY": "Sort by:",
+        "DISTANCE": "Distance",
+        "RATING": "Rating",
+        "ALPHA": "Alphabetically"            
       },
       "ACCOUNTSETTINGS": {
         "TITLE": "Your Profile",
@@ -109,7 +114,13 @@
         "SHAVING": "Shaving",
         "BEARD_TRIM": "Beard Trim",
         "HAIR_DYING": "Hair Dying",
-        "LOCATION": "Location"
+        "LOCATION": "Location",
+        "SEARCH_OPTIONS": "Search Options",
+        "SORT_BY": "Sort by",
+        "RATING": "Rating",
+        "ALPHA": "Alphabetically",
+        "APPLY": "Apply",
+        "SELECT_SERVICES": "Select Services"
       }
     }
  }

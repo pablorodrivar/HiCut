@@ -11,6 +11,7 @@ export class ModalComponent implements OnInit {
   public location: string;
   public distance: number;
   public list_id: number;
+  public sort_opt: string;
   public services = [{
     "hair_cut": 0,
     "shaving": 0,
@@ -22,12 +23,27 @@ export class ModalComponent implements OnInit {
     // componentProps can also be accessed at construction time using NavParams
     //console.log('values', navParams.get('value'))
     this.list_id = navParams.get('id');
+    this.sort_opt = "dist";
   }
 
   ngOnInit() {}
 
   dismissData() {
-    this.data = [this.location, this.distance, this.services];
+    this.data = [{distance: this.distance, services: this.services, sort_opt: this.sort_opt}];
     this.modalController.dismiss(this.data);
+  }
+
+  dismiss() {
+    this.modalController.dismiss();
+  }
+
+  sortBy(opt: number) {
+    if(opt == 0) {
+      this.sort_opt = "dist";
+    } else if (opt == 1) {
+      this.sort_opt = "rat";
+    } else if (opt == 2) {
+      this.sort_opt = "alp";
+    }
   }
 }
