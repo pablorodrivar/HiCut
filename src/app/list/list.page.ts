@@ -28,6 +28,9 @@ export class ListPage implements OnInit {
   public locationChip: boolean = false;
   public mdChipText: string;
   public locChipText: string;
+  public distances: any[] = [];
+  public brbshops: any[] = [];
+  public ratings: any[] = [];
 
   constructor(private route:ActivatedRoute, private router: Router, 
     public alertController: AlertController, public modalController: ModalController,
@@ -39,10 +42,13 @@ export class ListPage implements OnInit {
   }
 
   ngOnInit() {
+    this.locChipText = "";
+    this.list = [];
+    this.distances = [];
+    this.brbshops = [];
     this.presentLoading();
     this.list_id = this.route.snapshot.paramMap.get('id');    
-    this.filter.genre = this.list_id;    
-    console.log(this.filter.genre)
+    this.filter.genre = this.list_id;   
     
     //DEPURANDO CON EL DEVICE FISICO
     /*this.geolocation.getCurrentPosition().then(loc => {
@@ -55,7 +61,6 @@ export class ListPage implements OnInit {
     });*/
 
     this.getLocation(this.filter.lat, this.filter.lng).then(data => {
-      //console.log(data)
       this.locChipText = data.results[0].components.city;
     });
 
@@ -63,10 +68,32 @@ export class ListPage implements OnInit {
       if(list != null) {        
         this.list = list;
         this.locChipText = this.list[0]
-        console.log(this.list);
       } else {
         console.log(error)
       }
+
+      this.list.forEach(val => {
+        this.distances.push(this.distance(val.lat, val.lng, this.filter.lat, this.filter.lng, "K"));
+      });
+
+      this.list.forEach(val => {
+        Globals.api.getRating(val.id, (rate, error) => {
+          this.ratings.push(rate.stars);
+        });
+      });
+
+      for(var _i = 0; _i < this.list.length; _i++) {
+        this.brbshops.push({
+          brb: this.list[_i],
+          dist: this.distances[_i],
+          rate: this.ratings[_i]
+        });
+      }      
+
+      this.sort(this.brbshops, "dist", true, (brbs, error) => {
+        this.brbshops = brbs;
+      });
+      console.log(this.brbshops)
     });
   }
 
@@ -74,7 +101,6 @@ export class ListPage implements OnInit {
     setTimeout(() => {
       this.list = [];
       this.ngOnInit();
-      console.log('Async operation has ended');
       event.target.complete();
     }, 1000);
   }
@@ -156,4 +182,44 @@ export class ListPage implements OnInit {
     }).catch(err => err);
     // END FETCH
   }  
+
+  distance(lat1: number, lon1: number, lat2: number, lon2: number, unit: string) {
+    if ((lat1 == lat2) && (lon1 == lon2)) {
+      return 0;
+    }
+    else {
+      let radlat1 = Math.PI * lat1/180;
+      let radlat2 = Math.PI * lat2/180;
+      var theta = lon1 - lon2;
+      var radtheta = Math.PI * theta/180;
+      let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+      if(dist > 1) {
+        dist = 1;
+      }
+      dist = Math.acos(dist);
+      dist = dist * 180/Math.PI;
+      dist = dist * 60 * 1.1515;
+      if (unit=="K") { dist = dist * 1.609344 }
+      if (unit=="N") { dist = dist * 0.8684 }
+      let res: string = dist + "";
+      res = res.substring(0,4);
+      return res;
+    }
+  }
+
+  sort(array: any[], opt: string, asc: boolean, callback: (array, error) => any) {
+    if(opt == "dist") {     
+      array = array.sort((item1, item2) => {
+        return item1.dist - item2.dist;
+      });  
+    } else if (opt == "rat") {
+      console.log("ON PROGRESS")
+    }
+
+    if(!asc) {
+      callback(array.reverse(), "Error");
+    } else {
+      callback(array, "Error");
+    }
+  }
 }

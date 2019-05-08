@@ -13,14 +13,14 @@
       <ion-item lines="none">
         <ion-slides pager="true">
           <ion-slide *ngFor="let slide of slider">
-            <img [src]="slide.image"/>
+            <img src="http://80.211.65.79:8000/{{ slide }}">
           </ion-slide>
         </ion-slides>
         <!--<img src="./assets/imgs/barber1.jpg" style="width: 100%;height: 40vh;">-->        
       </ion-item>
 
       <ion-item>
-        <ion-label class="title" text-center>Barbershop</ion-label>  
+        <ion-label class="title" text-center>{{ barbershop[0].name }}</ion-label>  
         <ion-button fill="clear" size="small" expand="full" (click)="showLocation()">{{ 'PAGES.BRBDETAILS.SHOW_LOCATION' | translate }}</ion-button> 
       </ion-item>      
       

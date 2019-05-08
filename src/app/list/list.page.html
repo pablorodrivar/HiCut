@@ -43,20 +43,19 @@
   >            
 
     <!-- | searchFilter: searchText -->
-    <ion-card *ngFor="let brb of list" (click)="toDetail(brb.id)">
+    <ion-card *ngFor="let brb of brbshops" (click)="toDetail(brb.brb.id)">
         <ion-card-header>
-          <ion-card-title>{{ brb.name }}
-              <ion-chip *ngIf="brb.genre == 1" color="secondary"><ion-icon name="male"></ion-icon><ion-label>{{ 'PAGES.LIST.MEN' | translate }}</ion-label></ion-chip>
-              <ion-chip *ngIf="brb.genre == 2" color="secondary"><ion-icon name="female"></ion-icon><ion-label>{{ 'PAGES.LIST.WOMEN' | translate }}</ion-label></ion-chip>
+          <ion-card-title>{{ brb.brb.name }}
+            <ion-chip color="secondary"><ion-icon name="walk"></ion-icon><ion-label>{{ brb.dist }} km.</ion-label></ion-chip>
           </ion-card-title>          
         </ion-card-header>
 
         <ion-item>
-          <img src="http://80.211.65.79:8000/{{ brb.imglist[0] }}" class="brb-img">
-        </ion-item>       
-        
+          <img src="http://80.211.65.79:8000/{{ brb.brb.imglist[0] }}" class="brb-img">
+        </ion-item>      
+
         <ion-item color="primary" lines="none">
-          <ion-label>{{ brb.address }}</ion-label>
+          <ion-label>{{ brb.brb.address }}</ion-label>
           <ion-icon name="compass"></ion-icon>
         </ion-item>
         

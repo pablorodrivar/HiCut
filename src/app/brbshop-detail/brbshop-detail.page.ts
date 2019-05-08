@@ -3,6 +3,8 @@ import { DatePicker } from '@ionic-native/date-picker/ngx';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator/ngx';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { Globals } from 'app/globals';
+import { Filter } from 'classes/pojo/filter';
 
 @Component({
   selector: 'app-brbshop-detail',
@@ -16,6 +18,9 @@ export class BrbshopDetailPage implements OnInit {
   public comment: any;
   public list_id:number;
   public id:number;
+  public filter = new Filter();
+  public barbershop: any;
+  public slider: any[] = [];
   //public events:any;
   constructor(private datePicker: DatePicker, private launchNavigator: LaunchNavigator, private route:ActivatedRoute,private router: Router,
     public alertController: AlertController/*, private jsonp: Jsonp*/) { }
@@ -24,24 +29,25 @@ export class BrbshopDetailPage implements OnInit {
     start: 'Spain, ON'
   }
 
-  dayNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",];
+  dayNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",];  
 
-  slider = [
-    {
-      image: "assets/imgs/barber1.jpg"
-    },
-    {
-      image: "assets/imgs/barber2.jpg"
-    },
-    {
-      image: "assets/imgs/barber3.jpg"
-    }
-  ]
-
-  ngOnInit() {
+  async ngOnInit() {
     this.list_id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.id = parseInt(this.route.snapshot.paramMap.get('detail_id'));
+
     console.log("LISTA: "+this.list_id+" BARBERIA: "+this.id);
+
+    this.filter.id = this.id;
+    await Globals.api.getHairdressing(this.filter, (list, error) => {
+      if(list != null) {
+        console.log(list)
+        this.barbershop = list;
+      } else {
+        console.log(error)
+      }
+    
+      this.slider = this.barbershop[0].imglist;
+    });    
     /*this.jsonp.request('https://trial.mobiscroll.com/events/?callback=JSONP_CALLBACK').subscribe((res: any) => {
             this.events = res._body;
         });*/
@@ -58,7 +64,8 @@ export class BrbshopDetailPage implements OnInit {
   };*/
 
   showLocation() {
-    this.launchNavigator.navigate('Toronto, ON', this.options)
+    let destination = [this.filter.lat, this.filter.lng];
+    this.launchNavigator.navigate(destination, this.options)
     .then(
       success => console.log('Launched navigator'),
       error => console.log('Error launching navigator', error)
