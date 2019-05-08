@@ -15,7 +15,6 @@ export class ApiController {
     //TODO: cancelReservation
     //TODO: editReservation
     //TODO: getReservationDetail
-    //TODO: getHours(brb_id: number)
     //TODO: getServices(brb_id: number)
     //TODO: getComments(brb_id: number)
     //TODO: postComment(brb_id: number)
@@ -36,11 +35,42 @@ export class ApiController {
         } */
 
 
-    public getHours(brb_id: number){
-
-    }
 
     // done
+
+    private getHEveryFifteen(start,end){
+        var hours = [];
+        var h = parseInt(start.split(':')[0]);
+        var m = parseInt(start.split(':')[1]);
+        var max_h = parseInt(end.split(':')[0]);
+        var max_m = parseInt(end.split(':')[1]);
+        while(h<max_h || h==max_h && m<max_m){
+            hours.push(h+':'+m);
+            m+=15;
+            if (m>=60){
+                h++;
+                m = m-60;
+            }
+        }
+
+        return hours;
+    }
+
+    public getHours(brb_id: number,callback: (hours, msg) => void){
+        Globals.http.get(ApiController.api_url + 'gethours/'+brb_id).subscribe((data: any) => {
+            for (var key in data.hours) {
+                var day = data.hours[key];
+                for(var i = 0;i<day.length;i++){
+                    var range = day[i];
+                    range.hours = this.getHEveryFifteen(range.range_start,range.range_end)
+                }
+            }
+            callback(data.hours,"");
+        }, (error) => {
+            console.log(error);
+            callback(null, this.errorParse(error.error.msg));
+        });
+    }
 
     public getListReservations(callback: (list, msg) => void) {
         if (!this.isLoged()) {
