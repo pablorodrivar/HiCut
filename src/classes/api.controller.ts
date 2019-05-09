@@ -20,6 +20,7 @@ export class ApiController {
     //TODO: getReservationDetail    
     //TODO: setProfile
     //TODO: getProfile(user_id: number) por id de usuario
+    //TODO: postRating el rating individual (sin comentario)
     //TODO: QUE EL GET PROFILE DEVUELVA EL AVATAR DEL USUARIO
     
 

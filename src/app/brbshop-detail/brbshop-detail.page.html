@@ -22,11 +22,7 @@
       <ion-item>
         <ion-label class="title" text-center>{{ name }}</ion-label>  
         <ion-button fill="clear" size="small" expand="full" (click)="showLocation()">{{ 'PAGES.BRBDETAILS.SHOW_LOCATION' | translate }}</ion-button> 
-      </ion-item>      
-      
-      <!--<ion-item>
-        <bar-rating [(rate)]="rate" [max]="5"></bar-rating>
-      </ion-item> -->
+      </ion-item>                
 
       <!-- CUANDO ME PONGA CON ACTUALIZAR LOS CALENDARIOS Y HORAS DE LAS BARBERIAS LE TENGO QUE ECHAR UN OJO A ESTO: -->
       <!-- https://ionicframework.com/docs/api/datetime LA PARTE DE Properties/hourValues que puede ser un array de horas,
@@ -43,7 +39,7 @@
 
       <ion-item>
         <div class="title">
-            <ion-label text-center class="title" position="stacked">{{ 'PAGES.BRBDETAILS.BRBSHOP_OPTIONS' | translate }}</ion-label> 
+          <ion-label text-center class="title" position="stacked">{{ 'PAGES.BRBDETAILS.BRBSHOP_OPTIONS' | translate }}</ion-label> 
         </div>
         
         <div class="center_row">                                   
@@ -56,15 +52,43 @@
               <ion-label>&nbsp; {{ 'PAGES.BRBDETAILS.SHAVING' | translate }}</ion-label>
           </ion-item>
         </div>
-      </ion-item>
+      </ion-item>      
 
       <ion-item>
         <div class="title">
           <ion-label class="title" text-center>{{ 'PAGES.BRBDETAILS.FINAL_PRIZE' | translate }}</ion-label>
         </div>        
         <ion-label text-center position="stacked" name="prize">Prize</ion-label>         
-        <ion-button expand="full" size="default">{{ 'PAGES.BRBDETAILS.PAY' | translate }}</ion-button>
+        <ion-button fill style="width:100%; border: solid 1px #ECEBEB;">{{ 'PAGES.BRBDETAILS.PAY' | translate }}</ion-button>
       </ion-item>
+
+      <ion-item lines="none" style="display: inline-block; margin-bottom: -10%; width: 100%;">
+          <div class="rating" *ngIf="brb_rating >= 0 && brb_rating < 0.5"><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
+          <div class="rating" *ngIf="brb_rating >= 0.5 && brb_rating < 1"><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
+          <div class="rating" *ngIf="brb_rating >= 1 && brb_rating < 1.35"><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
+          <div class="rating" *ngIf="brb_rating >= 1.35 && brb_rating < 1.85"><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>              
+          <div class="rating" *ngIf="brb_rating >= 1.85 && brb_rating < 2.35"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
+          <div class="rating" *ngIf="brb_rating >= 2.35 && brb_rating < 2.85"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>         
+          <div class="rating" *ngIf="brb_rating >= 2.85 && brb_rating < 3.35"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>         
+          <div class="rating" *ngIf="brb_rating >= 3.35 && brb_rating < 3.85"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon></div>         
+          <div class="rating" *ngIf="brb_rating >= 3.85 && brb_rating < 4.35"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon></div>         
+          <div class="rating" *ngIf="brb_rating >= 4.35 && brb_rating < 4.85"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon></div>
+          <div class="rating" *ngIf="brb_rating >= 4.85 && brb_rating <= 5"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div>                       
+        </ion-item>
+        <ion-item>
+          <ion-label text-center style="font-size: 15px;" position="stacked">({{ total_rate }} valuations)</ion-label>         
+          <ion-item lines ="none">
+            <ion-label>{{ 'PAGES.BRBDETAILS.RATE_EXPERIENCE' | translate }}</ion-label>
+            <ion-select (ionChange)="getRating($event)" [(ngModel)]="rate" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_ONE' | translate }}">
+              <ion-select-option value="5">{{ 'PAGES.BRBDETAILS.EXCELLENT' | translate }}</ion-select-option>
+              <ion-select-option value="4">{{ 'PAGES.BRBDETAILS.SO_GOOD' | translate }}</ion-select-option>
+              <ion-select-option value="3">{{ 'PAGES.BRBDETAILS.NOT_BAD' | translate }}</ion-select-option>
+              <ion-select-option value="2">{{ 'PAGES.BRBDETAILS.SO_BAD' | translate }}</ion-select-option>
+              <ion-select-option value="1">{{ 'PAGES.BRBDETAILS.HORRIBLE' | translate }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-button fill style="width:100%; border: solid 1px #ECEBEB;" (click)="singleRate()">rate</ion-button>
+        </ion-item>  
       
       <div class="title">
         <ion-label text-center class="title">{{ 'PAGES.BRBDETAILS.COMMENTS' | translate }}</ion-label>
@@ -114,7 +138,7 @@
       </div> 
       
       <div *ngIf="!is_loged">
-          <ion-item lines="none"><ion-button fill style="width:100%; border: solid 1px #ECEBEB;" (click)="goToLogin()">{{ 'PAGES.BRBDETAILS.LOG_IN_TO' | translate }}</ion-button></ion-item>
+        <ion-item lines="none"><ion-button fill style="width:100%; border: solid 1px #ECEBEB;" (click)="goToLogin()">{{ 'PAGES.BRBDETAILS.LOG_IN_TO' | translate }}</ion-button></ion-item>
       </div>
   </ion-list>
 </ion-content>
