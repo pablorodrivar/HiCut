@@ -13,12 +13,12 @@ export class ApiController {
     private static api_url = 'http://80.211.65.79:8000/api/v1/';
 
 
-    //TODO: putRating(brb_id: number)
-    //TODO: getHairdressers(hairdressing_id: number)
     //TODO: cancelReservation
     //TODO: editReservation
     //TODO: getReservationDetail    
-    //TODO: setProfile
+
+    //TODO: putRating(brb_id: number)
+    //TODO: postProfile(user)
     //TODO: getProfile(user_id: number) por id de usuario
     //TODO: postRating el rating individual (sin comentario)
     //TODO: QUE EL GET PROFILE DEVUELVA EL AVATAR DEL USUARIO
@@ -37,6 +37,19 @@ export class ApiController {
             });
         } */
 
+
+
+    // done
+
+    public getHairdressers(brb_id: number,callback: (hairdressers, msg) => void){
+        Globals.http.get(ApiController.api_url + 'hairdressers/'+brb_id, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
+            callback(data.hairdressers,"");
+        }, (error) => {
+            console.log(error);
+            callback(null, this.errorParse(error.error.msg));
+        });
+    }
+
     public comment(comment: any,callback: (msg) => void){
         if (!this.isLoged()) {
             callback(this.errorParse('error.not_loged'));
@@ -51,8 +64,6 @@ export class ApiController {
             callback(this.errorParse(error.error.msg));
         });
     }
-
-    // done
 
     private getHEveryFifteen(start,end){
         var hours = [];
