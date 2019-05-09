@@ -31,9 +31,23 @@ export class BrbshopDetailPage implements OnInit {
   public comments: any[] = [];
   public name: string;
   public is_loged: boolean;
+  public days_raw: any[] = [];
+  public days: any[] = [];
+  public months: number[] = [];
+  public years: number[] = [];
+  public yearValues: string;
+  public monthValues: string;
+  public myDate: string;
+  public myHour: string;
+  public showHourPicker: boolean;
+  public services: any[] = [];
+  public price: number;
   //public events:any;
   constructor(private datePicker: DatePicker, private launchNavigator: LaunchNavigator, private route:ActivatedRoute,private router: Router,
-    public alertController: AlertController, public loadingController: LoadingController, public toastController: ToastController,) { }
+    public alertController: AlertController, public loadingController: LoadingController, public toastController: ToastController,) { 
+      this.showHourPicker = false;
+      this.price = 0;
+    }
 
   options: LaunchNavigatorOptions = {
     start: 'Spain, ON'
@@ -54,6 +68,8 @@ export class BrbshopDetailPage implements OnInit {
     this.filter.id = this.id;
 
     this.getBrbShop();   
+    this.getHours();
+    this.getServices();
   }
 
   showLocation() {
@@ -73,21 +89,49 @@ export class BrbshopDetailPage implements OnInit {
       } else {
         console.log(error)
       }
-    
+
       this.slider = this.barbershop[0].imglist;
-      this.name = this.barbershop[0].name;
+      this.name = this.barbershop[0].name;          
 
       Globals.api.getComments(this.barbershop[0].id, (comment, msg) => {
-        console.log(comment)
         this.comments = comment;        
       });      
 
       Globals.api.getRating(this.id, (rate, error) => {
-        console.log(rate)
         this.brb_rating = rate.stars;
         this.total_rate = rate.total;
       });
     });    
+  }
+
+  getHours() {
+    Globals.api.getHours(this.id, (hours, msg) => {
+      console.log(Object.keys(hours))
+      this.days_raw = Object.keys(hours);
+
+      const distinct = (value, index, self) => {
+        return self.indexOf(value) == index;
+      }
+
+      this.days_raw.forEach(element => {
+        let val = element.split("-");
+        this.years.push(+val[0]);
+        this.months.push(+val[1])
+      });
+
+      this.years = this.years.filter(distinct);
+      this.months = this.months.filter(distinct);
+      this.yearValues = this.years.join(",");
+      this.monthValues = this.months.join(",");
+      console.log(this.yearValues + " / " + this.monthValues)
+    });  
+  }
+
+  getServices() {
+    Globals.api.getServices(this.id, (services, msg) => {
+      console.log(services)
+      this.services = services;      
+    });
   }
 
   sendComment() {
@@ -109,6 +153,14 @@ export class BrbshopDetailPage implements OnInit {
     this.rate = event.detail.value;
   }
 
+  gServices(event) {
+    console.log(this.services)
+    this.services.forEach(element => {
+      this.price = this.price + +element;
+      console.log(this.price)
+    });
+  }
+
   refresh() {
     setTimeout(() => {
       this.ngOnInit();
@@ -121,6 +173,15 @@ export class BrbshopDetailPage implements OnInit {
 
   singleRate() {
     //TODO
+  }
+
+  updateDate(event) {
+    this.showHourPicker = true;
+  }
+
+  updateHour(event) {
+    //this.myHour = this.myHour.substring(this.myHour.indexOf("T") + 1, this.myHour.indexOf("."));
+    console.log(this.myHour)
   }
 
   async presentToast() {

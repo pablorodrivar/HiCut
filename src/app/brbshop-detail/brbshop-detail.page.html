@@ -29,36 +29,31 @@
       igual con las fechas. -->
       <ion-item>
        <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_DATE' | translate }}</ion-label>
-        <ion-datetime displayFormat="DD MMMM YY" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_DATE' | translate }}"></ion-datetime>
+        <ion-datetime displayFormat="DD MMMM YY" [monthValues]="yearValues" [yearValues]="monthValues" (ionChange)="updateDate($event)" [(ngModel)]="myDate" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_DATE' | translate }}"></ion-datetime>
       </ion-item>  
 
-      <ion-item>
+      <ion-item *ngIf="showHourPicker">
         <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_HOUR' | translate }}</ion-label>
-        <ion-datetime displayFormat="HH:mm" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_HOUR' | translate }}"></ion-datetime>
+        <ion-datetime displayFormat="HH:mm" [(ngModel)]="myHour" (ionChange)="updateHour($event)" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_HOUR' | translate }}"></ion-datetime>
       </ion-item>    
 
       <ion-item>
         <div class="title">
           <ion-label text-center class="title" position="stacked">{{ 'PAGES.BRBDETAILS.BRBSHOP_OPTIONS' | translate }}</ion-label> 
         </div>
-        
-        <div class="center_row">                                   
-          <ion-item text-center class="my-checkbox">
-              <ion-checkbox name="hair_cut"></ion-checkbox>
-              <ion-label>&nbsp; {{ 'PAGES.BRBDETAILS.HAIR_CUT' | translate }}</ion-label>
-          </ion-item>
-          <ion-item float-left class="my-checkbox">
-              <ion-checkbox name="shaving"></ion-checkbox>
-              <ion-label>&nbsp; {{ 'PAGES.BRBDETAILS.SHAVING' | translate }}</ion-label>
-          </ion-item>
-        </div>
+
+        <ion-item lines="none">
+          <ion-select (ionChange)="gServices($event)" [(ngModel)]="services" placeholder="{{ 'PAGES.MODAL.SELECT_SERVICES' | translate }}" style="width: 100%; display: contents; " multiple>        
+            <ion-select-option *ngFor="let ser of services" value="{{ ser.price }}">{{ ser.name }} ({{ ser.price }}€)</ion-select-option>
+          </ion-select>
+        </ion-item>
       </ion-item>      
 
       <ion-item>
         <div class="title">
           <ion-label class="title" text-center>{{ 'PAGES.BRBDETAILS.FINAL_PRIZE' | translate }}</ion-label>
         </div>        
-        <ion-label text-center position="stacked" name="prize">Prize</ion-label>         
+        <ion-label style="font-size: 25px;" text-center position="stacked">{{ price }}€</ion-label>         
         <ion-button fill style="width:100%; border: solid 1px #ECEBEB;">{{ 'PAGES.BRBDETAILS.PAY' | translate }}</ion-button>
       </ion-item>
 
@@ -101,23 +96,30 @@
         </ion-avatar>            
         <ion-card-header>
           <ion-card-subtitle>
-            <ion-label >{{ com.created_at }}</ion-label>
-            <div *ngIf="com.rate >= 0 && com.rate < 0.5"><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
-            <div *ngIf="com.rate >= 0.5 && com.rate < 1"><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
-            <div *ngIf="com.rate >= 1 && com.rate < 1.35"><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
-            <div *ngIf="com.rate >= 1.35 && com.rate < 1.85"><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>              
-            <div *ngIf="com.rate >= 1.85 && com.rate < 2.35"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
-            <div *ngIf="com.rate >= 2.35 && com.rate < 2.85"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>         
-            <div *ngIf="com.rate >= 2.85 && com.rate < 3.35"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>         
-            <div *ngIf="com.rate >= 3.35 && com.rate < 3.85"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon></div>         
-            <div *ngIf="com.rate >= 3.85 && com.rate < 4.35"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon></div>         
-            <div *ngIf="com.rate >= 4.35 && com.rate < 4.85"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon></div>
-            <div *ngIf="com.rate >= 4.85 && com.rate <= 5"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div>               
+            <!--<ion-label >{{ com.created_at }}</ion-label>-->
+            <div class="comment-rate" *ngIf="com.rate >= 0 && com.rate < 0.5"><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
+            <div class="comment-rate" *ngIf="com.rate >= 0.5 && com.rate < 1"><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
+            <div class="comment-rate" *ngIf="com.rate >= 1 && com.rate < 1.35"><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
+            <div class="comment-rate" *ngIf="com.rate >= 1.35 && com.rate < 1.85"><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>              
+            <div class="comment-rate" *ngIf="com.rate >= 1.85 && com.rate < 2.35"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
+            <div class="comment-rate" *ngIf="com.rate >= 2.35 && com.rate < 2.85"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>         
+            <div class="comment-rate" *ngIf="com.rate >= 2.85 && com.rate < 3.35"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>         
+            <div class="comment-rate" *ngIf="com.rate >= 3.35 && com.rate < 3.85"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon></div>         
+            <div class="comment-rate" *ngIf="com.rate >= 3.85 && com.rate < 4.35"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon></div>         
+            <div class="comment-rate" *ngIf="com.rate >= 4.35 && com.rate < 4.85"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon></div>
+            <div class="comment-rate" *ngIf="com.rate >= 4.85 && com.rate <= 5"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div>               
           </ion-card-subtitle>  
           <ion-card-title>{{ com.subject }}</ion-card-title>        
         </ion-card-header>
         
-        <ion-card-content>{{ com.comment }}</ion-card-content>
+        <ion-card-content>
+          <ion-item>
+            {{ com.comment }}
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label >{{ com.created_at }}</ion-label>   
+          </ion-item>                 
+        </ion-card-content>        
       </ion-card>      
       
       <div *ngIf="is_loged">
