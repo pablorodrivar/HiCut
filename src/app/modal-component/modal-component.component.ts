@@ -12,12 +12,7 @@ export class ModalComponent implements OnInit {
   public distance: number;
   public list_id: number;
   public sort_opt: string;
-  public services = [{
-    "hair_cut": 0,
-    "shaving": 0,
-    "beard_trim": 0,
-    "hair_dying": 0,
-  }];
+  public services: any[] = [];
 
   constructor(navParams: NavParams, public modalController: ModalController) {
     // componentProps can also be accessed at construction time using NavParams
@@ -45,5 +40,9 @@ export class ModalComponent implements OnInit {
     } else if (opt == 2) {
       this.sort_opt = "alp";
     }
+  }
+
+  getServices(event) {
+    this.services = event.detail.value;    
   }
 }

@@ -36,8 +36,12 @@
     <ion-chip color="medium"><ion-icon name="compass" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ locChipText }}</ion-label></ion-chip>
     <ion-chip *ngIf="sort_opt == 'dist'" color="medium"><ion-icon name="train" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ 'PAGES.LIST.SORT_BY' | translate }} {{ 'PAGES.LIST.DISTANCE' | translate }}</ion-label></ion-chip>
     <ion-chip *ngIf="sort_opt == 'rat'" color="medium"><ion-icon name="star" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ 'PAGES.LIST.SORT_BY' | translate }} {{ 'PAGES.LIST.RATING' | translate }}</ion-label></ion-chip>
-    <ion-chip *ngIf="sort_opt == 'alp'" color="medium"><ion-icon name="book" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ 'PAGES.LIST.SORT_BY' | translate }} {{ 'PAGES.LIST.ALPHA' | translate }}</ion-label></ion-chip>  
+    <ion-chip *ngIf="sort_opt == 'alp'" color="medium"><ion-icon name="book" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ 'PAGES.LIST.SORT_BY' | translate }} {{ 'PAGES.LIST.ALPHA' | translate }}</ion-label></ion-chip>        
   </ion-item>
+  <ion-item *ngIf="services.length > 0" lines="none" color="tertiary" style="color: white">
+    <ion-chip color="medium"><ion-icon name="cut" color="light"></ion-icon><ion-label *ngFor="let serv of services" color="light" class="chip-text">{{ serv }}</ion-label></ion-chip>
+  </ion-item>  
+
   <ion-searchbar animated (ionChange)="searchBrb($event)"></ion-searchbar>
   <div
     class="search-results"
@@ -73,8 +77,8 @@
         </ion-item>
         
         <ion-item color="success" lines="none">
-            <ion-label>{{ 'PAGES.LIST.OPEN_TODAY' | translate }} </ion-label>
-            <ion-icon name="done-all"></ion-icon>              
+          <ion-label>{{ 'PAGES.LIST.OPEN_TODAY' | translate }} </ion-label>
+          <ion-icon name="done-all"></ion-icon>              
         </ion-item>
     </ion-card>
   </div>

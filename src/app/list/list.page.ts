@@ -32,6 +32,7 @@ export class ListPage implements OnInit {
   public brbshops: any[] = [];
   public ratings: any[] = [];
   public sort_opt: string;
+  public services: any[] = [];
 
   constructor(private route:ActivatedRoute, private router: Router, 
     public alertController: AlertController, public modalController: ModalController,
@@ -69,6 +70,7 @@ export class ListPage implements OnInit {
 
     Globals.api.getHairdressing(this.filter, (list, error) => {
       if(list != null) {        
+        console.log(this.filter)
         this.list = list;
         this.locChipText = this.list[0]
       } else {
@@ -146,6 +148,11 @@ export class ListPage implements OnInit {
   
         if(typeof data.data[0].sort_opt !== undefined || data.data[0].sort_opt != undefined) {
           this.sort_opt = data.data[0].sort_opt;        
+        }
+
+        if(typeof data.data[0].services !== undefined || data.data[0].services != undefined) {
+          this.services = data.data[0].services;   
+          console.log(this.services)     
         }
   
         this.refresh();

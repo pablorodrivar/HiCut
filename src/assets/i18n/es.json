@@ -87,7 +87,8 @@
         "SORT_BY": "Ordenar por:",
         "DISTANCE": "Distancia",
         "RATING": "Valoracion",
-        "ALPHA": "Alfabeticamente"              
+        "ALPHA": "Alfabeticamente",
+        "SEARCH_FILTER": "Filtro de Busqueda"              
       },
       "ACCOUNTSETTINGS": {
         "TITLE": "Tu Perfil",
