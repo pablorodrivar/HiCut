@@ -69,7 +69,9 @@
         "SO_BAD": "Muy mal",
         "HORRIBLE": "Fatal",
         "SELECT_ONE": "Elige una",
-        "COMMENT": "Comenta"        
+        "COMMENT": "Comenta",
+        "SUBJECT": "Tema",
+        "LOG_IN_TO": "Log In Para Comentar"        
       },
       "LIST": {
         "TITLE": "Peluquerias",

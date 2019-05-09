@@ -20,7 +20,7 @@
       </ion-item>
 
       <ion-item>
-        <ion-label class="title" text-center>{{ barbershop[0].name }}</ion-label>  
+        <ion-label class="title" text-center>{{ name }}</ion-label>  
         <ion-button fill="clear" size="small" expand="full" (click)="showLocation()">{{ 'PAGES.BRBDETAILS.SHOW_LOCATION' | translate }}</ion-button> 
       </ion-item>      
       
@@ -68,39 +68,41 @@
       
       <div class="title">
         <ion-label text-center class="title">{{ 'PAGES.BRBDETAILS.COMMENTS' | translate }}</ion-label>
-      </div>        
-        <ion-card>
-            <ion-avatar padding>
-              <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-            </ion-avatar>
-          <ion-card-header>
-            <ion-card-subtitle>Rating: 4/5</ion-card-subtitle>
-            <ion-card-title>Pablo Rodriguez</ion-card-title>
-          </ion-card-header>
-          
-          <ion-card-content>
-            This application is awesome!
-          </ion-card-content>
-        </ion-card>
-        <ion-card>
-            <ion-avatar padding>
-              <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-            </ion-avatar>
-          <ion-card-header>
-            <ion-card-subtitle>Rating: 2/5</ion-card-subtitle>
-            <ion-card-title>Manuel Herrera</ion-card-title>
-          </ion-card-header>
-          
-          <ion-card-content>
-            This application is bullshit!
-          </ion-card-content>
-        </ion-card>
+      </div>    
+
+      <ion-card *ngFor="let com of comments">
+        <ion-avatar padding>
+          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+          <ion-label class="avatar-label">Usuario {{ com.id }}</ion-label>   
+        </ion-avatar>            
+        <ion-card-header>
+          <ion-card-subtitle>
+            <ion-label >{{ com.created_at }}</ion-label>
+            <div *ngIf="com.rate >= 0 && com.rate < 0.5"><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
+            <div *ngIf="com.rate >= 0.5 && com.rate < 1"><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
+            <div *ngIf="com.rate >= 1 && com.rate < 1.35"><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
+            <div *ngIf="com.rate >= 1.35 && com.rate < 1.85"><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>              
+            <div *ngIf="com.rate >= 1.85 && com.rate < 2.35"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
+            <div *ngIf="com.rate >= 2.35 && com.rate < 2.85"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>         
+            <div *ngIf="com.rate >= 2.85 && com.rate < 3.35"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>         
+            <div *ngIf="com.rate >= 3.35 && com.rate < 3.85"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon></div>         
+            <div *ngIf="com.rate >= 3.85 && com.rate < 4.35"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon></div>         
+            <div *ngIf="com.rate >= 4.35 && com.rate < 4.85"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon></div>
+            <div *ngIf="com.rate >= 4.85 && com.rate <= 5"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div>               
+          </ion-card-subtitle>  
+          <ion-card-title>{{ com.subject }}</ion-card-title>        
+        </ion-card-header>
+        
+        <ion-card-content>{{ com.comment }}</ion-card-content>
+      </ion-card>      
       
+      <div *ngIf="is_loged">
         <ion-item style="text-align: center;"><ion-label>{{ 'PAGES.BRBDETAILS.LEAVE_YOUR_COMMENT' | translate }}</ion-label></ion-item>
-        <ion-item style="height: 16%;"><ion-textarea rows="6" placeholder="{{ 'PAGES.BRBDETAILS.LEAVE_YOUR_COMMENT' | translate }}" maxlength="280" [(ngModel)]="comment"></ion-textarea></ion-item>
+        <ion-item><ion-label>{{ 'PAGES.BRBDETAILS.SUBJECT' | translate }}</ion-label><ion-input [(ngModel)]="subject" placeholder="{{ 'PAGES.BRBDETAILS.SUBJECT' | translate }}"></ion-input></ion-item>
+        <ion-item style="height: 16%;"><ion-textarea [(ngModel)]="comment_text" rows="6" placeholder="{{ 'PAGES.BRBDETAILS.LEAVE_YOUR_COMMENT' | translate }}" maxlength="280" [(ngModel)]="comment"></ion-textarea></ion-item>
         <ion-item lines ="none">
           <ion-label>{{ 'PAGES.BRBDETAILS.RATE_EXPERIENCE' | translate }}</ion-label>
-          <ion-select placeholder="{{ 'PAGES.BRBDETAILS.SELECT_ONE' | translate }}">
+          <ion-select (ionChange)="getRating($event)" [(ngModel)]="rate" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_ONE' | translate }}">
             <ion-select-option value="5">{{ 'PAGES.BRBDETAILS.EXCELLENT' | translate }}</ion-select-option>
             <ion-select-option value="4">{{ 'PAGES.BRBDETAILS.SO_GOOD' | translate }}</ion-select-option>
             <ion-select-option value="3">{{ 'PAGES.BRBDETAILS.NOT_BAD' | translate }}</ion-select-option>
@@ -109,5 +111,10 @@
           </ion-select>
         </ion-item>
         <ion-item lines="none"><ion-button fill style="width:100%; border: solid 1px #ECEBEB;" (click)="sendComment()">{{ 'PAGES.BRBDETAILS.COMMENT' | translate }}</ion-button></ion-item>
+      </div> 
+      
+      <div *ngIf="!is_loged">
+          <ion-item lines="none"><ion-button fill style="width:100%; border: solid 1px #ECEBEB;" (click)="goToLogin()">{{ 'PAGES.BRBDETAILS.LOG_IN_TO' | translate }}</ion-button></ion-item>
+      </div>
   </ion-list>
 </ion-content>

@@ -69,7 +69,9 @@
         "SO_BAD": "So Bad",
         "HORRIBLE": "Horrible",
         "SELECT_ONE": "Select One",
-        "COMMENT": "Comment"
+        "COMMENT": "Comment",
+        "SUBJECT": "Subject",
+        "LOG_IN_TO": "Log In To Comment"
       },
       "LIST": {
         "TITLE": "BarberShops",

@@ -13,12 +13,15 @@ export class ApiController {
     private static api_url = 'http://80.211.65.79:8000/api/v1/';
 
 
-    //TODO: cancelReservation
-    //TODO: editReservation
-    //TODO: getReservationDetail
     //TODO: putRating(brb_id: number)
     //TODO: getHairdressers(hairdressing_id: number)
+    //TODO: cancelReservation
+    //TODO: editReservation
+    //TODO: getReservationDetail    
     //TODO: setProfile
+    //TODO: getProfile(user_id: number) por id de usuario
+    //TODO: QUE EL GET PROFILE DEVUELVA EL AVATAR DEL USUARIO
+    
 
     /* public setProfile(user:User, callback: (editedUser) => void){
             var newUserData = JSON.stringify(user);
@@ -33,13 +36,13 @@ export class ApiController {
             });
         } */
 
-    public comment(comment: Comment,callback: (msg) => void){
+    public comment(comment: any,callback: (msg) => void){
         if (!this.isLoged()) {
             callback(this.errorParse('error.not_loged'));
             return;
         }
-        var c: any = JSON.stringify(comment);
-        Globals.http.put(ApiController.api_url + 'comment',c, {headers: new HttpHeaders().set('Content-Type', 'application/json').set(
+        //var c: any = JSON.stringify(comment);
+        Globals.http.put(ApiController.api_url + 'comment',comment, {headers: new HttpHeaders().set('Content-Type', 'application/json').set(
             'Authorization', this.token)}).subscribe((data: any) => {
             callback(data.msg);
         }, (error) => {

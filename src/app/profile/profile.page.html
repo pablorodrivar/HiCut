@@ -11,7 +11,7 @@
 
 <ion-content padding>  
   <ion-item lines="none" class="user-head">
-    <ion-label>Username</ion-label>
+    <ion-label>{{ name }}</ion-label>
     <img class="circle-pic" src="./assets/imgs/avatar.jpg" />
   </ion-item>
   <ion-button (click)="toEdit()" fill style="width:100%; border: solid 1px #ECEBEB">{{ 'PAGES.ACCOUNTSETTINGS.EDIT_PROFILE' | translate }}</ion-button>

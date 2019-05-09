@@ -10,12 +10,24 @@ import { Globals } from '../globals';
 export class ProfilePage implements OnInit {
   private globals;
   public list_id;
+  public name: string;
+  public surname: string;
+  public city: string;
+  public country: string;
+
   constructor(private route:ActivatedRoute,private router: Router) {
     this.globals = Globals;
   }
 
   ngOnInit() {
-    this.list_id=this.route.snapshot.paramMap.get('id');
+    this.list_id = this.route.snapshot.paramMap.get('id');
+    
+    Globals.api.getProfile((profile, msg) => {
+      this.name = profile.name;
+      this.surname = profile.surname;
+      this.city = profile.city;
+      this.country = profile.country;
+    });
   }
 
   toDetail(detail_id) {
@@ -23,7 +35,7 @@ export class ProfilePage implements OnInit {
   }
 
   toEdit() {
-    this.router.navigate(["/tabs/edit-profile"]);
+    this.router.navigate(["/edit-profile"]);
   }
 
   logout() {

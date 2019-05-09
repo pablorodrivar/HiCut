@@ -8,10 +8,6 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Filter } from '../../classes/pojo/filter';
 import { LoadingController } from '@ionic/angular';
 
-/*
-  PARA VER COMO PASAR DATOS ENTRE MODAL Y LA LISTA: https://ionicframework.com/docs/api/modal
-*/
-
 @Component({
   selector: 'app-list',
   templateUrl: './list.page.html',
@@ -62,20 +58,19 @@ export class ListPage implements OnInit {
 
     /*this.getLocation(this.filter.lat, this.filter.lng).then(val => {
       console.log(val)
-    });*/
-
-    this.getLocation(this.filter.lat, this.filter.lng).then(data => {
-      this.locChipText = data.results[0].components.city;
-    });
+    });*/    
 
     Globals.api.getHairdressing(this.filter, (list, error) => {
       if(list != null) {        
-        console.log(this.filter)
         this.list = list;
         this.locChipText = this.list[0]
       } else {
         console.log(error)
       }
+
+      this.getLocation(this.filter.lat, this.filter.lng).then(data => {
+        this.locChipText = data.results[0].components.city;
+      });
 
       this.list.forEach(val => {
         Globals.api.getRating(val.id, (rate, error) => {
@@ -125,7 +120,7 @@ export class ListPage implements OnInit {
   }
 
   toDetail(detail_id) {
-    this.router.navigate(["/tabs/home/list/"+this.list_id+"/detail",detail_id]);
+    this.router.navigate(["/tabs/home/list/"+this.list_id+"/detail", detail_id]);
   }
 
   async presentModal() {

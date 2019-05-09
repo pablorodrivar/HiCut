@@ -32,3 +32,20 @@
 .demo-mobile-month-view {
     height: 100%;
 }
+
+ion-avatar {
+    display: -webkit-inline-box;
+    width: 75px;
+    max-width: 75px !important;
+    max-height: 75px !important;
+    height: 75px;
+}
+
+ion-card-title {
+    font-style: oblique;
+}
+
+.avatar-label {
+    display: -webkit-inline-box;
+    font-size: 20px;
+}
