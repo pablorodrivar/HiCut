@@ -78,7 +78,8 @@
         "HOUR": "Hora: ",
         "CONFIRM": "Confirmar",
         "RESERVATION": "Reserva",
-        "CANCEL": "cancelar"         
+        "CANCEL": "Cancelar",
+        "SERVICES": "Servicios: "
       },
       "LIST": {
         "TITLE": "Peluquerias",

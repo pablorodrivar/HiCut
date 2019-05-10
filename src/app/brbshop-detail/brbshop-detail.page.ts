@@ -42,8 +42,10 @@ export class BrbshopDetailPage implements OnInit {
   public myHour: string;
   public showHourPicker: boolean;
   public showDatePicker: boolean = false;
-  public showBrbPicker: boolean = true;
+  public showBrbPicker: boolean = false;
+  public showServices: boolean = true;
   public services: any[] = [];
+  public selectedServices: any[] = [];
   public price: number;
   public workers: any[] = [];
   public wrk_id: any;
@@ -60,7 +62,7 @@ export class BrbshopDetailPage implements OnInit {
   }
 
   ngOnInit() {    
-    this.showBrbPicker = true;
+    this.showServices = true;
     this.comments = [];
     this.is_loged = Globals.api.isLoged();
     this.list_id = parseInt(this.route.snapshot.paramMap.get('id'));
@@ -166,6 +168,7 @@ export class BrbshopDetailPage implements OnInit {
   }
 
   cancel() {
+    this.refresh();
     this.confirmed = false;
     this.wrk_id = null;
     this.myDate = "";
@@ -173,8 +176,7 @@ export class BrbshopDetailPage implements OnInit {
     this.showDatePicker = false;
     this.showHourPicker = false;
     this.yearValues = null;
-    this.monthValues = null;
-    this.refresh();
+    this.monthValues = null;    
   }
 
   getRating(event) {
@@ -183,9 +185,14 @@ export class BrbshopDetailPage implements OnInit {
 
   gServices(event) {
     this.price = 0;
-    event.detail.value.forEach(element => {
-      this.price = this.price + +element;
-    });
+    if(typeof this.selectedServices !== undefined || this.selectedServices != undefined) {
+      this.selectedServices = event.detail.value;
+      this.selectedServices.forEach(element => {
+        this.price = this.price + +element;
+      });
+    }    
+
+    this.showBrbPicker = true;
   }
 
   confirm() {
@@ -196,6 +203,7 @@ export class BrbshopDetailPage implements OnInit {
       this.showDatePicker = false;
       this.showHourPicker = false;
       this.showBrbPicker = false;
+      this.showServices = false;
     }
   }
 

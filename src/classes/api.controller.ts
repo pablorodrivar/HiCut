@@ -21,6 +21,7 @@ export class ApiController {
     //TODO: putRating(brb_id: number)
     //TODO. getHairdresserName(hairdresser_id)
     //TODO: postProfile(user)
+    //TODO. getService(service_id)
     //TODO: getProfile(user_id: number) por id de usuario
     //TODO: postRating el rating individual (sin comentario)
     //TODO: QUE EL GET PROFILE DEVUELVA EL AVATAR DEL USUARIO

@@ -78,7 +78,8 @@
         "HOUR": "Hour: ",
         "CONFIRM": "Confirm",
         "RESERVATION": "Reservation",
-        "CANCEL": "cancel"    
+        "CANCEL": "Cancel",
+        "SERVICES": "Services: "    
       },
       "LIST": {
         "TITLE": "BarberShops",
