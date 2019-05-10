@@ -20,9 +20,16 @@
       <ion-item>
         <ion-label class="title" text-center>{{ name }}</ion-label>  
         <ion-button fill="clear" size="small" expand="full" (click)="showLocation()">{{ 'PAGES.BRBDETAILS.SHOW_LOCATION' | translate }}</ion-button> 
-      </ion-item>                
-
+      </ion-item>     
+      
       <ion-item>
+        <ion-label>Choose a Hairdresser: </ion-label>
+        <ion-select (ionChange)="updateWorkers($event)" placeholder="Choose a Hairdresser:">
+          <ion-select-option *ngFor="let wrk of workers" value="{{ wrk.id }}">{{ wrk.name }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="showDatePicker">
        <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_DATE' | translate }}</ion-label>
         <ion-datetime displayFormat="DD MMMM YY" [monthValues]="monthValues" [yearValues]="yearValues" (ionChange)="updateDate($event)" [(ngModel)]="myDate" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_DATE' | translate }}"></ion-datetime>
       </ion-item>  

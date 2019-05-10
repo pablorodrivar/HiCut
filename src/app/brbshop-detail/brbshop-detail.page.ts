@@ -41,9 +41,12 @@ export class BrbshopDetailPage implements OnInit {
   public myDate: string;
   public myHour: string;
   public showHourPicker: boolean;
+  public showDatePicker: boolean = false;
   public services: any[] = [];
   public price: number;
-  //public events:any;
+  public workers: any[] = [];
+  public wrk_id: any;
+  
   constructor(private datePicker: DatePicker, private launchNavigator: LaunchNavigator, private route:ActivatedRoute,private router: Router,
     public alertController: AlertController, public loadingController: LoadingController, public toastController: ToastController,) { 
       this.showHourPicker = false;
@@ -53,8 +56,6 @@ export class BrbshopDetailPage implements OnInit {
   options: LaunchNavigatorOptions = {
     start: 'Spain, ON'
   }
-
-  dayNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",];  
 
   ngOnInit() {    
     this.comments = [];
@@ -67,7 +68,8 @@ export class BrbshopDetailPage implements OnInit {
     this.filter.id = this.id;
 
     this.getBrbShop();   
-    this.getHours();
+    this.getWorkers();
+    //this.getHours();
     this.getServices();
   }
 
@@ -102,8 +104,24 @@ export class BrbshopDetailPage implements OnInit {
     });    
   }
 
+  getWorkers() {
+    Globals.api.getHairdressers(this.id, (hairdressers, msg) => {
+      console.log(hairdressers)
+      this.workers = hairdressers;      
+    });         
+  }
+
+  updateWorkers(event) {
+    this.wrk_id = +event.detail.value;
+    this.showDatePicker = true;
+
+    if(this.showDatePicker) {
+      this.getHours();
+    }  
+  }
+
   getHours() {
-    Globals.api.getHours(this.id, (hours, msg) => {
+    Globals.api.getHours(this.wrk_id, (hours, msg) => {
       this.days = hours;
       this.days_raw = Object.keys(hours);
 

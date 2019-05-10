@@ -13,6 +13,7 @@ export class ApiController {
     private static api_url = 'http://80.211.65.79:8000/api/v1/';
 
 
+    //TODO: postReservation
     //TODO: cancelReservation
     //TODO: editReservation
     //TODO: getReservationDetail    
