@@ -71,7 +71,12 @@
         "SELECT_ONE": "Elige una",
         "COMMENT": "Comenta",
         "SUBJECT": "Tema",
-        "LOG_IN_TO": "Log In Para Comentar"        
+        "LOG_IN_TO": "Log In Para Comentar",
+        "CHOOSE_BRB": "Elige peluquero/a",
+        "APP_WITH": "Cita con: ",    
+        "DAY": "Dia: ",
+        "HOUR": "Hora: ",
+        "CONFIRM": "Confirmar"       
       },
       "LIST": {
         "TITLE": "Peluquerias",

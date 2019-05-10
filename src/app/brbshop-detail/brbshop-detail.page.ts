@@ -46,6 +46,7 @@ export class BrbshopDetailPage implements OnInit {
   public price: number;
   public workers: any[] = [];
   public wrk_id: any;
+  public confirmed: boolean = false;
   
   constructor(private datePicker: DatePicker, private launchNavigator: LaunchNavigator, private route:ActivatedRoute,private router: Router,
     public alertController: AlertController, public loadingController: LoadingController, public toastController: ToastController,) { 
@@ -174,6 +175,17 @@ export class BrbshopDetailPage implements OnInit {
     });
   }
 
+  confirm() {
+    if(typeof this.myHour === undefined || this.myHour == undefined) {
+      this.presentToast();
+    } else {
+      this.confirmed = true;
+      this.showDatePicker = false;
+      this.showHourPicker = false;
+      this.refresh();
+    }
+  }
+
   refresh() {
     setTimeout(() => {
       this.ngOnInit();
@@ -189,8 +201,9 @@ export class BrbshopDetailPage implements OnInit {
   }
 
   updateDate(event) {   
-    let date:string = event.detail.value;
-    date = date.substr(0, date.indexOf("T"));
+    let date:string = event.detail.value;    
+    date = date.substr(0, date.indexOf("T"));    
+    this.myDate = date;
     let i = 0;
     let pos = 0;
     this.days_raw.forEach(val =>{    

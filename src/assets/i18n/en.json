@@ -71,7 +71,12 @@
         "SELECT_ONE": "Select One",
         "COMMENT": "Comment",
         "SUBJECT": "Subject",
-        "LOG_IN_TO": "Log In To Comment"
+        "LOG_IN_TO": "Log In To Comment",
+        "CHOOSE_BRB": "Choose a Hairdresser",
+        "APP_WITH": "Appointment with:",    
+        "DAY": "Day: ",
+        "HOUR": "Hour: ",
+        "CONFIRM": "Confirm"    
       },
       "LIST": {
         "TITLE": "BarberShops",

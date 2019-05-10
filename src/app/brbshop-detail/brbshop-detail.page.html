@@ -23,15 +23,15 @@
       </ion-item>     
       
       <ion-item>
-        <ion-label>Choose a Hairdresser: </ion-label>
-        <ion-select (ionChange)="updateWorkers($event)" placeholder="Choose a Hairdresser:">
+        <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_BRB' | translate }} </ion-label>
+        <ion-select (ionChange)="updateWorkers($event)" placeholder="{{ 'PAGES.BRBDETAILS.CHOOSE_BRB' | translate }}">
           <ion-select-option *ngFor="let wrk of workers" value="{{ wrk.id }}">{{ wrk.name }}</ion-select-option>
         </ion-select>
-      </ion-item>
+      </ion-item>      
 
       <ion-item *ngIf="showDatePicker">
        <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_DATE' | translate }}</ion-label>
-        <ion-datetime displayFormat="DD MMMM YY" [monthValues]="monthValues" [yearValues]="yearValues" (ionChange)="updateDate($event)" [(ngModel)]="myDate" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_DATE' | translate }}"></ion-datetime>
+        <ion-datetime displayFormat="DD MMMM YY" [monthValues]="monthValues" [yearValues]="yearValues" (ionChange)="updateDate($event)" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_DATE' | translate }}"></ion-datetime>
       </ion-item>  
 
       <ion-item *ngIf="showHourPicker">
@@ -39,7 +39,19 @@
         <ion-select (ionChange)="updateHour($event)" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_HOUR' | translate }}">
           <ion-select-option *ngFor="let hour of hourValues" value="{{ hour }}">{{ hour }}</ion-select-option>
         </ion-select>
-      </ion-item>    
+      </ion-item>
+
+      <ion-item *ngIf="confirmed" color="success" >
+        <ion-label>{{ 'PAGES.BRBDETAILS.APP_WITH' | translate }} [Hairdresser {{ wrk_id }}]</ion-label>                
+      </ion-item>  
+      <ion-item *ngIf="confirmed" color="success" >
+        <ion-label>{{ 'PAGES.BRBDETAILS.DAY' | translate }} {{ myDate }}</ion-label>
+      </ion-item>   
+      <ion-item *ngIf="confirmed" color="success" >
+        <ion-label>{{ 'PAGES.BRBDETAILS.HOUR' | translate }} {{ myHour }}</ion-label>
+      </ion-item> 
+      
+      <ion-button *ngIf="showHourPicker" fill style="width:100%; border: solid 1px #ECEBEB;" (click)="confirm()">{{ 'PAGES.BRBDETAILS.CONFIRM' | translate }}</ion-button>
 
       <ion-item>
         <div class="title">
