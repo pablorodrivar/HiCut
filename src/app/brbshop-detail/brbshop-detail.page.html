@@ -22,7 +22,7 @@
         <ion-button fill="clear" size="small" expand="full" (click)="showLocation()">{{ 'PAGES.BRBDETAILS.SHOW_LOCATION' | translate }}</ion-button> 
       </ion-item>     
       
-      <ion-item>
+      <ion-item *ngIf="showBrbPicker">
         <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_BRB' | translate }} </ion-label>
         <ion-select (ionChange)="updateWorkers($event)" placeholder="{{ 'PAGES.BRBDETAILS.CHOOSE_BRB' | translate }}">
           <ion-select-option *ngFor="let wrk of workers" value="{{ wrk.id }}">{{ wrk.name }}</ion-select-option>
@@ -41,6 +41,10 @@
         </ion-select>
       </ion-item>
 
+      <ion-item *ngIf="confirmed" color="success">
+        <ion-label text-center class="title" position="stacked">{{ 'PAGES.BRBDETAILS.RESERVATION' | translate }}</ion-label>
+        <ion-button (click)="cancel()" color="danger">{{ 'PAGES.BRBDETAILS.CANCEL' | translate }}</ion-button>
+      </ion-item>
       <ion-item *ngIf="confirmed" color="success" >
         <ion-label>{{ 'PAGES.BRBDETAILS.APP_WITH' | translate }} [Hairdresser {{ wrk_id }}]</ion-label>                
       </ion-item>  

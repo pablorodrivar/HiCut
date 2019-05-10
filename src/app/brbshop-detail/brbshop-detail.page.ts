@@ -42,6 +42,7 @@ export class BrbshopDetailPage implements OnInit {
   public myHour: string;
   public showHourPicker: boolean;
   public showDatePicker: boolean = false;
+  public showBrbPicker: boolean = true;
   public services: any[] = [];
   public price: number;
   public workers: any[] = [];
@@ -59,6 +60,7 @@ export class BrbshopDetailPage implements OnInit {
   }
 
   ngOnInit() {    
+    this.showBrbPicker = true;
     this.comments = [];
     this.is_loged = Globals.api.isLoged();
     this.list_id = parseInt(this.route.snapshot.paramMap.get('id'));
@@ -161,7 +163,18 @@ export class BrbshopDetailPage implements OnInit {
 
       this.refresh();
     } 
+  }
 
+  cancel() {
+    this.confirmed = false;
+    this.wrk_id = null;
+    this.myDate = "";
+    this.myHour = "";
+    this.showDatePicker = false;
+    this.showHourPicker = false;
+    this.yearValues = null;
+    this.monthValues = null;
+    this.refresh();
   }
 
   getRating(event) {
@@ -182,7 +195,7 @@ export class BrbshopDetailPage implements OnInit {
       this.confirmed = true;
       this.showDatePicker = false;
       this.showHourPicker = false;
-      this.refresh();
+      this.showBrbPicker = false;
     }
   }
 

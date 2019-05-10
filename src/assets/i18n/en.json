@@ -76,7 +76,9 @@
         "APP_WITH": "Appointment with:",    
         "DAY": "Day: ",
         "HOUR": "Hour: ",
-        "CONFIRM": "Confirm"    
+        "CONFIRM": "Confirm",
+        "RESERVATION": "Reservation",
+        "CANCEL": "cancel"    
       },
       "LIST": {
         "TITLE": "BarberShops",

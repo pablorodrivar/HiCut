@@ -76,7 +76,9 @@
         "APP_WITH": "Cita con: ",    
         "DAY": "Dia: ",
         "HOUR": "Hora: ",
-        "CONFIRM": "Confirmar"       
+        "CONFIRM": "Confirmar",
+        "RESERVATION": "Reserva",
+        "CANCEL": "cancelar"         
       },
       "LIST": {
         "TITLE": "Peluquerias",
