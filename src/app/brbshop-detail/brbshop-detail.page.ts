@@ -37,6 +37,7 @@ export class BrbshopDetailPage implements OnInit {
   public years: number[] = [];
   public yearValues: string;
   public monthValues: string;
+  public hourValues: any[] = [];
   public myDate: string;
   public myHour: string;
   public showHourPicker: boolean;
@@ -63,8 +64,6 @@ export class BrbshopDetailPage implements OnInit {
 
     this.presentLoading();
 
-    console.log("LISTA: "+this.list_id+" BARBERIA: "+this.id);
-
     this.filter.id = this.id;
 
     this.getBrbShop();   
@@ -84,7 +83,6 @@ export class BrbshopDetailPage implements OnInit {
   getBrbShop() {
     Globals.api.getHairdressing(this.filter, (list, error) => {
       if(list != null) {
-        console.log(list)
         this.barbershop = list;
       } else {
         console.log(error)
@@ -106,7 +104,7 @@ export class BrbshopDetailPage implements OnInit {
 
   getHours() {
     Globals.api.getHours(this.id, (hours, msg) => {
-      console.log(Object.keys(hours))
+      this.days = hours;
       this.days_raw = Object.keys(hours);
 
       const distinct = (value, index, self) => {
@@ -123,13 +121,11 @@ export class BrbshopDetailPage implements OnInit {
       this.months = this.months.filter(distinct);
       this.yearValues = this.years.join(",");
       this.monthValues = this.months.join(",");
-      console.log(this.yearValues + " / " + this.monthValues)
     });  
   }
 
   getServices() {
     Globals.api.getServices(this.id, (services, msg) => {
-      console.log(services)
       this.services = services;      
     });
   }
@@ -154,10 +150,9 @@ export class BrbshopDetailPage implements OnInit {
   }
 
   gServices(event) {
-    console.log(this.services)
-    this.services.forEach(element => {
+    this.price = 0;
+    event.detail.value.forEach(element => {
       this.price = this.price + +element;
-      console.log(this.price)
     });
   }
 
@@ -175,13 +170,41 @@ export class BrbshopDetailPage implements OnInit {
     //TODO
   }
 
-  updateDate(event) {
+  updateDate(event) {   
+    let date:string = event.detail.value;
+    date = date.substr(0, date.indexOf("T"));
+    let i = 0;
+    let pos = 0;
+    this.days_raw.forEach(val =>{    
+      if(date == val) {
+        pos = i;
+      }
+
+      i = i + 1;
+    });
+
+    let ar = Object.values(this.days);
+    let nice = ar[pos];
+
+    let hours: any[] = [];
+
+    nice.forEach(val => {
+      hours.push(val.hours)
+    });
+
+    hours[0].forEach(val => {
+      this.hourValues.push(val);
+    });
+
+    hours[1].forEach(val => {
+      this.hourValues.push(val);
+    });
+
     this.showHourPicker = true;
   }
 
   updateHour(event) {
-    //this.myHour = this.myHour.substring(this.myHour.indexOf("T") + 1, this.myHour.indexOf("."));
-    console.log(this.myHour)
+    this.myHour = event.detail.value;
   }
 
   async presentToast() {

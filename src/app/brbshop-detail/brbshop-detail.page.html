@@ -8,15 +8,13 @@
 </ion-header>
 
 <ion-content>
-  <!-- <mbsc-eventcalendar [data]="events" [options]="eventSettings"></mbsc-eventcalendar> -->
   <ion-list>      
       <ion-item lines="none">
         <ion-slides pager="true">
           <ion-slide *ngFor="let slide of slider">
             <img src="http://80.211.65.79:8000/{{ slide }}">
           </ion-slide>
-        </ion-slides>
-        <!--<img src="./assets/imgs/barber1.jpg" style="width: 100%;height: 40vh;">-->        
+        </ion-slides>  
       </ion-item>
 
       <ion-item>
@@ -24,17 +22,16 @@
         <ion-button fill="clear" size="small" expand="full" (click)="showLocation()">{{ 'PAGES.BRBDETAILS.SHOW_LOCATION' | translate }}</ion-button> 
       </ion-item>                
 
-      <!-- CUANDO ME PONGA CON ACTUALIZAR LOS CALENDARIOS Y HORAS DE LAS BARBERIAS LE TENGO QUE ECHAR UN OJO A ESTO: -->
-      <!-- https://ionicframework.com/docs/api/datetime LA PARTE DE Properties/hourValues que puede ser un array de horas,
-      igual con las fechas. -->
       <ion-item>
        <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_DATE' | translate }}</ion-label>
-        <ion-datetime displayFormat="DD MMMM YY" [monthValues]="yearValues" [yearValues]="monthValues" (ionChange)="updateDate($event)" [(ngModel)]="myDate" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_DATE' | translate }}"></ion-datetime>
+        <ion-datetime displayFormat="DD MMMM YY" [monthValues]="monthValues" [yearValues]="yearValues" (ionChange)="updateDate($event)" [(ngModel)]="myDate" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_DATE' | translate }}"></ion-datetime>
       </ion-item>  
 
       <ion-item *ngIf="showHourPicker">
         <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_HOUR' | translate }}</ion-label>
-        <ion-datetime displayFormat="HH:mm" [(ngModel)]="myHour" (ionChange)="updateHour($event)" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_HOUR' | translate }}"></ion-datetime>
+        <ion-select (ionChange)="updateHour($event)" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_HOUR' | translate }}">
+          <ion-select-option *ngFor="let hour of hourValues" value="{{ hour }}">{{ hour }}</ion-select-option>
+        </ion-select>
       </ion-item>    
 
       <ion-item>
@@ -43,7 +40,7 @@
         </div>
 
         <ion-item lines="none">
-          <ion-select (ionChange)="gServices($event)" [(ngModel)]="services" placeholder="{{ 'PAGES.MODAL.SELECT_SERVICES' | translate }}" style="width: 100%; display: contents; " multiple>        
+          <ion-select (ionChange)="gServices($event)" [(ngModel)]="services.name" placeholder="{{ 'PAGES.MODAL.SELECT_SERVICES' | translate }}" style="width: 100%; display: contents; " multiple>        
             <ion-select-option *ngFor="let ser of services" value="{{ ser.price }}">{{ ser.name }} ({{ ser.price }}€)</ion-select-option>
           </ion-select>
         </ion-item>
