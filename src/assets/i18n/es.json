@@ -106,7 +106,13 @@
         "EDIT_PROFILE":"Editar Perfil",
         "LAST_BRBSHOPS":"Ultimas Peluquerias Visitadas",
         "LAST_APPOINTMENTS":"Ultimas citas",
-        "SERVICES_RECEIVED":"Servicios"
+        "SERVICES_RECEIVED":"Servicios",
+        "PERSONAL_INFO": "Informacion Personal",
+        "NAME": "Nombre: ",
+        "LOCATION": "Direccion: ",
+        "EMAIL": "Email: ",
+        "PHONE": "Telefono: ",
+        "PRIVATE": "Privado"
       },
       "EDIT_PROFILE": {
         "TITLE":"Editar Perfil",

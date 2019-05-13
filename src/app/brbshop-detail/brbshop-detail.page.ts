@@ -199,6 +199,7 @@ export class BrbshopDetailPage implements OnInit {
     this.showCancel = true;
     this.showPrice = true;
     this.price = 0;
+    console.log(this.services)
     if(typeof this.selectedServices !== undefined || this.selectedServices != undefined) {
       this.selectedServices = event.detail.value;
       this.selectedServices.forEach(element => {

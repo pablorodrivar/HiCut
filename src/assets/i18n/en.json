@@ -106,7 +106,13 @@
         "EDIT_PROFILE":"Edit Profile",
         "LAST_BRBSHOPS":"Last Barbershops Visited",
         "LAST_APPOINTMENTS":"Last Appointments",
-        "SERVICES_RECEIVED":"Services Received"
+        "SERVICES_RECEIVED":"Services Received",
+        "PERSONAL_INFO": "Personal Information",
+        "NAME": "Name: ",
+        "LOCATION": "Location: ",
+        "EMAIL": "Email: ",
+        "PHONE": "Phone: ",
+        "PRIVATE": "Private"
       },
       "EDIT_PROFILE": {
         "TITLE":"Edit Profile",

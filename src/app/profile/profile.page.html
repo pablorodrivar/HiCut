@@ -5,17 +5,18 @@
         <ion-button defaultHref="/account-settings">
             <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
         </ion-button>
+        <ion-button (click)="showAlert()">
+          <ion-icon slot="icon-only" name="log-out"></ion-icon>
+        </ion-button>
     </ion-buttons>
   </ion-toolbar>  
 </ion-header>
 
 <ion-content padding>  
   <ion-item lines="none" class="user-head">
-    <ion-label>{{ name }}</ion-label>
+    <ion-label style="font-size: 17px;">{{ name }} {{ surname }}</ion-label>
     <img class="circle-pic" src="./assets/imgs/avatar.jpg" />
   </ion-item>
-  <ion-button (click)="toEdit()" fill style="width:100%; border: solid 1px #ECEBEB">{{ 'PAGES.ACCOUNTSETTINGS.EDIT_PROFILE' | translate }}</ion-button>
-  <ion-button (click)="logout()" fill style="width:100%; border: solid 1px #ECEBEB">logout</ion-button>
 
   <ion-item lines="none" class="title">
     <ion-label text-center>{{ 'PAGES.ACCOUNTSETTINGS.LAST_BRBSHOPS' | translate }}</ion-label>    
@@ -36,10 +37,28 @@
     </div>
   </ion-item>
   <ion-item lines="none" class="title">
-    <ion-label text-center>{{ 'PAGES.ACCOUNTSETTINGS.LAST_APPOINTMENTS' | translate }}</ion-label>    
-  </ion-item>  
-  <ion-list>
-      <ion-card (click)="toDetail(2)">
+    <ion-label text-center>{{ 'PAGES.ACCOUNTSETTINGS.PERSONAL_INFO' | translate }}</ion-label>            
+  </ion-item>    
+  <ion-item>
+    <ion-icon name="person"></ion-icon><ion-label class="title-label">Name:</ion-label><ion-label class="sub-label">{{ name }} {{ surname }}</ion-label>      
+  </ion-item>
+  <ion-item>
+    <ion-icon name="pin"></ion-icon><ion-label class="title-label">Location:</ion-label><ion-label class="sub-label">{{ address }}, {{ city }}, {{ country }}</ion-label>
+    <ion-chip outline color="danger" class="chip"><ion-icon name="lock" style="width: 15px;"></ion-icon><ion-label>Private</ion-label></ion-chip>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="mail"></ion-icon><ion-label class="title-label">Email:</ion-label><ion-label class="sub-label">{{ email }}</ion-label>
+    <ion-chip outline color="danger" class="chip"><ion-icon name="lock" style="width: 15px;"></ion-icon><ion-label>Private</ion-label></ion-chip>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-icon name="phone-portrait"></ion-icon><ion-label class="title-label">Telefono:</ion-label><ion-label class="sub-label">{{ phone }}</ion-label>
+    <ion-chip outline color="danger" class="chip"><ion-icon name="lock" style="width: 15px;"></ion-icon><ion-label>Private</ion-label></ion-chip>
+  </ion-item>
+  
+  <ion-item lines="none" style="margin: 0px -1px -1px 0">
+    <ion-button fill style="width: 100%; color:blue">{{ 'PAGES.ACCOUNTSETTINGS.EDIT_PROFILE' | translate }}</ion-button>
+  </ion-item>
+      <!--<ion-card (click)="toDetail(2)">
           <ion-card-header>
               <ion-item lines="none">
                   <img class="circle-pic" src="./assets/imgs/barber1.jpg" />
@@ -85,6 +104,5 @@
                 </ion-item>
               </div>
             </ion-item>
-      </ion-card>
-  </ion-list>
+      </ion-card>-->
 </ion-content>
