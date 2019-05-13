@@ -32,11 +32,11 @@
       <ion-label>Search Filter</ion-label>         
   </ion-item>
   <ion-item lines="none" color="tertiary" style="color: white">
-    <ion-chip color="medium"><ion-icon name="walk" color="light"></ion-icon><ion-label color="light" class="chip-text">< {{ mdChipText }} km.</ion-label></ion-chip>
-    <ion-chip color="medium"><ion-icon name="compass" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ locChipText }}</ion-label></ion-chip>
-    <ion-chip *ngIf="sort_opt == 'dist'" color="medium"><ion-icon name="train" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ 'PAGES.LIST.SORT_BY' | translate }} {{ 'PAGES.LIST.DISTANCE' | translate }}</ion-label></ion-chip>
-    <ion-chip *ngIf="sort_opt == 'rat'" color="medium"><ion-icon name="star" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ 'PAGES.LIST.SORT_BY' | translate }} {{ 'PAGES.LIST.RATING' | translate }}</ion-label></ion-chip>
-    <ion-chip *ngIf="sort_opt == 'alp'" color="medium"><ion-icon name="book" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ 'PAGES.LIST.SORT_BY' | translate }} {{ 'PAGES.LIST.ALPHA' | translate }}</ion-label></ion-chip>        
+    <ion-chip outline color="medium"><ion-icon name="walk" color="light"></ion-icon><ion-label color="light" class="chip-text">< {{ mdChipText }} km.</ion-label></ion-chip>
+    <ion-chip outline color="medium"><ion-icon name="compass" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ locChipText }}</ion-label></ion-chip>
+    <ion-chip outline *ngIf="sort_opt == 'dist'" color="medium"><ion-icon name="train" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ 'PAGES.LIST.SORT_BY' | translate }} {{ 'PAGES.LIST.DISTANCE' | translate }}</ion-label></ion-chip>
+    <ion-chip outline *ngIf="sort_opt == 'rat'" color="medium"><ion-icon name="star" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ 'PAGES.LIST.SORT_BY' | translate }} {{ 'PAGES.LIST.RATING' | translate }}</ion-label></ion-chip>
+    <ion-chip outline *ngIf="sort_opt == 'alp'" color="medium"><ion-icon name="book" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ 'PAGES.LIST.SORT_BY' | translate }} {{ 'PAGES.LIST.ALPHA' | translate }}</ion-label></ion-chip>        
   </ion-item>
   <ion-item *ngIf="services.length > 0" lines="none" color="tertiary" style="color: white">
     <ion-chip color="medium"><ion-icon name="cut" color="light"></ion-icon><ion-label *ngFor="let serv of services" color="light" class="chip-text">{{ serv }}</ion-label></ion-chip>
@@ -55,7 +55,7 @@
     <ion-card *ngFor="let brb of brbshops | filter: searchText" (click)="toDetail(brb.brb.id)">
       <ion-card-header>
         <ion-card-title>{{ brb.brb.name }}            
-          <ion-chip color="secondary"><ion-icon name="walk"></ion-icon><ion-label>{{ brb.dist }} km.</ion-label></ion-chip>
+          <ion-chip outline color="secondary"><ion-icon name="walk"></ion-icon><ion-label>{{ brb.dist }} km.</ion-label></ion-chip>
         </ion-card-title>         
         <div *ngIf="brb.rate.stars >= 0 && brb.rate.stars < 0.5"><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>
         <div *ngIf="brb.rate.stars >= 0.5 && brb.rate.stars < 1"><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>
@@ -76,11 +76,6 @@
       <ion-item color="primary" lines="none">
         <ion-label>{{ brb.brb.address }}</ion-label>
         <ion-icon name="compass"></ion-icon>
-      </ion-item>
-      
-      <ion-item color="success" lines="none">
-        <ion-label>{{ 'PAGES.LIST.OPEN_TODAY' | translate }} </ion-label>
-        <ion-icon name="done-all"></ion-icon>              
       </ion-item>
     </ion-card>
   </div>

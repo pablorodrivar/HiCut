@@ -60,6 +60,10 @@ export class ListPage implements OnInit {
       console.log(val)
     });*/    
 
+    this.getBrb();
+  }
+
+  getBrb() {
     Globals.api.getHairdressing(this.filter, (list, error) => {
       if(list != null) {        
         this.list = list;
@@ -80,7 +84,7 @@ export class ListPage implements OnInit {
 
       this.list.forEach(val => {
         this.distances.push(this.distance(val.lat, val.lng, this.filter.lat, this.filter.lng, "K"));
-      });      
+      });     
 
       this.merge(this.sort_opt, true);      
       
