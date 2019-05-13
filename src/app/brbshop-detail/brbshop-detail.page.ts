@@ -44,17 +44,23 @@ export class BrbshopDetailPage implements OnInit {
   public showDatePicker: boolean = false;
   public showBrbPicker: boolean = false;
   public showServices: boolean = true;
+  public showCancel: boolean = false;
+  public showPrice: boolean = false;
   public services: any[] = [];
   public selectedServices: any[] = [];
   public price: number;
   public workers: any[] = [];
   public wrk_id: any;
   public confirmed: boolean = false;
+  public disableWrk: boolean = false;
+  public disableDate: boolean = false;
   
   constructor(private datePicker: DatePicker, private launchNavigator: LaunchNavigator, private route:ActivatedRoute,private router: Router,
     public alertController: AlertController, public loadingController: LoadingController, public toastController: ToastController,) { 
       this.showHourPicker = false;
       this.price = 0;
+      this.showCancel = false;
+      this.showPrice = false;
     }
 
   options: LaunchNavigatorOptions = {
@@ -62,7 +68,11 @@ export class BrbshopDetailPage implements OnInit {
   }
 
   ngOnInit() {    
+    this.showPrice = false;
+    this.showCancel = false;
     this.showServices = true;
+    this.disableDate = false;
+    this.disableWrk = false;
     this.comments = [];
     this.is_loged = Globals.api.isLoged();
     this.list_id = parseInt(this.route.snapshot.paramMap.get('id'));
@@ -74,7 +84,6 @@ export class BrbshopDetailPage implements OnInit {
 
     this.getBrbShop();   
     this.getWorkers();
-    //this.getHours();
     this.getServices();
   }
 
@@ -119,6 +128,7 @@ export class BrbshopDetailPage implements OnInit {
   updateWorkers(event) {
     this.wrk_id = +event.detail.value;
     this.showDatePicker = true;
+    this.disableWrk = true;
 
     if(this.showDatePicker) {
       this.getHours();
@@ -167,16 +177,18 @@ export class BrbshopDetailPage implements OnInit {
     } 
   }
 
-  cancel() {
-    this.refresh();
+  cancel() {    
+    this.showPrice = false;
     this.confirmed = false;
     this.wrk_id = null;
     this.myDate = "";
     this.myHour = "";
+    this.showBrbPicker = false;
     this.showDatePicker = false;
     this.showHourPicker = false;
     this.yearValues = null;
-    this.monthValues = null;    
+    this.monthValues = null;   
+    this.refresh(); 
   }
 
   getRating(event) {
@@ -184,6 +196,8 @@ export class BrbshopDetailPage implements OnInit {
   }
 
   gServices(event) {
+    this.showCancel = true;
+    this.showPrice = true;
     this.price = 0;
     if(typeof this.selectedServices !== undefined || this.selectedServices != undefined) {
       this.selectedServices = event.detail.value;
@@ -222,6 +236,7 @@ export class BrbshopDetailPage implements OnInit {
   }
 
   updateDate(event) {   
+    this.disableDate = true;
     let date:string = event.detail.value;    
     date = date.substr(0, date.indexOf("T"));    
     this.myDate = date;

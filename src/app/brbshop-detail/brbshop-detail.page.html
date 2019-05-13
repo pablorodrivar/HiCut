@@ -31,19 +31,28 @@
           <ion-select (ionChange)="gServices($event)" [(ngModel)]="services.name" placeholder="{{ 'PAGES.MODAL.SELECT_SERVICES' | translate }}" style="width: 100%; display: contents; " multiple>        
             <ion-select-option *ngFor="let ser of services" value="{{ ser.price }}">{{ ser.name }} ({{ ser.price }}€)</ion-select-option>
           </ion-select>
-        </ion-item>
-      </ion-item>   
-
-      <ion-item *ngIf="showBrbPicker">
+        </ion-item>        
+      </ion-item>     
+      
+      <ion-item *ngIf="showDatePicker" lines="none" style="display: inline-block; width: 100%;">
+        <ion-button fill style="color: red; position:relative;" (click)="cancel()"><ion-icon name="backspace"></ion-icon><ion-label>Cancel</ion-label></ion-button> 
+        <div class="title">
+          <ion-label text-center class="title" position="stacked">Your Appointment</ion-label> 
+        </div>
+      </ion-item>  
+      
+      <ion-item *ngIf="showBrbPicker">        
         <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_BRB' | translate }} </ion-label>
-        <ion-select (ionChange)="updateWorkers($event)" placeholder="{{ 'PAGES.BRBDETAILS.CHOOSE_BRB' | translate }}">
+        <ion-select (ionChange)="updateWorkers($event)" placeholder="{{ 'PAGES.BRBDETAILS.CHOOSE_BRB' | translate }}" disabled="{{ disableWrk }}">
           <ion-select-option *ngFor="let wrk of workers" value="{{ wrk.id }}">{{ wrk.name }}</ion-select-option>
         </ion-select>
+        <ion-icon *ngIf="disableWrk" name="checkmark-circle-outline"></ion-icon>
       </ion-item>      
 
       <ion-item *ngIf="showDatePicker">
        <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_DATE' | translate }}</ion-label>
-        <ion-datetime displayFormat="DD MMMM YY" [monthValues]="monthValues" [yearValues]="yearValues" (ionChange)="updateDate($event)" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_DATE' | translate }}"></ion-datetime>
+        <ion-datetime displayFormat="DD MMMM YY" disabled="{{ disableDate }}" [monthValues]="monthValues" [yearValues]="yearValues" (ionChange)="updateDate($event)" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_DATE' | translate }}"></ion-datetime>
+        <ion-icon *ngIf="disableDate" name="checkmark-circle-outline"></ion-icon>
       </ion-item>  
 
       <ion-item *ngIf="showHourPicker">
@@ -51,10 +60,10 @@
         <ion-select (ionChange)="updateHour($event)" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_HOUR' | translate }}">
           <ion-select-option *ngFor="let hour of hourValues" value="{{ hour }}">{{ hour }}</ion-select-option>
         </ion-select>
-      </ion-item>
+      </ion-item>       
 
       <ion-item *ngIf="confirmed" color="success">
-        <ion-label text-center class="title" position="stacked">{{ 'PAGES.BRBDETAILS.RESERVATION' | translate }}</ion-label>        
+        <ion-label text-center class="title" position="stacked">{{ 'PAGES.BRBDETAILS.RESERVATION' | translate }}</ion-label><ion-icon name="checkmark-circle-outline"></ion-icon>        
       </ion-item>
       <ion-item *ngIf="confirmed" color="success" >
         <ion-label>{{ 'PAGES.BRBDETAILS.APP_WITH' | translate }} [Hairdresser {{ wrk_id }}]</ion-label>                
@@ -67,21 +76,26 @@
       </ion-item> 
       <ion-item *ngIf="confirmed" color="success" >
         <ion-label>{{ 'PAGES.BRBDETAILS.SERVICES' | translate }}</ion-label><div *ngFor="let ser of selectedServices">[Servicio de {{ ser }}€]</div>
-      </ion-item> 
+      </ion-item>
+      <ion-item *ngIf="confirmed" color="success" lines="none">
+        <ion-button style="width:100%;" color="primary">{{ 'PAGES.BRBDETAILS.PAY' | translate }}</ion-button>
+      </ion-item>  
       <ion-item *ngIf="confirmed" color="success">
         <ion-button style="width:100%;" (click)="cancel()" color="danger">{{ 'PAGES.BRBDETAILS.CANCEL' | translate }}</ion-button>
-      </ion-item>
+      </ion-item>           
       
       <ion-button *ngIf="showHourPicker" fill style="width:100%; border: solid 1px #ECEBEB;" (click)="confirm()">{{ 'PAGES.BRBDETAILS.CONFIRM' | translate }}</ion-button>         
 
-      <ion-item>
+      <ion-item *ngIf="showPrice">
         <div class="title">
           <ion-label class="title" text-center>{{ 'PAGES.BRBDETAILS.FINAL_PRIZE' | translate }}</ion-label>
         </div>        
-        <ion-label style="font-size: 25px;" text-center position="stacked">{{ price }}€</ion-label>         
-        <ion-button fill style="width:100%; border: solid 1px #ECEBEB;">{{ 'PAGES.BRBDETAILS.PAY' | translate }}</ion-button>
+        <ion-label style="font-size: 25px;" text-center position="stacked">{{ price }}€</ion-label>                 
       </ion-item>
 
+      <div class="title">
+        <ion-label class="title" text-center>{{ 'PAGES.BRBDETAILS.RATING' | translate }}</ion-label>
+      </div>    
       <ion-item lines="none" style="display: inline-block; margin-bottom: -10%; width: 100%;">
           <div class="rating" *ngIf="brb_rating >= 0 && brb_rating < 0.5"><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
           <div class="rating" *ngIf="brb_rating >= 0.5 && brb_rating < 1"><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>

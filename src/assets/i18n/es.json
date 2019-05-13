@@ -79,7 +79,8 @@
         "CONFIRM": "Confirmar",
         "RESERVATION": "Reserva",
         "CANCEL": "Cancelar",
-        "SERVICES": "Servicios: "
+        "SERVICES": "Servicios: ",
+        "RATING": "Valoracion"   
       },
       "LIST": {
         "TITLE": "Peluquerias",
