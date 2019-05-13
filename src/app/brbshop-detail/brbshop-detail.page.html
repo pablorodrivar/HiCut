@@ -65,24 +65,18 @@
       <ion-item *ngIf="confirmed" color="success">
         <ion-label text-center class="title" position="stacked">{{ 'PAGES.BRBDETAILS.RESERVATION' | translate }}</ion-label><ion-icon name="checkmark-circle-outline"></ion-icon>        
       </ion-item>
-      <ion-item *ngIf="confirmed" color="success" >
+      <ion-item *ngIf="confirmed"  color="medium">
         <ion-label>{{ 'PAGES.BRBDETAILS.APP_WITH' | translate }} [Hairdresser {{ wrk_id }}]</ion-label>                
       </ion-item>  
-      <ion-item *ngIf="confirmed" color="success" >
+      <ion-item *ngIf="confirmed" color="medium">
         <ion-label>{{ 'PAGES.BRBDETAILS.DAY' | translate }} {{ myDate }}</ion-label>
       </ion-item>   
-      <ion-item *ngIf="confirmed" color="success" >
+      <ion-item *ngIf="confirmed" color="medium">
         <ion-label>{{ 'PAGES.BRBDETAILS.HOUR' | translate }} {{ myHour }}</ion-label>
       </ion-item> 
-      <ion-item *ngIf="confirmed" color="success" >
+      <ion-item *ngIf="confirmed" color="medium">
         <ion-label>{{ 'PAGES.BRBDETAILS.SERVICES' | translate }}</ion-label><div *ngFor="let ser of selectedServices">[Servicio de {{ ser }}€]</div>
-      </ion-item>
-      <ion-item *ngIf="confirmed" color="success" lines="none">
-        <ion-button style="width:100%;" color="primary">{{ 'PAGES.BRBDETAILS.PAY' | translate }}</ion-button>
-      </ion-item>  
-      <ion-item *ngIf="confirmed" color="success">
-        <ion-button style="width:100%;" (click)="cancel()" color="danger">{{ 'PAGES.BRBDETAILS.CANCEL' | translate }}</ion-button>
-      </ion-item>           
+      </ion-item>                
       
       <ion-button *ngIf="showHourPicker" fill style="width:100%; border: solid 1px #ECEBEB;" (click)="confirm()">{{ 'PAGES.BRBDETAILS.CONFIRM' | translate }}</ion-button>         
 
@@ -90,8 +84,11 @@
         <div class="title">
           <ion-label class="title" text-center>{{ 'PAGES.BRBDETAILS.FINAL_PRIZE' | translate }}</ion-label>
         </div>        
-        <ion-label style="font-size: 25px;" text-center position="stacked">{{ price }}€</ion-label>                 
-      </ion-item>
+        <ion-label style="font-size: 25px;" text-center position="stacked">{{ price }}€</ion-label>  
+
+        <ion-button *ngIf="confirmed" style="width:100%;" color="primary">{{ 'PAGES.BRBDETAILS.PAY' | translate }}</ion-button>
+        <ion-button *ngIf="confirmed" (click)="cancel()" color="danger">{{ 'PAGES.BRBDETAILS.CANCEL' | translate }}</ion-button>
+    </ion-item>      
 
       <div class="title">
         <ion-label class="title" text-center>{{ 'PAGES.BRBDETAILS.RATING' | translate }}</ion-label>
