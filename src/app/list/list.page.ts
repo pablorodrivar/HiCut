@@ -164,7 +164,7 @@ export class ListPage implements OnInit {
     await loading.present();
   }
 
-  searchBrb(event) {
+  searchBrb(event) {    
     const text = event.target.value;
     this.searchText= text;
   }

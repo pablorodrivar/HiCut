@@ -1,6 +1,6 @@
 import { MbscModule } from '@mobiscroll/angular';
 import { FormsModule } from '@angular/forms';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -17,26 +17,27 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { ApiController } from '../classes/api.controller';
 import { DatePicker } from '@ionic-native/date-picker/ngx';
-import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator/ngx';
+import { LaunchNavigator } from '@ionic-native/launch-navigator/ngx';
 
 import { IonicStorageModule,Storage } from '@ionic/storage';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { SearchFilterPipe } from './pipes/search-filter.pipe';
 
-import { AutoCompleteModule, AutoCompleteService } from 'ionic4-auto-complete';
+import { AutoCompleteModule } from 'ionic4-auto-complete';
 import { BarRatingModule } from "ngx-bar-rating";
 
 import { Globals } from "./globals";
+import { PipesModule } from './pipes/pipes.module';
 
 export function customTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
-  declarations: [AppComponent, SearchFilterPipe],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [ 
+    PipesModule,
     MbscModule, 
     FormsModule, 
     BarRatingModule,
@@ -54,7 +55,7 @@ export function customTranslateLoader(http: HttpClient) {
          }
     })
   ],
-  exports: [SearchFilterPipe],
+  exports: [],
   providers: [
     DatePicker,
     StatusBar,
@@ -62,7 +63,6 @@ export function customTranslateLoader(http: HttpClient) {
     AlertController,
     LaunchNavigator,
     Geolocation,
-    SearchFilterPipe,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

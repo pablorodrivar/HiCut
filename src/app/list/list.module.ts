@@ -14,6 +14,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 // Configuración de traducción
 import { customTranslateLoader, AppModule } from '../app.module';
+import { PipesModule } from 'app/pipes/pipes.module';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    PipesModule,
     CommonModule,
     FormsModule,
     MbscModule,
