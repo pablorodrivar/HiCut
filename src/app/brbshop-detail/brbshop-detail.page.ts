@@ -198,16 +198,15 @@ export class BrbshopDetailPage implements OnInit {
   gServices(event) {
     this.showCancel = true;
     this.showPrice = true;
+    this.showBrbPicker = true;
     this.price = 0;
     console.log(this.services)
-    if(typeof this.selectedServices !== undefined || this.selectedServices != undefined) {
+    if(typeof this.selectedServices !== undefined && this.selectedServices != undefined) {
       this.selectedServices = event.detail.value;
       this.selectedServices.forEach(element => {
         this.price = this.price + +element;
       });
-    }    
-
-    this.showBrbPicker = true;
+    }        
   }
 
   confirm() {

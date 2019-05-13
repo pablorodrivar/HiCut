@@ -34,12 +34,15 @@
         </ion-item>        
       </ion-item>     
       
-      <ion-item *ngIf="showDatePicker" lines="none" style="display: inline-block; width: 100%;">
-        <ion-button fill style="color: red; position:relative;" (click)="cancel()"><ion-icon name="backspace"></ion-icon><ion-label>Cancel</ion-label></ion-button> 
+      <ion-item *ngIf="showDatePicker" lines="none" style="display: inline-block; width: 100%;">                
         <div class="title">
-          <ion-label text-center class="title" position="stacked">Your Appointment</ion-label> 
-        </div>
+          <ion-label text-center class="title" position="stacked">{{ 'PAGES.BRBDETAILS.YOUR_APPOINTMENT' | translate }}</ion-label> 
+        </div>        
       </ion-item>  
+
+      <ion-item *ngIf="showDatePicker" lines="none" style="margin-top: -5%">
+        <ion-chip outline class="cancel-chip" color="danger" (click)="cancel()"><ion-icon name="backspace" style="width: 15px;"></ion-icon><ion-label>{{ 'PAGES.BRBDETAILS.CANCEL' | translate }}</ion-label></ion-chip>
+      </ion-item>      
       
       <ion-item *ngIf="showBrbPicker">        
         <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_BRB' | translate }} </ion-label>

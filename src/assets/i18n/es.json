@@ -80,7 +80,9 @@
         "RESERVATION": "Reserva",
         "CANCEL": "Cancelar",
         "SERVICES": "Servicios: ",
-        "RATING": "Valoracion"   
+        "RATING": "Valoracion",
+        "YOUR_APPOINTMENT": "Tu Reserva",
+        "CANCEL": "CANCELAR"     
       },
       "LIST": {
         "TITLE": "Peluquerias",

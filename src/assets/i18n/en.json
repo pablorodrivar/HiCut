@@ -77,10 +77,12 @@
         "DAY": "Day: ",
         "HOUR": "Hour: ",
         "CONFIRM": "Confirm",
-        "RESERVATION": "Reservation",
+        "RESERVATION": "Appointment",
         "CANCEL": "Cancel",
         "SERVICES": "Services: ",
-        "RATING": "Rating"    
+        "RATING": "Rating",
+        "YOUR_APPOINTMENT": "Your Appointment",
+        "CANCEL": "CANCEL"    
       },
       "LIST": {
         "TITLE": "BarberShops",
