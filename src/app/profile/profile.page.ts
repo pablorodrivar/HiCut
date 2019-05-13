@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 import { Globals } from '../globals';
 import { AlertController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { EditComponent } from '../edit/edit.component';
 
 @Component({
   selector: 'app-profile',
@@ -19,7 +21,7 @@ export class ProfilePage implements OnInit {
   public email: string;
   public phone: string;
 
-  constructor(private route:ActivatedRoute,private router: Router, private alertController: AlertController,) {
+  constructor(private route:ActivatedRoute,private router: Router, private alertController: AlertController, public modalController: ModalController) {
     this.globals = Globals;
   }
 
@@ -27,7 +29,6 @@ export class ProfilePage implements OnInit {
     this.list_id = this.route.snapshot.paramMap.get('id');
     
     Globals.api.getProfile((profile, msg) => {
-      console.log(profile)
       this.name = profile.name;
       this.surname = profile.surname;
       this.city = profile.city;
@@ -49,6 +50,39 @@ export class ProfilePage implements OnInit {
   logout() {
     Globals.api.doLogout();
     this.router.navigate(["/tabs/login"]);
+  }
+
+  refresh() {
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 1000);
+  }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: EditComponent,
+      componentProps: { name: this.name, surname: this.surname, city: this.city, country: this.country, address: this.address,
+      phone: this.phone, email: this.email }
+    });
+
+    modal.onDidDismiss().then((data) => {
+      if(data.data){
+        if(typeof data.data[0].name !== undefined && data.data[0].name != undefined && typeof data.data[0].surname !== undefined && data.data[0].surname != undefined
+          && typeof data.data[0].country !== undefined && data.data[0].country != undefined && typeof data.data[0].city !== undefined && data.data[0].city != undefined
+          && typeof data.data[0].address !== undefined && data.data[0].address != undefined && typeof data.data[0].phone !== undefined && data.data[0].phone != undefined) {     
+            this.name = data.data[0].name;
+            this.surname = data.data[0].surname;
+            this.city = data.data[0].city;
+            this.country = data.data[0].country;
+            this.address = data.data[0].address;
+            this.phone = data.data[0].phone;
+        }
+  
+        this.refresh();
+      }      
+    })
+
+    return await modal.present();
   }
 
   async showAlert() {

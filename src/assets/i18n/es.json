@@ -125,7 +125,11 @@
         "GENDER":"Genero",
         "FEMALE":"Mujer",
         "MALE":"Hombre",
-        "OTHER":"Otro"
+        "OTHER":"Otro",
+        "SURNAME": "Apellidos",
+        "COUNTRY": "Pais",
+        "CITY": "Ciudad",
+        "ADDRESS": "Direccion"
       },
       "MODAL": {
         "DISTANCE": "Distancia",

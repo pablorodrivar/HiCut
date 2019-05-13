@@ -1,0 +1,73 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>{{ 'PAGES.EDIT_PROFILE.TITLE' | translate }}</ion-title>
+      <ion-buttons slot="start">
+          <ion-button (click)="dismiss()">
+              <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+          <ion-button (click)="dismissData()">
+              <ion-icon slot="icon-only" name="checkmark"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+      <ion-item lines="none" class="user-head">
+          <img class="circle-pic" src="./assets/imgs/avatar.jpg" />
+      </ion-item>    
+      <ion-item style="margin-left: auto;margin-right: auto;" lines="none">
+        <ion-button block clear class="button-no-background" color="transparent">{{ 'PAGES.EDIT_PROFILE.CHANGE_AVATAR' | translate }}</ion-button>
+      </ion-item>
+  
+      <div class="title">
+        <ion-icon name="person"></ion-icon>       
+        <ion-label>{{ 'PAGES.EDIT_PROFILE.NAME' | translate }}</ion-label>
+      </div>      
+      <ion-item>
+        <ion-input [(ngModel)]="name" placeholder="{{ 'PAGES.EDIT_PROFILE.NAME' | translate }}"></ion-input>
+      </ion-item>
+
+      <div class="title">
+        <ion-icon name="contact"></ion-icon>       
+        <ion-label>{{ 'PAGES.EDIT_PROFILE.SURNAME' | translate }}</ion-label>
+      </div> 
+      <ion-item>
+        <ion-input [(ngModel)]="surname" placeholder="{{ 'PAGES.EDIT_PROFILE.SURNAME' | translate }}"></ion-input>
+      </ion-item>
+
+      <div class="title">
+        <ion-icon name="flag"></ion-icon>       
+        <ion-label>{{ 'PAGES.EDIT_PROFILE.COUNTRY' | translate }}</ion-label>
+      </div> 
+      <ion-item>
+        <ion-input [(ngModel)]="country" placeholder="{{ 'PAGES.EDIT_PROFILE.COUNTRY' | translate }}"></ion-input>
+      </ion-item>
+
+      <div class="title">
+        <ion-icon name="business"></ion-icon>       
+        <ion-label>{{ 'PAGES.EDIT_PROFILE.CITY' | translate }}</ion-label>
+      </div> 
+      <ion-item>
+        <ion-input [(ngModel)]="city" placeholder="{{ 'PAGES.EDIT_PROFILE.CITY' | translate }}"></ion-input>
+      </ion-item>
+
+      <div class="title">
+        <ion-icon name="pin"></ion-icon>       
+        <ion-label>{{ 'PAGES.EDIT_PROFILE.ADDRESS' | translate }}</ion-label>
+      </div> 
+      <ion-item>
+        <ion-input [(ngModel)]="address" placeholder="{{ 'PAGES.EDIT_PROFILE.ADDRESS' | translate }}"></ion-input>
+      </ion-item>
+  
+      <div class="title">
+        <ion-icon name="phone-portrait"></ion-icon>       
+        <ion-label>{{ 'PAGES.EDIT_PROFILE.PHONE_NUMBER' | translate }}</ion-label>
+      </div> 
+      <ion-item>
+        <ion-input [(ngModel)]="phone" placeholder="{{ 'PAGES.EDIT_PROFILE.PHONE_NUMBER' | translate }}" type="tel"></ion-input>
+      </ion-item>
+  </ion-content>
+  

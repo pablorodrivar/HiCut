@@ -1,0 +1,40 @@
+.circle-pic {
+    width:100px;
+    height:100px;
+    margin-left: auto;
+    margin-right: auto;
+
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.button-no-background {
+    color: blue;
+    padding: 0;
+    border: none;
+    background: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.label{
+    font-size: 15px;
+    margin-bottom: -15px; 
+}
+
+.selector {
+    max-width: 100% !important; 
+}
+
+.title {
+    margin-top: 5%;
+}
+
+ion-icon {
+    margin: 0 10px auto;
+    color: grey;
+}
+
+ion-label {
+    font-size: 20px;
+}

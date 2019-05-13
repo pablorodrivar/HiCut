@@ -125,7 +125,11 @@
         "GENDER":"Gender",
         "FEMALE":"Female",
         "MALE":"Male",
-        "OTHER":"Other"
+        "OTHER":"Other",
+        "SURNAME": "Surname",
+        "COUNTRY": "Country",
+        "CITY": "City",
+        "ADDRESS": "Address"
       },
       "MODAL": {
         "DISTANCE": "Distance",

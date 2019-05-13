@@ -135,7 +135,7 @@ export class ListPage implements OnInit {
 
     modal.onDidDismiss().then((data) => {
       if(data.data){
-        if(typeof data.data[0].distance !== undefined || data.data[0].distance != undefined) {
+        if(typeof data.data[0].distance !== undefined && data.data[0].distance != undefined) {
           this.filter.max_km = data.data[0].distance;
           if(this.filter.max_km > 20) {
             this.maxDistChip = true;
@@ -145,13 +145,12 @@ export class ListPage implements OnInit {
           }        
         }
   
-        if(typeof data.data[0].sort_opt !== undefined || data.data[0].sort_opt != undefined) {
+        if(typeof data.data[0].sort_opt !== undefined && data.data[0].sort_opt != undefined) {
           this.sort_opt = data.data[0].sort_opt;        
         }
 
-        if(typeof data.data[0].services !== undefined || data.data[0].services != undefined) {
-          this.services = data.data[0].services;   
-          console.log(this.services)     
+        if(typeof data.data[0].services !== undefined && data.data[0].services != undefined) {
+          this.services = data.data[0].services;        
         }
   
         this.refresh();

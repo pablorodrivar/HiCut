@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavParams } from '@ionic/angular';
 
 import { ProfilePage } from './profile.page';
 import { HttpClient } from '@angular/common/http';
@@ -11,6 +11,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 // Configuración de traducción
 import { customTranslateLoader } from '../app.module';
+import { EditComponent } from 'app/edit/edit.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,7 @@ const routes: Routes = [
     }),
     RouterModule.forChild(routes)
   ],
-  declarations: [ProfilePage]
+  declarations: [ProfilePage, EditComponent],
+  entryComponents: [EditComponent]
 })
 export class ProfilePageModule {}
