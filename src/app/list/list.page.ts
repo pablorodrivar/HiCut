@@ -29,6 +29,7 @@ export class ListPage implements OnInit {
   public ratings: any[] = [];
   public sort_opt: string;
   public services: any[] = [];
+  public services_names:string;
 
   constructor(private route:ActivatedRoute, private router: Router, 
     public alertController: AlertController, public modalController: ModalController,
@@ -37,7 +38,7 @@ export class ListPage implements OnInit {
     this.filter.lat = 37.183054;
     this.filter.lng = -3.6021928;
     this.mdChipText = 20+"";
-    this.sort_opt = "dist";
+    this.sort_opt = "dist";    
   }
 
   ngOnInit() {
@@ -150,7 +151,8 @@ export class ListPage implements OnInit {
         }
 
         if(typeof data.data[0].services !== undefined && data.data[0].services != undefined) {
-          this.services = data.data[0].services;        
+          this.services = data.data[0].services;    
+          this.services_names = this.services.join(", ");    
         }
   
         this.refresh();
@@ -217,13 +219,30 @@ export class ListPage implements OnInit {
   }
 
   sort(array: any[], opt: string, asc: boolean, callback: (array, error) => any) {
-    if(opt == "dist") {     
+    if(opt == "dist") {   
       array = array.sort((item1, item2) => {
         return item1.dist - item2.dist;
       });  
     } else if (opt == "rat") {
       array = array.sort((item1, item2) => {
-        return item1.rate.stars + item2.rate.stars;
+        let rate = item1.rate.stars - item2.rate.stars;
+        if(rate > 0) {
+          return -1;
+        } else if(rate < 0) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+    } else if (opt == "alp") {
+      array = array.sort((item1, item2) => {
+        if(item1.brb.name > item2.brb.name) {
+          return 1;
+        }
+        if(item1.brb.name < item2.brb.name) {
+          return -1;
+        }
+        return 0;
       });
     }
 

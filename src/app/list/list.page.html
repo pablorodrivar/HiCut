@@ -39,7 +39,7 @@
     <ion-chip outline *ngIf="sort_opt == 'alp'" color="medium"><ion-icon name="book" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ 'PAGES.LIST.SORT_BY' | translate }} {{ 'PAGES.LIST.ALPHA' | translate }}</ion-label></ion-chip>        
   </ion-item>
   <ion-item *ngIf="services.length > 0" lines="none" color="tertiary" style="color: white">
-    <ion-chip color="medium"><ion-icon name="cut" color="light"></ion-icon><ion-label *ngFor="let serv of services" color="light" class="chip-text">{{ serv }}</ion-label></ion-chip>
+    <ion-chip color="medium"><ion-icon name="cut" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ services_names }}</ion-label></ion-chip>
   </ion-item>  
 
   <ion-searchbar animated (ionChange)="searchBrb($event)"></ion-searchbar>
