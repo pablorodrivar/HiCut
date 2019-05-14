@@ -7,6 +7,7 @@ import { Globals } from '../globals';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Filter } from '../../classes/pojo/filter';
 import { LoadingController } from '@ionic/angular';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 @Component({
   selector: 'app-list',
@@ -33,7 +34,7 @@ export class ListPage implements OnInit {
 
   constructor(private route:ActivatedRoute, private router: Router, 
     public alertController: AlertController, public modalController: ModalController,
-    public geolocation: Geolocation, public loadingController: LoadingController) { 
+    public geolocation: Geolocation, public loadingController: LoadingController, public androidPermissions: AndroidPermissions) { 
     this.globals = Globals;    
     this.filter.lat = 37.183054;
     this.filter.lng = -3.6021928;
@@ -41,7 +42,18 @@ export class ListPage implements OnInit {
     this.sort_opt = "dist";    
   }
 
+  checkPermissions() {
+    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.LOCATION).then(
+      result => console.log('Has permission?', result.hasPermission),
+      err => this.androidPermissions.requestPermissions(this.androidPermissions.PERMISSION.LOCATION)
+    );
+
+    this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.LOCATION, this.androidPermissions.PERMISSION.GET_ACCOUNTS]);
+  }
+
   ngOnInit() {
+    //DEVICE FISICO
+   // this.checkPermissions();
     this.locChipText = "";
     this.list = [];
     this.distances = [];
@@ -51,17 +63,17 @@ export class ListPage implements OnInit {
     this.list_id = this.route.snapshot.paramMap.get('id');    
     this.filter.genre = this.list_id;   
     
-    //DEPURANDO CON EL DEVICE FISICO
-    /*this.geolocation.getCurrentPosition().then(loc => {
-      this.filter.lat = loc.coords.latitude;
-      this.filter.lng = loc.coords.longitude;
-    });*/
-
-    /*this.getLocation(this.filter.lat, this.filter.lng).then(val => {
-      console.log(val)
-    });*/    
+    //CUANDO USEMOS EL DEVICE FISICO
+    //this.getGeoLocation();  
 
     this.getBrb();
+  }
+
+  getGeoLocation() {
+    this.geolocation.getCurrentPosition().then(loc => {
+      this.filter.lat = loc.coords.latitude;
+      this.filter.lng = loc.coords.longitude;
+    });   
   }
 
   getBrb() {
@@ -74,7 +86,9 @@ export class ListPage implements OnInit {
       }
 
       this.getLocation(this.filter.lat, this.filter.lng).then(data => {
-        this.locChipText = data.results[0].components.city;
+        if(typeof data.results !== undefined && data.results != undefined) {
+          this.locChipText = data.results[0].components.city;
+        }        
       });
 
       this.list.forEach(val => {

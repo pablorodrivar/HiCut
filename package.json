@@ -20,6 +20,7 @@
         "@angular/platform-browser": "^7.2.2",
         "@angular/platform-browser-dynamic": "^7.2.2",
         "@angular/router": "^7.2.2",
+        "@ionic-native/android-permissions": "^5.5.1",
         "@ionic-native/core": "^5.0.0",
         "@ionic-native/date-picker": "^5.3.0",
         "@ionic-native/firebase": "^5.3.0",
@@ -38,6 +39,7 @@
         "cordova-android": "8.0.0",
         "cordova-browser": "6.0.0",
         "cordova-ios": "5.0.0",
+        "cordova-plugin-android-permissions": "1.0.0",
         "cordova-plugin-datepicker": "0.9.3",
         "cordova-plugin-device": "^2.0.2",
         "cordova-plugin-firebase": "2.0.5",
@@ -105,7 +107,8 @@
             "cordova-sqlite-storage": {},
             "cordova-plugin-telerik-imagepicker": {},
             "cordova-plugin-firebase": {},
-            "cordova-plugin-geolocation": {}
+            "cordova-plugin-geolocation": {},
+            "cordova-plugin-android-permissions": {}
         },
         "platforms": [
             "android",

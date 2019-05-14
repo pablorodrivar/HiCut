@@ -15,6 +15,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 // Configuración de traducción
 import { customTranslateLoader, AppModule } from '../app.module';
 import { PipesModule } from 'app/pipes/pipes.module';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 const routes: Routes = [
   {
@@ -41,6 +42,7 @@ const routes: Routes = [
     InfiniteScrollModule
   ],
   declarations: [ListPage, ModalComponent],
-  entryComponents: [ModalComponent]
+  entryComponents: [ModalComponent],
+  providers: [AndroidPermissions]
 })
 export class ListPageModule {}
