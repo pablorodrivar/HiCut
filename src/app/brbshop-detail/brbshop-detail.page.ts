@@ -54,6 +54,9 @@ export class BrbshopDetailPage implements OnInit {
   public confirmed: boolean = false;
   public disableWrk: boolean = false;
   public disableDate: boolean = false;
+  public service_names: string[] = [];
+  public snames: string;
+  public wrk_name: string;
   
   constructor(private datePicker: DatePicker, private launchNavigator: LaunchNavigator, private route:ActivatedRoute,private router: Router,
     public alertController: AlertController, public loadingController: LoadingController, public toastController: ToastController,) { 
@@ -120,13 +123,13 @@ export class BrbshopDetailPage implements OnInit {
 
   getWorkers() {
     Globals.api.getHairdressers(this.id, (hairdressers, msg) => {
-      console.log(hairdressers)
       this.workers = hairdressers;      
     });         
   }
 
   updateWorkers(event) {
-    this.wrk_id = +event.detail.value;
+    this.wrk_id = +event.detail.value.substr(0, event.detail.value.indexOf(","));
+    this.wrk_name = event.detail.value.substr(event.detail.value.indexOf(",") + 1, event.detail.value.length - 1)
     this.showDatePicker = true;
     this.disableWrk = true;
 
@@ -200,12 +203,15 @@ export class BrbshopDetailPage implements OnInit {
     this.showPrice = true;
     this.showBrbPicker = true;
     this.price = 0;
-    console.log(this.services)
     if(typeof this.selectedServices !== undefined && this.selectedServices != undefined) {
       this.selectedServices = event.detail.value;
-      this.selectedServices.forEach(element => {
-        this.price = this.price + +element;
-      });
+        this.selectedServices.forEach(element => {
+          let price = element.substr(0, element.indexOf(","));
+          let service_name = element.substr(element.indexOf(",") + 1, element.length - 1)
+          this.price = this.price + +price;
+          this.service_names.push(service_name);
+        });  
+        this.snames = this.service_names.join(", ");
     }        
   }
 
@@ -259,15 +265,19 @@ export class BrbshopDetailPage implements OnInit {
       hours.push(val.hours)
     });
 
-    hours[0].forEach(val => {
-      this.hourValues.push(val);
-    });
-
-    hours[1].forEach(val => {
-      this.hourValues.push(val);
-    });
-
     this.showHourPicker = true;
+    
+    if(typeof hours[0] !== undefined && hours[0] != undefined) {
+      hours[0].forEach(val => {
+        this.hourValues.push(val);
+      });
+    }    
+
+    if(typeof hours[1] !== undefined && hours[1] != undefined) {
+      hours[1].forEach(val => {
+        this.hourValues.push(val);
+      }); 
+    }       
   }
 
   updateHour(event) {
