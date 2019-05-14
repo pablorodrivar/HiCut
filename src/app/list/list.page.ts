@@ -178,7 +178,8 @@ export class ListPage implements OnInit {
 
   async presentLoading() {
     const loading = await this.loadingController.create({
-      duration: 1000
+      duration: 1000,
+      message: "Loading List of Hairdressers"
     });
     await loading.present();
   }

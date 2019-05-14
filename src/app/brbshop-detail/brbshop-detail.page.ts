@@ -205,7 +205,8 @@ export class BrbshopDetailPage implements OnInit {
     this.showPrice = true;
     this.showBrbPicker = true;
     this.price = 0;
-    if(typeof this.selectedServices !== undefined && this.selectedServices != undefined) {
+    if(typeof event.detail.value !== undefined && event.detail.value != undefined && event.detail.value != null 
+      && event.detail.value != "") {
       this.selectedServices = event.detail.value;
         this.selectedServices.forEach(element => {
           let price = element.substr(0, element.indexOf(","));
@@ -296,7 +297,8 @@ export class BrbshopDetailPage implements OnInit {
 
   async presentLoading() {
     const loading = await this.loadingController.create({
-      duration: 1000
+      duration: 1000,
+      message: "Loading Hairdresser"
     });
     await loading.present();
   }
