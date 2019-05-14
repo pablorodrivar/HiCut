@@ -12,37 +12,45 @@ export class ApiController {
 
     private static api_url = 'http://80.211.65.79:8000/api/v1/';
 
-
-    //TODO: postReservation
     //TODO: cancelReservation
     //TODO: editReservation
     //TODO: getReservationDetail    
 
-    //TODO: putRating(brb_id: number)
-    //TODO. getHairdresserName(hairdresser_id)
-    //TODO: postProfile(user)
-    //TODO. getService(service_id)
-    //TODO: getProfile(user_id: number) por id de usuario
-    //TODO: postRating el rating individual (sin comentario)
-    //TODO: QUE EL GET PROFILE DEVUELVA EL AVATAR DEL USUARIO
+
+    //TODO: postReservation
     
 
-    /* public setProfile(user:User, callback: (editedUser) => void){
-            var newUserData = JSON.stringify(user);
-            Globals.http.post(ApiController.api_url+"editprofile", 
-            newUserData,{headers:new HttpHeaders().set("Authorization",this.token)}).subscribe((data) => {
-                console.log(data);
-                //TODO: devolver usuario editado
-                callback(null);
-            },(error)=>{
-                console.log(error);
-                callback(null);
-            });
-        } */
-
-
-
     // done
+
+    public rate(hairdressing: number,rate: number,callback: (status, msg) => void){
+        if (!this.isLoged()) {
+            callback(null, this.errorParse('error.not_loged'));
+            return;
+        }
+        var r = JSON.stringify({hairdressing:hairdressing,rate:rate});
+        Globals.http.post(ApiController.api_url + 'rating',r, {headers: new HttpHeaders().set('Content-Type', 'application/json').set(
+            'Authorization', this.token)}).subscribe((data: any) => {
+            callback("OK","");
+        }, (error) => {
+            console.log(error);
+            callback(null, this.errorParse(error.error.msg));
+        });
+    }
+
+    public setProfile(user:User, callback: (status,msg) => void){
+        if (!this.isLoged()) {
+            callback(null, this.errorParse('error.not_loged'));
+            return;
+        }
+        var newUserData = JSON.stringify(user);
+        Globals.http.post(ApiController.api_url+"editprofile", 
+        newUserData,{headers:new HttpHeaders().set("Authorization",this.token)}).subscribe((data) => {
+            callback("OK","");
+        },(error)=>{
+            console.log(error);
+            callback(null, this.errorParse(error.error.msg));
+        });
+    }
 
     public getHairdressers(brb_id: number,callback: (hairdressers, msg) => void){
         Globals.http.get(ApiController.api_url + 'hairdressers/'+brb_id, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
@@ -181,7 +189,7 @@ export class ApiController {
             {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
             if (data.status === 201 && data.msg === 'OK') {
                 this.token = data.token;
-                this.getProfile((user, msg) => {
+                this.getProfile(null,(user, msg) => {
                     if (user != null) {
                         this.currentUser = user;
                         this.currentStorage.set('token', this.token).then((data) => {
@@ -238,7 +246,7 @@ export class ApiController {
         currentStorage.get('token').then((data) => {
             if (data != null) {
                 this.token = data;
-                this.getProfile((user: User, msg) => {
+                this.getProfile(null,(user: User, msg) => {
                     if (user == null) { // el usuario ya no es valido
                         this.token = null;
                         this.currentUser = null;
@@ -258,13 +266,13 @@ export class ApiController {
         });
     }
 
-    public getProfile(callback: (profile, msg) => void) {
-        if (!this.isLoged()) {
+    public getProfile(id,callback: (profile, msg) => void) {
+        if (!this.isLoged() && id === null) {
             callback(null, this.errorParse('error.not_loged'));
             return;
         }
-        Globals.http.get(ApiController.api_url + 'profile', {headers: new HttpHeaders().set('Authorization', this.token)}).subscribe((data: any) => {
-            callback(User.fromArray(data.user), '');
+        Globals.http.get(ApiController.api_url + 'profile'+(id!==null?'/'+id:''), {headers: new HttpHeaders().set('Authorization', this.token)}).subscribe((data: any) => {
+            callback(data.user, '');
         }, (error) => {
             callback(null, this.errorParse(error.error.msg));
         });
@@ -292,7 +300,7 @@ export class ApiController {
         Globals.http.post(ApiController.api_url + 'login', loginData, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
             if (data.status == 200) {
                 this.token = data.token;
-                this.getProfile((user: User, msg) => {
+                this.getProfile(null,(user: User, msg) => {
                     if (user == null) {
                         this.token = null;
                         callback(false, this.errorParse('error.unknown'));

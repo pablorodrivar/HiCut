@@ -28,7 +28,7 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
     this.list_id = this.route.snapshot.paramMap.get('id');
     
-    Globals.api.getProfile((profile, msg) => {
+    Globals.api.getProfile(null,(profile, msg) => {
       this.name = profile.name;
       this.surname = profile.surname;
       this.city = profile.city;
