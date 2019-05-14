@@ -77,6 +77,8 @@ export class BrbshopDetailPage implements OnInit {
     this.disableDate = false;
     this.disableWrk = false;
     this.comments = [];
+    this.service_names = [];
+    this.snames = "";
     this.is_loged = Globals.api.isLoged();
     this.list_id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.id = parseInt(this.route.snapshot.paramMap.get('detail_id'));
