@@ -16,11 +16,22 @@ export class ApiController {
     //TODO: editReservation
     //TODO: getReservationDetail    
 
-
-    //TODO: postReservation
-    
-
     // done
+
+    public postReservation(hairdresser,date,paid,services, callback: (status, msg)=>void){
+        if (!this.isLoged()) {
+            callback(null, this.errorParse('error.not_loged'));
+            return;
+        }
+        var data = JSON.stringify({hairdresser:hairdresser,date:date,paid:paid,services:services});
+        Globals.http.post(ApiController.api_url + 'reservation',data, {headers: new HttpHeaders().set('Content-Type', 'application/json').set(
+            'Authorization', this.token)}).subscribe((data: any) => {
+            callback("OK","");
+        }, (error) => {
+            console.log(error);
+            callback(null, this.errorParse(error.error.msg));
+        });
+    }
 
     public rate(hairdressing: number,rate: number,callback: (status, msg) => void){
         if (!this.isLoged()) {
