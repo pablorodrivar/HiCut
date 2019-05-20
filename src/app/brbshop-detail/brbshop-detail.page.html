@@ -20,7 +20,7 @@
     </ion-segment>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreeen="true" overflow-scroll="true">
   <div *ngIf="tab === 'main'">
     <ion-list>      
       <ion-item lines="none">
@@ -46,7 +46,14 @@
             <ion-select-option *ngFor="let ser of services" value="{{ser.id}}|{{ ser.price }},{{ ser.name }}">{{ ser.name }} ({{ ser.price }}€)</ion-select-option>
           </ion-select>
         </ion-item>        
-      </ion-item>     
+      </ion-item>  
+      
+      <ion-item>
+        <div class="title">
+          <ion-label text-center class="title" position="stacked">BarberShop Information</ion-label>          
+        </div>
+        <ion-text>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularise</ion-text>
+      </ion-item>
       
       <ion-item *ngIf="showDatePicker" lines="none" style="display: inline-block; width: 100%;">                
         <div class="title">
@@ -86,11 +93,11 @@
           <ion-label class="title" text-center>{{ 'PAGES.BRBDETAILS.FINAL_PRIZE' | translate }}</ion-label>
         </div>        
       <ion-label style="font-size: 25px;" text-center position="stacked">{{ price }}€</ion-label>  
-      </ion-item>      
-  
-        <div class="title">
-          <ion-label class="title" text-center>{{ 'PAGES.BRBDETAILS.RATING' | translate }}</ion-label>
-        </div>    
+      </ion-item>              
+      </ion-list>            
+  </div>
+
+  <div *ngIf="tab === 'rating'">
         <ion-item lines="none" style="display: inline-block; margin-bottom: -10%; width: 100%;">
             <div class="rating" *ngIf="brb_rating >= 0 && brb_rating < 0.5"><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
             <div class="rating" *ngIf="brb_rating >= 0.5 && brb_rating < 1"><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
@@ -176,7 +183,6 @@
         <div *ngIf="!is_loged">
           <ion-item lines="none"><ion-button fill style="width:100%; border: solid 1px #ECEBEB;" (click)="goToLogin()">{{ 'PAGES.BRBDETAILS.LOG_IN_TO' | translate }}</ion-button></ion-item>
         </div>
-      </ion-list>
   </div>
 
   <div *ngIf="tab === 'gallery'">
@@ -188,4 +194,5 @@
       </ion-row>
     </ion-grid>
   </div>
+  <ion-footer translucent="true" style="position: absolute; bottom: 0%; line-height: 10%;"><ion-toolbar><ion-button expand="full" shape="round">do your reservation!</ion-button></ion-toolbar></ion-footer>
 </ion-content>
