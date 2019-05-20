@@ -15,7 +15,7 @@
         <ion-icon name="star-outline"></ion-icon>
       </ion-segment-button>
       <ion-segment-button value="gallery">
-          <ion-icon name="images"></ion-icon>
+        <ion-icon name="images"></ion-icon>
       </ion-segment-button>
     </ion-segment>
 </ion-header>
@@ -177,5 +177,15 @@
           <ion-item lines="none"><ion-button fill style="width:100%; border: solid 1px #ECEBEB;" (click)="goToLogin()">{{ 'PAGES.BRBDETAILS.LOG_IN_TO' | translate }}</ion-button></ion-item>
         </div>
       </ion-list>
+  </div>
+
+  <div *ngIf="tab === 'gallery'">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4" *ngFor="let item of slider">
+          <img class="gallery-img" src="http://80.211.65.79:8000/{{ item }}" (click)="showImage($event)">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>

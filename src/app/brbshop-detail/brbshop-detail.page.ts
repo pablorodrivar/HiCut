@@ -8,8 +8,8 @@ import { Filter } from 'classes/pojo/filter';
 import { LoadingController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { PayComponent } from '../pay/pay.component';
+import { GalleryComponent } from '../gallery/gallery.component';
 import { DomSanitizer } from '@angular/platform-browser';
-
 
 const url = "http://80.211.65.79:8000/";
 
@@ -69,7 +69,7 @@ export class BrbshopDetailPage implements OnInit {
   
   constructor(private datePicker: DatePicker, private launchNavigator: LaunchNavigator, private route:ActivatedRoute,private router: Router,
     public alertController: AlertController, public loadingController: LoadingController, public toastController: ToastController,
-    public modalController: ModalController, public payComponent: PayComponent, public sanitiyation: DomSanitizer) { 
+    public modalController: ModalController, public payComponent: PayComponent, public sanitiyation: DomSanitizer, public galleryComponent: GalleryComponent) { 
       this.showHourPicker = false;
       this.price = 0;
       this.showCancel = false;
@@ -138,12 +138,11 @@ export class BrbshopDetailPage implements OnInit {
         console.log(error)
       }
 
-      this.slider = this.barbershop[0].imglist;
-      //this.tb_image = this.sanitiyation.bypassSecurityTrustUrl("https://80.211.65.79:8000/"+this.slider[0]);
+      this.slider = this.barbershop[0].imglist;      
       this.tb_image = this.slider[0];
       this.style = "--background: linear-gradient(162deg, transparent 20%, rgba(56, 70, 108, .8) 100%), url('http://80.211.65.79:8000/"+this.tb_image+"') center no-repeat; filter: blur(5px); -webkit-filter:blur(5px); min-height: 75px; color: white;";
       this.style = this.sanitiyation.bypassSecurityTrustStyle(this.style);
-      this.name = this.barbershop[0].name;          
+      this.name = this.barbershop[0].name;   
 
       Globals.api.getComments(this.barbershop[0].id, (comment, msg) => {
         this.comments = comment;        
@@ -223,7 +222,6 @@ export class BrbshopDetailPage implements OnInit {
   }
 
   async pay() {
-    console.log(this.selectedServices)
     const myModal = await this.modalController.create({
       component: PayComponent,
       cssClass: 'my-custom-modal-css',
@@ -260,6 +258,10 @@ export class BrbshopDetailPage implements OnInit {
     }, 1000);
   }
 
+  segmentChanged(event) {
+    console.log(event.detail.value)
+  }
+
   sendComment() {
     if(typeof this.subject === undefined || this.subject == undefined || typeof this.comment_text === undefined
       || this.comment_text == undefined || typeof this.rate === undefined || this.rate == undefined) {
@@ -272,6 +274,17 @@ export class BrbshopDetailPage implements OnInit {
 
       this.refresh();
     } 
+  }
+
+  async showImage(event) {
+    const img = event.srcElement.currentSrc;
+    const modal = await this.modalController.create({
+      component: GalleryComponent,
+      cssClass: 'custom-gallery-component',
+      componentProps: { img: img, name: this.name }
+    });
+
+    return await modal.present();
   }
 
   showLocation() {
