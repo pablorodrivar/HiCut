@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()"><ion-icon name="close"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-label class="title">Your Appointment</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Appointment with: <strong>{{ wrk_name }}</strong></ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Day: <strong>{{ date }}</strong></ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Hour: <strong>{{ hour }}</strong></ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Services: <strong>{{ services }}</strong></ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Final Price: <strong>{{ price }}€</strong></ion-label>
+  </ion-item>
+
+  <ion-item style="display: inline-block; width: 100%;" lines="none"><ion-button fill style="width:100%; border: solid 1px blue; color: blue; text-align: center" color="primary" (click)="pay()">pay</ion-button></ion-item>
+</ion-content>

@@ -9,6 +9,7 @@ import { BrbshopDetailPage } from './brbshop-detail.page';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http'; import { HttpModule } from '@angular/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { PayComponent } from '../pay/pay.component';
 
 // Configuración de traducción
 import { customTranslateLoader } from '../app.module';
@@ -36,6 +37,8 @@ const routes: Routes = [
     }),
     RouterModule.forChild(routes)
   ],
-  declarations: [BrbshopDetailPage]
+  entryComponents: [PayComponent],
+  declarations: [BrbshopDetailPage, PayComponent],
+  providers: [PayComponent]
 })
 export class BrbshopDetailPageModule {}
