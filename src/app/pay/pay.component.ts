@@ -23,6 +23,10 @@ export class PayComponent implements OnInit {
 
   ngOnInit() {
     this.myDate = this.date + " " + this.hour;
+    let compare = this.myDate.substr(this.myDate.indexOf(" ") + 1, this.myDate.length - 1);
+    if(compare.length !== 5) {
+      this.myDate = this.myDate + "0";
+    }
   }
 
   dismiss() {
@@ -30,7 +34,6 @@ export class PayComponent implements OnInit {
   }
 
   pay() {
-    console.log(this.wrk_id + " " + this.myDate + " " + this.paid + " " + this.service_ids)
     Globals.api.postReservation(this.wrk_id, this.myDate, this.paid, this.service_ids, (status, msg) => {
       console.log(msg)
       this.modalController.dismiss();

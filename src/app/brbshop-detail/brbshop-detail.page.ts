@@ -8,6 +8,10 @@ import { Filter } from 'classes/pojo/filter';
 import { LoadingController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { PayComponent } from '../pay/pay.component';
+import { DomSanitizer } from '@angular/platform-browser';
+
+
+const url = "http://80.211.65.79:8000/";
 
 @Component({
   selector: 'app-brbshop-detail',
@@ -59,21 +63,26 @@ export class BrbshopDetailPage implements OnInit {
   public service_ids: number[] = [];
   public snames: string;
   public wrk_name: string;
+  public tb_image: any;
+  public style: any;
+  public tab: any;
   
   constructor(private datePicker: DatePicker, private launchNavigator: LaunchNavigator, private route:ActivatedRoute,private router: Router,
     public alertController: AlertController, public loadingController: LoadingController, public toastController: ToastController,
-    public modalController: ModalController, public payComponent: PayComponent) { 
+    public modalController: ModalController, public payComponent: PayComponent, public sanitiyation: DomSanitizer) { 
       this.showHourPicker = false;
       this.price = 0;
       this.showCancel = false;
       this.showPrice = false;
+      this.tab = "main";
     }
 
   options: LaunchNavigatorOptions = {
     start: 'Spain, ON'
   }
 
-  ngOnInit() {    
+  ngOnInit() {   
+    this.tab = "main"; 
     this.showPrice = false;
     this.showCancel = false;
     this.showServices = true;
@@ -130,6 +139,10 @@ export class BrbshopDetailPage implements OnInit {
       }
 
       this.slider = this.barbershop[0].imglist;
+      //this.tb_image = this.sanitiyation.bypassSecurityTrustUrl("https://80.211.65.79:8000/"+this.slider[0]);
+      this.tb_image = this.slider[0];
+      this.style = "--background: linear-gradient(162deg, transparent 20%, rgba(56, 70, 108, .8) 100%), url('http://80.211.65.79:8000/"+this.tb_image+"') center no-repeat; filter: blur(5px); -webkit-filter:blur(5px); min-height: 75px; color: white;";
+      this.style = this.sanitiyation.bypassSecurityTrustStyle(this.style);
       this.name = this.barbershop[0].name;          
 
       Globals.api.getComments(this.barbershop[0].id, (comment, msg) => {
