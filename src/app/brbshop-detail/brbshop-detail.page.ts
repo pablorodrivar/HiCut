@@ -1,4 +1,4 @@
-import { Component, OnInit, SimpleChanges, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DatePicker } from '@ionic-native/date-picker/ngx';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator/ngx';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -53,6 +53,8 @@ export class BrbshopDetailPage implements OnInit {
   public style: any;
   public address: string;
   public tab: any;
+  public phone: string;
+  public email: string;
   
   constructor(private datePicker: DatePicker, private launchNavigator: LaunchNavigator, private route:ActivatedRoute,private router: Router,
     public alertController: AlertController, public loadingController: LoadingController, public toastController: ToastController,
@@ -99,14 +101,14 @@ export class BrbshopDetailPage implements OnInit {
         console.log(error)
       }
 
-      console.log(list)
-
       this.slider = this.barbershop[0].imglist;      
       this.tb_image = this.slider[0];
       this.style = "--background: linear-gradient(162deg, transparent 20%, rgba(56, 70, 108, .8) 100%), url('http://80.211.65.79:8000/"+this.tb_image+"') center no-repeat; filter: blur(5px); -webkit-filter:blur(5px); min-height: 75px; color: white;";
       this.style = this.domController.bypassSecurityTrustStyle(this.style);
       this.name = this.barbershop[0].name;   
       this.address = this.barbershop[0].address;
+      this.phone = this.barbershop[0].tlf;
+      this.email = this.barbershop[0].email;
 
       Globals.api.getComments(this.barbershop[0].id, (comment, msg) => {
         this.comments = comment;        
@@ -199,10 +201,6 @@ export class BrbshopDetailPage implements OnInit {
     return await myModal.present();
   }
 
-  segmentChanged(event) {
-    console.log(event.detail.value)
-  }
-
   sendComment() {
     if(typeof this.subject === undefined || this.subject == undefined || typeof this.comment_text === undefined
       || this.comment_text == undefined || typeof this.rate === undefined || this.rate == undefined) {
@@ -219,10 +217,11 @@ export class BrbshopDetailPage implements OnInit {
 
   async showImage(event) {
     const img = event.srcElement.currentSrc;
+    console.log(event)
     const modal = await this.modalController.create({
       component: GalleryComponent,
       cssClass: 'custom-gallery-component',
-      componentProps: { img: img, name: this.name }
+      componentProps: { img: img, name: this.name, slider: this.slider }
     });
 
     return await modal.present();

@@ -9,6 +9,7 @@ import { ModalController } from '@ionic/angular';
 export class GalleryComponent implements OnInit {
   @Input("img") img;
   @Input("name") name;
+  @Input("slider") slider;
 
   constructor(public modalController: ModalController) { }
 
