@@ -1,12 +1,9 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button (click)="dismiss()"><ion-icon name="close"></ion-icon></ion-button>
-    </ion-buttons>
-    <ion-title>{{ name }} Image</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <img [src]="img">
+<ion-content color="drak">
+  <ion-item lines="none" color="dark">        
+    <ion-slides pager="true">
+      <ion-slide *ngFor="let slide of slider">
+        <img src="http://80.211.65.79:8000/{{ slide }}">
+      </ion-slide>
+    </ion-slides>  
+  </ion-item> 
 </ion-content>

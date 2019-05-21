@@ -145,6 +145,7 @@ export class ListPage implements OnInit {
   async presentModal() {
     const modal = await this.modalController.create({
       component: ModalComponent,
+      cssClass: 'sort-options',
       componentProps: { id: this.list_id }
     });
 
