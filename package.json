@@ -42,7 +42,7 @@
         "cordova-plugin-android-permissions": "1.0.0",
         "cordova-plugin-datepicker": "0.9.3",
         "cordova-plugin-device": "^2.0.2",
-        "cordova-plugin-firebase": "2.0.5",
+        "cordova-plugin-firebase": "git+https://github.com/dpa99c/cordova-plugin-firebase.git#GH-1057-April-05-android-build-issue",
         "cordova-plugin-geolocation": "4.0.1",
         "cordova-plugin-ionic-keyboard": "^2.1.3",
         "cordova-plugin-ionic-webview": "^3.1.2",
@@ -100,18 +100,19 @@
             "cordova-plugin-statusbar": {},
             "cordova-plugin-device": {},
             "cordova-plugin-splashscreen": {},
-            "cordova-plugin-ionic-webview": {},
+            "cordova-plugin-ionic-webview": {
+                "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+            },
             "cordova-plugin-ionic-keyboard": {},
             "cordova-plugin-datepicker": {},
             "uk.co.workingedge.phonegap.plugin.launchnavigator": {},
             "cordova-sqlite-storage": {},
             "cordova-plugin-telerik-imagepicker": {},
-            "cordova-plugin-firebase": {},
             "cordova-plugin-geolocation": {},
-            "cordova-plugin-android-permissions": {}
+            "cordova-plugin-android-permissions": {},
+            "cordova-plugin-firebase": {}
         },
         "platforms": [
-            "android",
             "ios",
             "browser"
         ]

@@ -12,8 +12,6 @@ import { GalleryComponent } from '../gallery/gallery.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ReservationComponent } from 'app/reservation/reservation.component';
 
-const url = "http://80.211.65.79:8000/";
-
 @Component({
   selector: 'app-brbshop-detail',
   templateUrl: './brbshop-detail.page.html',
@@ -100,6 +98,8 @@ export class BrbshopDetailPage implements OnInit {
       } else {
         console.log(error)
       }
+
+      console.log(list)
 
       this.slider = this.barbershop[0].imglist;      
       this.tb_image = this.slider[0];
