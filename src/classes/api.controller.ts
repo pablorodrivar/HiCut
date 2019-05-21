@@ -12,10 +12,19 @@ export class ApiController {
 
     private static api_url = 'http://80.211.65.79:8000/api/v1/';
 
-    //TODO: cancelReservation
-    //TODO: editReservation
-
-    // done
+    public cancelreservation(id, callback: (status, msg)=>void){
+        if (!this.isLoged()) {
+            callback(null, this.errorParse('error.not_loged'));
+            return;
+        }
+        Globals.http.get(ApiController.api_url + 'cancelreservation/'+id, {headers: new HttpHeaders().set('Content-Type', 'application/json').set(
+            'Authorization', this.token)}).subscribe((data: any) => {
+            callback("OK","");
+        }, (error) => {
+            console.log(error);
+            callback(null, this.errorParse(error.error.msg));
+        });
+    }
 
     public reservation(id, callback: (status, msg)=>void){
         if (!this.isLoged()) {
