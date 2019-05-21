@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()"><ion-icon name="close"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>Do Your Reservation!</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- SERVICES -->
+  <ion-item *ngIf="showServices">
+    <div class="title">
+      <ion-label text-center class="title" position="stacked">Choose Services</ion-label> 
+    </div>
+
+    <ion-item lines="none">
+      <ion-select (ionChange)="gServices($event)" [(ngModel)]="services.name" placeholder="{{ 'PAGES.MODAL.SELECT_SERVICES' | translate }}" style="width: 100%; display: contents; " multiple>        
+        <ion-select-option *ngFor="let ser of services" value="{{ser.id}}|{{ ser.price }},{{ ser.name }}">{{ ser.name }} ({{ ser.price }}€)</ion-select-option>
+      </ion-select>
+    </ion-item>        
+  </ion-item>  
+  
+  <div *ngIf="showServices" lines="none">
+    <ion-item *ngFor="let ser of service_names">
+      <ion-label style="width:100%; text-align: center;">{{ ser }}</ion-label>
+    </ion-item>
+  </div>  
+
+  <!-- BARBER -->
+  <div *ngIf="showBrbPicker" class="title">
+    <ion-label text-center class="title" position="stacked">Choose a Hairdresser</ion-label> 
+    </div>
+  <ion-item *ngIf="showBrbPicker">        
+    <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_BRB' | translate }} </ion-label>
+    <ion-select (ionChange)="updateWorkers($event)" placeholder="{{ 'PAGES.BRBDETAILS.CHOOSE_BRB' | translate }}" disabled="{{ disableWrk }}">
+      <ion-select-option *ngFor="let wrk of workers" value="{{ wrk.id }},{{ wrk.name }}">{{ wrk.name }}</ion-select-option>
+    </ion-select>
+    <ion-icon *ngIf="disableWrk" name="checkmark-circle-outline"></ion-icon>
+  </ion-item> 
+
+  <!-- DATE -->
+  <ion-item *ngIf="showDatePicker" lines="none" style="display: inline-block; width: 100%;">                
+    <div class="title">
+      <ion-label text-center class="title" position="stacked">Choose a Date</ion-label> 
+    </div>        
+  </ion-item>  
+
+  <ion-item *ngIf="showDatePicker">
+    <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_DATE' | translate }}</ion-label>
+    <ion-datetime displayFormat="DD MMMM YY" disabled="{{ disableDate }}" [monthValues]="monthValues" [yearValues]="yearValues" (ionChange)="updateDate($event)" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_DATE' | translate }}"></ion-datetime>
+    <ion-icon *ngIf="disableDate" name="checkmark-circle-outline"></ion-icon>
+  </ion-item>  
+
+  <!-- HOUR -->
+  <ion-item *ngIf="showHourPicker">
+    <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_HOUR' | translate }}</ion-label>
+    <ion-select (ionChange)="updateHour($event)" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_HOUR' | translate }}">
+      <ion-select-option *ngFor="let hour of hourValues" value="{{ hour }}">{{ hour }}</ion-select-option>
+    </ion-select>
+  </ion-item>                     
+</ion-content>
+
+<ion-footer lines="none">
+  <ion-label *ngIf="showPrice" style="width: 100%;">
+    <ion-badge style="font-size: 15px; display: block;" text-center position="stacked">Precio: {{ price }}€</ion-badge>  
+  </ion-label>
+  <ion-item lines="none">
+    <ion-button fill [disabled]="back_disabled" style="display: contents;" (click)="back()"><ion-icon name="arrow-back"></ion-icon></ion-button>
+    <ion-button fill [disabled]="forward_disabled" style="display: contents;" (click)="forward()"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+  </ion-item>
+  <ion-progress-bar type="determinate" color="primary" [value]="progress"></ion-progress-bar>  
+</ion-footer>
+  

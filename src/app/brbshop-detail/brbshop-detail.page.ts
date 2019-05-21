@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges, Input } from '@angular/core';
 import { DatePicker } from '@ionic-native/date-picker/ngx';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator/ngx';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -10,6 +10,7 @@ import { ToastController } from '@ionic/angular';
 import { PayComponent } from '../pay/pay.component';
 import { GalleryComponent } from '../gallery/gallery.component';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ReservationComponent } from 'app/reservation/reservation.component';
 
 const url = "http://80.211.65.79:8000/";
 
@@ -36,21 +37,8 @@ export class BrbshopDetailPage implements OnInit {
   public comments: any[] = [];
   public name: string;
   public is_loged: boolean;
-  public days_raw: any[] = [];
-  public days: any[] = [];
-  public months: number[] = [];
-  public years: number[] = [];
-  public yearValues: string;
-  public monthValues: string;
-  public hourValues: any[] = [];
-  public myDate: string;
-  public myHour: string;
-  public showHourPicker: boolean;
-  public showDatePicker: boolean = false;
-  public showBrbPicker: boolean = false;
-  public showServices: boolean = true;
-  public showCancel: boolean = false;
-  public showPrice: boolean = false;
+  public myHour: any;
+  public myDate: any;
   public services: any[] = [];
   public selectedServices: any[] = [];
   public price: number;
@@ -65,15 +53,13 @@ export class BrbshopDetailPage implements OnInit {
   public wrk_name: string;
   public tb_image: any;
   public style: any;
+  public address: string;
   public tab: any;
   
   constructor(private datePicker: DatePicker, private launchNavigator: LaunchNavigator, private route:ActivatedRoute,private router: Router,
     public alertController: AlertController, public loadingController: LoadingController, public toastController: ToastController,
-    public modalController: ModalController, public payComponent: PayComponent, public sanitiyation: DomSanitizer, public galleryComponent: GalleryComponent) { 
-      this.showHourPicker = false;
+    public modalController: ModalController, public payComponent: PayComponent, public domController: DomSanitizer, public galleryComponent: GalleryComponent) {
       this.price = 0;
-      this.showCancel = false;
-      this.showPrice = false;
       this.tab = "main";
     }
 
@@ -83,9 +69,6 @@ export class BrbshopDetailPage implements OnInit {
 
   ngOnInit() {   
     this.tab = "main"; 
-    this.showPrice = false;
-    this.showCancel = false;
-    this.showServices = true;
     this.disableDate = false;
     this.disableWrk = false;
     this.comments = [];
@@ -105,29 +88,9 @@ export class BrbshopDetailPage implements OnInit {
   }
 
   cancel() {    
-    this.showPrice = false;
     this.confirmed = false;
     this.wrk_id = null;
-    this.myDate = "";
-    this.myHour = "";
-    this.showBrbPicker = false;
-    this.showDatePicker = false;
-    this.showHourPicker = false;
-    this.yearValues = null;
-    this.monthValues = null;   
     this.refresh(); 
-  }
-
-  confirm() {
-    if(typeof this.myHour === undefined || this.myHour == undefined) {
-      this.presentToast();
-    } else {
-      this.confirmed = true;
-      this.showDatePicker = false;
-      this.showHourPicker = false;
-      this.showBrbPicker = false;
-      this.showServices = false;
-    }
   }
 
   getBrbShop() {
@@ -141,8 +104,9 @@ export class BrbshopDetailPage implements OnInit {
       this.slider = this.barbershop[0].imglist;      
       this.tb_image = this.slider[0];
       this.style = "--background: linear-gradient(162deg, transparent 20%, rgba(56, 70, 108, .8) 100%), url('http://80.211.65.79:8000/"+this.tb_image+"') center no-repeat; filter: blur(5px); -webkit-filter:blur(5px); min-height: 75px; color: white;";
-      this.style = this.sanitiyation.bypassSecurityTrustStyle(this.style);
+      this.style = this.domController.bypassSecurityTrustStyle(this.style);
       this.name = this.barbershop[0].name;   
+      this.address = this.barbershop[0].address;
 
       Globals.api.getComments(this.barbershop[0].id, (comment, msg) => {
         this.comments = comment;        
@@ -153,28 +117,6 @@ export class BrbshopDetailPage implements OnInit {
         this.total_rate = rate.total;
       });
     });    
-  }
-
-  getHours() {
-    Globals.api.getHours(this.wrk_id, (hours, msg) => {
-      this.days = hours;
-      this.days_raw = Object.keys(hours);
-
-      const distinct = (value, index, self) => {
-        return self.indexOf(value) == index;
-      }
-
-      this.days_raw.forEach(element => {
-        let val = element.split("-");
-        this.years.push(+val[0]);
-        this.months.push(+val[1])
-      });
-
-      this.years = this.years.filter(distinct);
-      this.months = this.months.filter(distinct);
-      this.yearValues = this.years.join(",");
-      this.monthValues = this.months.join(",");
-    });  
   }
 
   getRating(event) {
@@ -195,30 +137,6 @@ export class BrbshopDetailPage implements OnInit {
 
   goToLogin() {
     this.router.navigate(["/tabs/login"]);
-  }
-
-  gServices(event) {
-    this.showCancel = true;
-    this.showPrice = true;
-    this.showBrbPicker = true;
-    this.price = 0;
-    this.service_ids = [];
-    if(typeof event.detail.value !== undefined && event.detail.value != undefined && event.detail.value != null 
-      && event.detail.value != "") {
-      this.selectedServices = event.detail.value;
-        this.selectedServices.forEach(element => {
-          let id = element.substr(0, element.indexOf("|"));
-          let price = element.substr(element.indexOf("|")+1, element.indexOf(",")-2);
-          let service_name = element.substr(element.indexOf(",") + 1, element.length - 1)
-          if(price.indexOf(",") > -1){
-            price = price.replace(",", "");
-          }
-          this.price = this.price + +price;
-          this.service_names.push(service_name);
-          this.service_ids.push(id);
-        });  
-        this.snames = this.service_names.join(", ");
-    }
   }
 
   async pay() {
@@ -256,6 +174,29 @@ export class BrbshopDetailPage implements OnInit {
     setTimeout(() => {
       this.ngOnInit();
     }, 1000);
+  }
+
+  async reservation() {
+    const myModal = await this.modalController.create({
+      component: ReservationComponent,
+      cssClass: 'reservation-css',
+      componentProps: { services: this.services, workers: this.workers }
+    });
+
+    myModal.onDidDismiss().then(data => {
+      if(typeof data.data !== undefined && data.data !== undefined) {
+        this.wrk_id = data.data.wrk_id;
+        this.wrk_name = data.data.wrk_name;
+        this.myHour = data.data.hour;
+        this.myDate = data.data.date;
+        this.snames = data.data.services;
+        this.price = data.data.price;
+        this.service_ids = data.data.service_ids;
+        this.pay();   
+      }       
+    });
+
+    return await myModal.present();
   }
 
   segmentChanged(event) {
@@ -301,59 +242,5 @@ export class BrbshopDetailPage implements OnInit {
       console.log(status);
       this.refresh();
     });
-  }
-
-  updateDate(event) {   
-    this.disableDate = true;
-    let date:string = event.detail.value;    
-    date = date.substr(0, date.indexOf("T"));    
-    this.myDate = date;
-    let i = 0;
-    let pos = 0;
-    this.days_raw.forEach(val =>{    
-      if(date == val) {
-        pos = i;
-      }
-
-      i = i + 1;
-    });
-
-    let ar = Object.values(this.days);
-    let nice = ar[pos];
-
-    let hours: any[] = [];
-
-    nice.forEach(val => {
-      hours.push(val.hours)
-    });
-
-    this.showHourPicker = true;
-    
-    if(typeof hours[0] !== undefined && hours[0] != undefined) {
-      hours[0].forEach(val => {
-        this.hourValues.push(val);
-      });
-    }    
-
-    if(typeof hours[1] !== undefined && hours[1] != undefined) {
-      hours[1].forEach(val => {
-        this.hourValues.push(val);
-      }); 
-    }       
-  }
-
-  updateHour(event) {
-    this.myHour = event.detail.value;
-  }
-
-  updateWorkers(event) {
-    this.wrk_id = +event.detail.value.substr(0, event.detail.value.indexOf(","));
-    this.wrk_name = event.detail.value.substr(event.detail.value.indexOf(",") + 1, event.detail.value.length - 1)
-    this.showDatePicker = true;
-    this.disableWrk = true;
-
-    if(this.showDatePicker) {
-      this.getHours();
-    }  
   }
 }

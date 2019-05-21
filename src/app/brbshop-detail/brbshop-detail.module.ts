@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http'; import { HttpModule } f
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { PayComponent } from '../pay/pay.component';
 import { GalleryComponent } from '../gallery/gallery.component';
+import { ReservationComponent } from '../reservation/reservation.component';
 
 // Configuración de traducción
 import { customTranslateLoader } from '../app.module';
@@ -38,8 +39,8 @@ const routes: Routes = [
     }),
     RouterModule.forChild(routes)
   ],
-  entryComponents: [PayComponent, GalleryComponent],
-  declarations: [BrbshopDetailPage, PayComponent, GalleryComponent],
-  providers: [PayComponent, GalleryComponent]
+  entryComponents: [PayComponent, GalleryComponent, ReservationComponent],
+  declarations: [BrbshopDetailPage, PayComponent, GalleryComponent, ReservationComponent],
+  providers: [PayComponent, GalleryComponent, ReservationComponent]
 })
 export class BrbshopDetailPageModule {}

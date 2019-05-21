@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Globals } from 'app/globals';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pay',
@@ -18,15 +19,24 @@ export class PayComponent implements OnInit {
   @Input("service_ids") service_ids;
   public myDate;
 
-  constructor(public modalController: ModalController) {
+  constructor(public modalController: ModalController, public toastController: ToastController) {
   }
 
-  ngOnInit() {
-    this.myDate = this.date + " " + this.hour;
-    let compare = this.myDate.substr(this.myDate.indexOf(" ") + 1, this.myDate.length - 1);
-    if(compare.length !== 5) {
-      this.myDate = this.myDate + "0";
+  ngOnInit() {    
+    let h = this.hour.split(":");
+
+    if(h[0].length < 2) {
+      h[0] = "0" + h[0];
     }
+
+    if(h[1].length < 2) {
+      h[1] = h[1] + "0";
+    }
+
+    this.hour = h.join(":");
+    console.log(this.hour);
+
+    this.myDate = this.date + " " + this.hour;
   }
 
   dismiss() {
@@ -38,5 +48,13 @@ export class PayComponent implements OnInit {
       console.log(msg)
       this.modalController.dismiss();
     });
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Reservation on ' + this.myDate + ' with ' + this.wkr_name,
+      duration: 2000
+    });
+    toast.present();
   }
 }
