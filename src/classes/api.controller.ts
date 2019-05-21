@@ -251,7 +251,6 @@ export class ApiController {
 
     public getHairdressing(filter, callback: (list, error) => void) {
         const filterData = JSON.stringify(filter);
-        console.log(filterData);
         Globals.http.post(ApiController.api_url + 'hairdressing', filterData, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
             if (data.status === 200 && data.msg === 'OK') {
                 callback(data.list, '');

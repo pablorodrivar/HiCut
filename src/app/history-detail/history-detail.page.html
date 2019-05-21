@@ -8,21 +8,22 @@
 </ion-header>
 
 <ion-content padding>
-  <div class="ion-text-center">
-    <h1>Reserva en: Tres Peluqueros</h1>
-    <h4>Identificador: 22345</h4>
-  </div>
-    <h1>Servicios:</h1>
-    <ul>
-      <li>Corte de pelo</li>
-    </ul>
-    <h1>Fecha: 25/03/2019 17:15</h1>
-    <h1>Pagado: <ion-icon color="success" name="checkmark-circle"></ion-icon></h1>
+  <h3><b>Información de la reserva</b></h3>
+  <h4><b>Peluqueria:</b> {{ reservation.hairdressing.name }}</h4>
+  <p style="font-size:0.7em"><em><b>Identificador:</b> {{ reservation.id }}</em></p>
+  <p><b>Servicios:</b></p>
+  <ul>
+    <li *ngFor="let item of reservation.services">{{ item.name }}</li>
+  </ul>
+
+  <p><b>Fecha:</b> {{ reservation.date }}</p>
+  <p *ngIf="reservation.paid == 1"><b>Pagado:</b>&nbsp;<ion-icon color="success" name="checkmark-circle"></ion-icon></p>
+  <p *ngIf="reservation.paid == 0"><b>Pagado:</b>&nbsp;<ion-icon color="danger" name="close-circle"></ion-icon></p>
   <div class="ion-text-right">
-    <h1>Total: 11€</h1>
+    <p><b>Total:</b> {{ reservation.current_amount }}€</p>
   </div>
   <div class="ion-text-center">
     <br>
-    <h1 style="color:gray">La reserva ya ha expirado</h1>
+    <h1 *ngIf="" style="color:gray">La reserva ya ha expirado</h1>
   </div>
 </ion-content>
