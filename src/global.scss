@@ -11,8 +11,8 @@
 @import '~@ionic/angular/css/flex-utils.css';
 
 .my-custom-modal-css .modal-wrapper {
-    height: 33%;
-    top: 33%;
+    height: 43%;
+    top: 25%;
     position: absolute;
     display: block;
 }
@@ -27,6 +27,13 @@
 .reservation-css .modal-wrapper {
     height: 50%;
     top: 20%;
+    position: absolute;
+    display: block;
+}
+
+.sort-options .modal-wrapper {
+    height: 65%;
+    top: 15%;
     position: absolute;
     display: block;
 }
