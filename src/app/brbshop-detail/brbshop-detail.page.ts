@@ -235,12 +235,11 @@ export class BrbshopDetailPage implements OnInit {
   }
 
   async showImage(event) {
-    const img = event.srcElement.currentSrc;
-    console.log(event)
+    let img = event.srcElement.currentSrc;
     const modal = await this.modalController.create({
       component: GalleryComponent,
       cssClass: 'custom-gallery-component',
-      componentProps: { img: img, name: this.name, slider: this.slider }
+      componentProps: { img: img, name: this.name }
     });
 
     return await modal.present();

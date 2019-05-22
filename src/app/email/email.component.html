@@ -8,10 +8,25 @@
 </ion-header>
 
 <ion-content>
-  <ion-item><ion-label>Subject</ion-label><ion-input placeholder="Subject" [(ngModel)]="subject"></ion-input></ion-item>  
-  <ion-textarea [(ngModel)]="body" rows="6" placeholder="Message" maxlength="280"></ion-textarea>
+  <div *ngIf="isLoged">
+    <ion-item><ion-label>Subject</ion-label><ion-input placeholder="Subject" [(ngModel)]="subject"></ion-input></ion-item>  
+    <ion-textarea [(ngModel)]="body" rows="6" placeholder="Message" maxlength="280"></ion-textarea>
+  </div>  
+
+  <div class="container" *ngIf="!isLoged">
+    <div class="title">
+      <ion-label text-center class="title" position="stacked">Oops, it seems you're not loged in!</ion-label>
+    </div>
+  
+      <ion-item lines="none">
+        <ion-label text-center>Please log in first to do a reservation.</ion-label>
+      </ion-item>
+      <ion-item lines="none">
+          <ion-item style="display: inline-block; width: 100%;" lines="none"><ion-button fill style="width:100%; border: solid 1px grey; color: grey; text-align: center" color="primary" (click)="toLogin()">LOG IN | REGISTER</ion-button></ion-item>
+      </ion-item>    
+    </div>
 </ion-content>
 
-<ion-footer>
+<ion-footer *ngIf="isLoged">
   <ion-button fill style="float:right;" (click)="send()">SEND <ion-icon name="send"></ion-icon></ion-button>
 </ion-footer>

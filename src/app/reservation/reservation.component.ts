@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
 import { Globals } from 'app/globals';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reservation',
@@ -38,13 +39,15 @@ export class ReservationComponent implements OnInit {
   public myHour: string;
   public confirmed: boolean = false;
   public progress: number = 0;
+  public isLoged: boolean;
 
-  constructor(public modalController: ModalController, public toastController: ToastController) {     
+  constructor(public modalController: ModalController, public toastController: ToastController, public router:Router) {     
     this.showHourPicker = false;
     this.progress = 0;
   }
 
   ngOnInit() {
+    this.isLoged = Globals.api.isLoged();
     this.showServices = true;
     this.showDatePicker = false;
     this.back_disabled = true;
@@ -149,6 +152,11 @@ export class ReservationComponent implements OnInit {
       duration: 2000
     });
     toast.present();
+  }
+
+  toLogin() {
+    this.router.navigate(["/tabs/login"]);
+    this.modalController.dismiss();
   }
 
   updateDate(event) {   
