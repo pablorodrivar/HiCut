@@ -9,6 +9,8 @@ import { Filter } from '../../classes/pojo/filter';
 import { LoadingController } from '@ionic/angular';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
+const url = "http://80.211.65.79:8000/";
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.page.html',
@@ -61,7 +63,7 @@ export class ListPage implements OnInit {
     this.ratings = [];
     this.presentLoading();
     this.list_id = this.route.snapshot.paramMap.get('id');    
-    this.filter.genre = this.list_id;   
+    this.filter.genre = +this.list_id;   
     
     //CUANDO USEMOS EL DEVICE FISICO
     //this.getGeoLocation();  

@@ -14,6 +14,8 @@ import { ReservationComponent } from 'app/reservation/reservation.component';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { EmailComponent } from 'app/email/email.component';
 
+const url = "http://80.211.65.79:8000/";
+
 @Component({
   selector: 'app-brbshop-detail',
   templateUrl: './brbshop-detail.page.html',
