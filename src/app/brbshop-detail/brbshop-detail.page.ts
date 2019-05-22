@@ -114,7 +114,7 @@ export class BrbshopDetailPage implements OnInit {
 
       this.slider = this.barbershop[0].imglist;      
       this.tb_image = this.slider[0];
-      this.style = "--background: linear-gradient(162deg, transparent 20%, rgba(56, 70, 108, .8) 100%), url('http://80.211.65.79:8000/"+this.tb_image+"') center no-repeat; filter: blur(5px); -webkit-filter:blur(5px); min-height: 75px; color: white;";
+      this.style = "--background: linear-gradient(162deg, transparent 20%, rgba(56, 70, 108, .8) 100%), url('"+url+this.tb_image+"') center no-repeat; filter: blur(5px); -webkit-filter:blur(5px); min-height: 75px; color: white;";
       this.style = this.domController.bypassSecurityTrustStyle(this.style);
       this.name = this.barbershop[0].name;   
       this.address = this.barbershop[0].address;

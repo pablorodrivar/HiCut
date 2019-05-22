@@ -32,7 +32,7 @@
       <ion-item lines="none">        
         <ion-slides pager="true">
           <ion-slide *ngFor="let slide of slider">
-            <img src="http://80.211.65.79:8000/{{ slide }}">
+            <img src="{{ url }}{{ slide }}">
           </ion-slide>
         </ion-slides>  
       </ion-item> 
@@ -164,7 +164,7 @@
     <ion-grid>
       <ion-row>
         <ion-col size="4" *ngFor="let item of slider">
-          <img class="gallery-img" src="http://80.211.65.79:8000/{{ item }}" (click)="showImage($event)">
+          <img class="gallery-img" src="{{ url }}{{ item }}" (click)="showImage($event)">
         </ion-col>
       </ion-row>
     </ion-grid>
