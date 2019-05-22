@@ -13,6 +13,7 @@ import { EditComponent } from '../edit/edit.component';
 export class ProfilePage implements OnInit {
   private globals;
   public list_id;
+  public id: number;
   public name: string;
   public surname: string;
   public city: string;
@@ -20,6 +21,7 @@ export class ProfilePage implements OnInit {
   public address: string;
   public email: string;
   public phone: string;
+  public avatar: string;
 
   constructor(private route:ActivatedRoute,private router: Router, private alertController: AlertController, public modalController: ModalController) {
     this.globals = Globals;
@@ -36,6 +38,8 @@ export class ProfilePage implements OnInit {
       this.address = profile.address;
       this.phone = profile.phone;
       this.email = profile.email;
+      this.id = profile.id;
+      this.avatar = profile.avatar;
     });
   }
 
@@ -61,8 +65,8 @@ export class ProfilePage implements OnInit {
   async presentModal() {
     const modal = await this.modalController.create({
       component: EditComponent,
-      componentProps: { name: this.name, surname: this.surname, city: this.city, country: this.country, address: this.address,
-      phone: this.phone, email: this.email }
+      componentProps: { id: this.id, name: this.name, surname: this.surname, city: this.city, country: this.country, address: this.address,
+      phone: this.phone, email: this.email, avatar: this.avatar }
     });
 
     modal.onDidDismiss().then((data) => {
@@ -76,6 +80,7 @@ export class ProfilePage implements OnInit {
             this.country = data.data[0].country;
             this.address = data.data[0].address;
             this.phone = data.data[0].phone;
+            this.avatar = data.data[0].avatar;
         }
   
         this.refresh();
