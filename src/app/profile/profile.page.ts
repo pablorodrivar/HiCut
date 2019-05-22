@@ -22,6 +22,7 @@ export class ProfilePage implements OnInit {
   public email: string;
   public phone: string;
   public avatar: string;
+  public edited: boolean = false;
 
   constructor(private route:ActivatedRoute,private router: Router, private alertController: AlertController, public modalController: ModalController) {
     this.globals = Globals;
@@ -30,6 +31,12 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
     this.list_id = this.route.snapshot.paramMap.get('id');
     
+    if(!this.edited) {
+      this.getProfile();
+    }    
+  }
+
+  getProfile() {
     Globals.api.getProfile(null,(profile, msg) => {
       this.name = profile.name;
       this.surname = profile.surname;
@@ -43,23 +50,9 @@ export class ProfilePage implements OnInit {
     });
   }
 
-  toDetail(detail_id) {
-    this.router.navigate(["/tabs/home/list/"+this.list_id+"/detail",detail_id]);
-  }
-
-  toEdit() {
-    this.router.navigate(["/edit-profile"]);
-  }
-
   logout() {
     Globals.api.doLogout();
     this.router.navigate(["/tabs/login"]);
-  }
-
-  refresh() {
-    setTimeout(() => {
-      this.ngOnInit();
-    }, 1000);
   }
 
   async presentModal() {
@@ -74,6 +67,7 @@ export class ProfilePage implements OnInit {
         if(typeof data.data[0].name !== undefined && data.data[0].name != undefined && typeof data.data[0].surname !== undefined && data.data[0].surname != undefined
           && typeof data.data[0].country !== undefined && data.data[0].country != undefined && typeof data.data[0].city !== undefined && data.data[0].city != undefined
           && typeof data.data[0].address !== undefined && data.data[0].address != undefined && typeof data.data[0].phone !== undefined && data.data[0].phone != undefined) {     
+            this.edited = true;
             this.name = data.data[0].name;
             this.surname = data.data[0].surname;
             this.city = data.data[0].city;
@@ -88,6 +82,12 @@ export class ProfilePage implements OnInit {
     })
 
     return await modal.present();
+  }
+
+  refresh() {
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 1000);
   }
 
   async showAlert() {
@@ -114,4 +114,12 @@ export class ProfilePage implements OnInit {
 
     await alert.present();
   }
+
+  toDetail(detail_id) {
+    this.router.navigate(["/tabs/home/list/"+this.list_id+"/detail",detail_id]);
+  }
+
+  toEdit() {
+    this.router.navigate(["/edit-profile"]);
+  }    
 }

@@ -114,7 +114,7 @@ export class BrbshopDetailPage implements OnInit {
         this.comments = comment;        
       });      
 
-      Globals.api.getRating(this.id, (rate, error) => {
+      Globals.api.getRating(this.barbershop[0].id, (rate, error) => {
         this.brb_rating = rate.stars;
         this.total_rate = rate.total;
       });

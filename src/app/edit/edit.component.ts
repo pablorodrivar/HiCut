@@ -35,6 +35,7 @@ export class EditComponent implements OnInit {
       phone: this.phone, email: this.email, avatar: this.avatar };
     
     let user = User.fromArray(userArr);
+    console.log(user)
     Globals.api.setProfile(user, (status, msg) => {
       console.log(status + " " + msg)
     });
