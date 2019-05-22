@@ -26,6 +26,7 @@
 }
 
 .reservation-css .modal-wrapper {
+    width: 90%;
     height: 50%;
     top: 20%;
     position: absolute;
@@ -35,6 +36,14 @@
 .sort-options .modal-wrapper {
     height: 65%;
     top: 15%;
+    position: absolute;
+    display: block;
+}
+
+.email-css .modal-wrapper {
+    width: 90%;
+    height: 35%;
+    top: 25%;
     position: absolute;
     display: block;
 }

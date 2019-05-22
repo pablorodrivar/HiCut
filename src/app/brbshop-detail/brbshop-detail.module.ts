@@ -12,6 +12,9 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { PayComponent } from '../pay/pay.component';
 import { GalleryComponent } from '../gallery/gallery.component';
 import { ReservationComponent } from '../reservation/reservation.component';
+import { CallNumber } from '@ionic-native/call-number/ngx';
+import { EmailComponent } from '../email/email.component';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
 // Configuración de traducción
 import { customTranslateLoader } from '../app.module';
@@ -39,8 +42,8 @@ const routes: Routes = [
     }),
     RouterModule.forChild(routes)
   ],
-  entryComponents: [PayComponent, GalleryComponent, ReservationComponent],
-  declarations: [BrbshopDetailPage, PayComponent, GalleryComponent, ReservationComponent],
-  providers: [PayComponent, GalleryComponent, ReservationComponent]
+  entryComponents: [PayComponent, GalleryComponent, ReservationComponent, EmailComponent],
+  declarations: [BrbshopDetailPage, PayComponent, GalleryComponent, ReservationComponent, EmailComponent],
+  providers: [PayComponent, GalleryComponent, ReservationComponent, CallNumber, EmailComponent, EmailComposer]
 })
 export class BrbshopDetailPageModule {}

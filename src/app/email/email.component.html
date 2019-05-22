@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()"><ion-icon name="close"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>Send an Email</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item><ion-label>Subject</ion-label><ion-input placeholder="Subject" [(ngModel)]="subject"></ion-input></ion-item>  
+  <ion-textarea [(ngModel)]="body" rows="6" placeholder="Message" maxlength="280"></ion-textarea>
+</ion-content>
+
+<ion-footer>
+  <ion-button fill style="float:right;" (click)="send()">SEND <ion-icon name="send"></ion-icon></ion-button>
+</ion-footer>

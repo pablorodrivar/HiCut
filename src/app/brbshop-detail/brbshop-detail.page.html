@@ -176,8 +176,8 @@
     </ion-fab-button>
     <ion-fab-list side="top">
       <ion-fab-button (click)="reservation()"><ion-icon name="calendar"></ion-icon></ion-fab-button>
-      <ion-fab-button><ion-icon name="call"></ion-icon></ion-fab-button>
-      <ion-fab-button><ion-icon name="mail"></ion-icon></ion-fab-button>              
+      <ion-fab-button (click)="call()"><ion-icon name="call"></ion-icon></ion-fab-button>
+      <ion-fab-button (click)="sendEmail()"><ion-icon name="mail"></ion-icon></ion-fab-button>              
     </ion-fab-list>
   </ion-fab>
 </ion-content>

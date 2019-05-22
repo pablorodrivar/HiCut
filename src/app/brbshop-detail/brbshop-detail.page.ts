@@ -11,6 +11,8 @@ import { PayComponent } from '../pay/pay.component';
 import { GalleryComponent } from '../gallery/gallery.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ReservationComponent } from 'app/reservation/reservation.component';
+import { CallNumber } from '@ionic-native/call-number/ngx';
+import { EmailComponent } from 'app/email/email.component';
 
 @Component({
   selector: 'app-brbshop-detail',
@@ -58,7 +60,8 @@ export class BrbshopDetailPage implements OnInit {
   
   constructor(private datePicker: DatePicker, private launchNavigator: LaunchNavigator, private route:ActivatedRoute,private router: Router,
     public alertController: AlertController, public loadingController: LoadingController, public toastController: ToastController,
-    public modalController: ModalController, public payComponent: PayComponent, public domController: DomSanitizer, public galleryComponent: GalleryComponent) {
+    public modalController: ModalController, public payComponent: PayComponent, public domController: DomSanitizer, public galleryComponent: GalleryComponent,
+    public callNumber: CallNumber) {
       this.price = 0;
       this.tab = "main";
     }
@@ -85,6 +88,12 @@ export class BrbshopDetailPage implements OnInit {
     this.getBrbShop();   
     this.getWorkers();
     this.getServices();
+  }
+
+  call() {
+    this.callNumber.callNumber(this.phone, true)
+    .then(res => console.log('Launched dialer!', res))
+    .catch(err => console.log('Error launching dialer', err));
   }
 
   cancel() {    
@@ -213,6 +222,16 @@ export class BrbshopDetailPage implements OnInit {
 
       this.refresh();
     } 
+  }
+
+  async sendEmail() {
+    const myModal = await this.modalController.create({
+      component: EmailComponent,
+      cssClass: 'email-css',
+      componentProps: { email: this.email }
+    });
+
+    return await myModal.present();
   }
 
   async showImage(event) {
