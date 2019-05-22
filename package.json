@@ -67,7 +67,7 @@
         "rxjs": "~6.3.3",
         "rxjs-compat": "^6.4.0",
         "tslib": "^1.9.3",
-        "uk.co.workingedge.phonegap.plugin.launchnavigator": "5.0.4",
+        "uk.co.workingedge.phonegap.plugin.launchnavigator": "^5.0.4",
         "zone.js": "~0.8.29"
     },
     "devDependencies": {
@@ -120,7 +120,8 @@
         },
         "platforms": [
             "ios",
-            "browser"
+            "browser",
+            "android"
         ]
     }
 }
