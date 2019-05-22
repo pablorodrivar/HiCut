@@ -1,12 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/home"></ion-back-button>      
-    </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button (click)="presentModal()">
-        <ion-icon slot="icon-only" name="funnel"></ion-icon>
-      </ion-button>
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>  
     </ion-buttons>
     <ion-title>{{ 'PAGES.LIST.TITLE' | translate }}</ion-title>
     <ion-title *ngIf="list_id == 1"><div class="subtitle">{{ 'PAGES.LIST.FOR_MEN' | translate }}</div></ion-title>
@@ -26,15 +21,13 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <ion-item lines="none" color="tertiary" style="color: white">
-      <ion-label>Search Filter</ion-label>         
-  </ion-item>
-  <ion-item lines="none" color="tertiary" style="color: white">
+  <ion-item lines="none" color="medium" style="color: white">
     <ion-chip outline color="medium"><ion-icon name="walk" color="light"></ion-icon><ion-label color="light" class="chip-text">< {{ mdChipText }} km.</ion-label></ion-chip>
     <ion-chip outline color="medium"><ion-icon name="compass" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ locChipText }}</ion-label></ion-chip>
     <ion-chip outline *ngIf="sort_opt == 'dist'" color="medium"><ion-icon name="train" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ 'PAGES.LIST.SORT_BY' | translate }} {{ 'PAGES.LIST.DISTANCE' | translate }}</ion-label></ion-chip>
     <ion-chip outline *ngIf="sort_opt == 'rat'" color="medium"><ion-icon name="star" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ 'PAGES.LIST.SORT_BY' | translate }} {{ 'PAGES.LIST.RATING' | translate }}</ion-label></ion-chip>
     <ion-chip outline *ngIf="sort_opt == 'alp'" color="medium"><ion-icon name="book" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ 'PAGES.LIST.SORT_BY' | translate }} {{ 'PAGES.LIST.ALPHA' | translate }}</ion-label></ion-chip>        
+    <ion-button (click)="presentModal()" fill="clear" color="light"><ion-icon name="add-circle-outline" color="light"></ion-icon></ion-button>
   </ion-item>
   <ion-item *ngIf="services.length > 0" lines="none" color="tertiary" style="color: white">
     <ion-chip color="medium"><ion-icon name="cut" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ services_names }}</ion-label></ion-chip>
@@ -72,9 +65,9 @@
         <img src="http://80.211.65.79:8000/{{ brb.brb.imglist[0] }}" class="brb-img">
       </ion-item>      
 
-      <ion-item color="primary" lines="none">
-        <ion-label>{{ brb.brb.address }}</ion-label>
-        <ion-icon name="compass"></ion-icon>
+      <ion-item color="light" lines="none">
+        <ion-label color="medium">{{ brb.brb.address }}</ion-label>
+        <ion-icon color="medium" name="compass"></ion-icon>
       </ion-item>
     </ion-card>
   </div>

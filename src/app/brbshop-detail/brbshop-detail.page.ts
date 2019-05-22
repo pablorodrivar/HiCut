@@ -159,6 +159,11 @@ export class BrbshopDetailPage implements OnInit {
     });
 
     myModal.onDidDismiss().then((data) => {
+      if(typeof data.data !== undefined && data.data != undefined) {
+        if(data.data.paid) {
+          this.presentToast('Reservation done!');
+        }
+      }
       this.cancel();
     });
 
@@ -173,9 +178,9 @@ export class BrbshopDetailPage implements OnInit {
     await loading.present();
   }
 
-  async presentToast() {
+  async presentToast(message: string) {
     const toast = await this.toastController.create({
-      message: 'Fill all the fields.',
+      message: message,
       duration: 2000
     });
     toast.present();
@@ -213,7 +218,7 @@ export class BrbshopDetailPage implements OnInit {
   sendComment() {
     if(typeof this.subject === undefined || this.subject == undefined || typeof this.comment_text === undefined
       || this.comment_text == undefined || typeof this.rate === undefined || this.rate == undefined) {
-        this.presentToast();
+        this.presentToast('Fill all the flieds please.');
     } else {
       this.comment = {hairdressing: this.id, subject: this.subject, comment: this.comment, rate: this.rate};
       Globals.api.comment(this.comment, (msg) => {

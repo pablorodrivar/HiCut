@@ -34,7 +34,6 @@ export class PayComponent implements OnInit {
     }
 
     this.hour = h.join(":");
-    console.log(this.hour);
 
     this.myDate = this.date + " " + this.hour;
   }
@@ -45,8 +44,7 @@ export class PayComponent implements OnInit {
 
   pay() {
     Globals.api.postReservation(this.wrk_id, this.myDate, this.paid, this.service_ids, (status, msg) => {
-      console.log(msg)
-      this.modalController.dismiss();
+      this.modalController.dismiss({ paid: true });
     });
   }
 
