@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-button (click)="dismiss()"><ion-icon name="close"></ion-icon></ion-button>
     </ion-buttons>
-    <ion-title>Do Your Reservation!</ion-title>
+    <ion-title>{{ 'PAGES.RESERVATION.DO_YOUR_RESERVATION' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,7 +12,7 @@
 <!-- SERVICES -->
 <ion-item *ngIf="showServices">
     <div class="title">
-      <ion-label text-center class="title" position="stacked">Choose Services</ion-label> 
+      <ion-label text-center class="title" position="stacked">{{ 'PAGES.RESERVATION.CHOOSE_SERVICES' | translate }}</ion-label> 
     </div>
 
     <ion-item lines="none">
@@ -29,56 +29,58 @@
   </div>  
 
   <!-- BARBER -->
-  <div *ngIf="showBrbPicker" class="title">
-    <ion-label text-center class="title" position="stacked">Choose a Hairdresser</ion-label> 
+  <div class="container">
+    <div *ngIf="showBrbPicker" class="title">
+    <ion-label text-center class="title" position="stacked">{{ 'PAGES.RESERVATION.CHOOSE_HAIRDRESSER' | translate }}</ion-label> 
     </div>
-  <ion-item *ngIf="showBrbPicker">        
-    <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_BRB' | translate }} </ion-label>
-    <ion-select (ionChange)="updateWorkers($event)" placeholder="{{ 'PAGES.BRBDETAILS.CHOOSE_BRB' | translate }}" disabled="{{ disableWrk }}">
-      <ion-select-option *ngFor="let wrk of workers" value="{{ wrk.id }},{{ wrk.name }}">{{ wrk.name }}</ion-select-option>
-    </ion-select>
-    <ion-icon *ngIf="disableWrk" name="checkmark-circle-outline"></ion-icon>
-  </ion-item> 
+    <ion-item *ngIf="showBrbPicker" lines="none">        
+      <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_BRB' | translate }} </ion-label>
+      <ion-select (ionChange)="updateWorkers($event)" placeholder="{{ 'PAGES.BRBDETAILS.CHOOSE_BRB' | translate }}">
+        <ion-select-option *ngFor="let wrk of workers" value="{{ wrk.id }},{{ wrk.name }}">{{ wrk.name }}</ion-select-option>
+      </ion-select>
+      <ion-icon *ngIf="disableWrk" name="checkmark-circle-outline"></ion-icon>
+    </ion-item> 
+  </div>
 
-  <!-- DATE -->
-  <ion-item *ngIf="showDatePicker" lines="none" style="display: inline-block; width: 100%;">                
-    <div class="title">
-      <ion-label text-center class="title" position="stacked">Choose a Date</ion-label> 
-    </div>        
-  </ion-item>  
+    <!-- DATE -->
+    <ion-item *ngIf="showDatePicker" lines="none" style="display: inline-block; width: 100%;">                
+      <div class="title">
+        <ion-label text-center class="title" position="stacked">{{ 'PAGES.RESERVATION.CHOOSE_DATE' | translate }}</ion-label> 
+      </div>        
+    </ion-item>  
 
-  <ion-item *ngIf="showDatePicker">
-    <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_DATE' | translate }}</ion-label>
-    <ion-datetime displayFormat="DD MMMM YY" disabled="{{ disableDate }}" [monthValues]="monthValues" [yearValues]="yearValues" (ionChange)="updateDate($event)" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_DATE' | translate }}"></ion-datetime>
-    <ion-icon *ngIf="disableDate" name="checkmark-circle-outline"></ion-icon>
-  </ion-item>  
+    <ion-item *ngIf="showDatePicker">
+      <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_DATE' | translate }}</ion-label>
+      <ion-datetime displayFormat="DD MMMM YY" [monthValues]="monthValues" [yearValues]="yearValues" (ionChange)="updateDate($event)" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_DATE' | translate }}"></ion-datetime>
+      <ion-icon *ngIf="disableDate" name="checkmark-circle-outline"></ion-icon>
+    </ion-item>    
 
-  <!-- HOUR -->
-  <ion-item *ngIf="showHourPicker">
-    <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_HOUR' | translate }}</ion-label>
-    <ion-select (ionChange)="updateHour($event)" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_HOUR' | translate }}">
-      <ion-select-option *ngFor="let hour of hourValues" value="{{ hour }}">{{ hour }}</ion-select-option>
-    </ion-select>
-  </ion-item> 
+    <!-- HOUR -->
+    <ion-item *ngIf="showHourPicker">
+      <ion-label>{{ 'PAGES.BRBDETAILS.CHOOSE_HOUR' | translate }}</ion-label>
+      <ion-select (ionChange)="updateHour($event)" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_HOUR' | translate }}">
+        <ion-select-option *ngFor="let hour of hourValues" value="{{ hour }}">{{ hour }}</ion-select-option>
+      </ion-select>
+    </ion-item> 
   </div>     
   
   <div class="container" *ngIf="!isLoged">
     <div class="title">
-      <ion-label text-center class="title" position="stacked">Oops, it seems you're not loged in!</ion-label>
+      <ion-label text-center class="title" position="stacked">{{ 'PAGES.RESERVATION.OOPS' | translate }}</ion-label>
     </div>
 
     <ion-item lines="none">
-      <ion-label text-center>Please log in first to do a reservation.</ion-label>
+      <ion-label text-center>{{ 'PAGES.RESERVATION.PLEASE_LOG' | translate }}</ion-label>
     </ion-item>
     <ion-item lines="none">
-        <ion-item style="display: inline-block; width: 100%;" lines="none"><ion-button fill style="width:100%; border: solid 1px grey; color: grey; text-align: center" color="primary" (click)="toLogin()">LOG IN | REGISTER</ion-button></ion-item>
+        <ion-item style="display: inline-block; width: 100%;" lines="none"><ion-button fill style="width:100%; border: solid 1px grey; color: grey; text-align: center" color="primary" (click)="toLogin()">{{ 'PAGES.RESERVATION.LOG_REG' | translate }}</ion-button></ion-item>
     </ion-item>    
   </div>
 </ion-content>
 
 <ion-footer *ngIf="isLoged" lines="none">
   <ion-label *ngIf="showPrice" style="width: 100%;">
-    <ion-badge style="font-size: 15px; display: block;" text-center position="stacked">Precio: {{ price }}€</ion-badge>  
+    <ion-badge style="font-size: 15px; display: block;" text-center position="stacked">{{ 'PAGES.RESERVATION.PRICE' | translate }}: {{ price }}€</ion-badge>  
   </ion-label>
   <ion-item lines="none">
     <ion-button fill [disabled]="back_disabled" style="display: contents;" (click)="back()"><ion-icon name="arrow-back"></ion-icon></ion-button>

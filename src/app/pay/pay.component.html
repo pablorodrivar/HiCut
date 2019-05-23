@@ -3,30 +3,30 @@
     <ion-buttons slot="start">
       <ion-button (click)="dismiss()"><ion-icon name="close"></ion-icon></ion-button>
     </ion-buttons>
-    <ion-label class="title">Your Appointment</ion-label>
+    <ion-label class="title">{{ 'PAGES.PAY.YOUR_APP' | translate }}</ion-label>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-item>
-    <ion-label>Appointment with: <strong>{{ wrk_name }}</strong></ion-label>
+    <ion-label>{{ 'PAGES.PAY.APP_WITH' | translate }}: <strong>{{ wrk_name }}</strong></ion-label>
   </ion-item>
 
   <ion-item>
-    <ion-label>Day: <strong>{{ date }}</strong></ion-label>
+    <ion-label>{{ 'PAGES.PAY.DAY' | translate }}: <strong>{{ date }}</strong></ion-label>
   </ion-item>
 
   <ion-item>
-    <ion-label>Hour: <strong>{{ hour }}</strong></ion-label>
+    <ion-label>{{ 'PAGES.PAY.HOUR' | translate }}: <strong>{{ hour }}</strong></ion-label>
   </ion-item>
 
   <ion-item>
-    <ion-label>Services: <strong>{{ services }}</strong></ion-label>
+    <ion-label>{{ 'PAGES.PAY.SERVICES' | translate }}: <strong>{{ services }}</strong></ion-label>
   </ion-item>
 
-  <ion-item>
-    <ion-label>Final Price: <strong>{{ price }}€</strong></ion-label>
+  <ion-item lines="none">
+    <ion-label>{{ 'PAGES.PAY.FINAL_PRICE' | translate }}: <strong>{{ price }}€</strong></ion-label>
   </ion-item>
 
-  <ion-item style="display: inline-block; width: 100%;" lines="none"><ion-button fill style="width:100%; border: solid 1px blue; color: blue; text-align: center" color="primary" (click)="pay()">pay</ion-button></ion-item>
+  <ion-item style="display: inline-block; width: 100%;" lines="none"><ion-button style="width: 100%; font-size: 20px; display: contents;" color="success" (click)="pay()"><ion-icon name="card"></ion-icon>{{ 'PAGES.PAY.PAY' | translate }}</ion-button></ion-item>
 </ion-content>

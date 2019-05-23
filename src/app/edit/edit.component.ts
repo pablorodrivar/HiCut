@@ -19,8 +19,11 @@ export class EditComponent implements OnInit {
   @Input("email") email;
   @Input("avatar") avatar;
   public data: any[] = [];
+  public url: string;
 
-  constructor(public modalController: ModalController) { }
+  constructor(public modalController: ModalController) {
+    this.url = Globals.url;
+  }
 
   ngOnInit() {   
     

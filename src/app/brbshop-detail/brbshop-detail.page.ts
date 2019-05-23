@@ -59,6 +59,8 @@ export class BrbshopDetailPage implements OnInit {
   public tab: any;
   public phone: string;
   public email: string;
+  public url: string;
+  public desc: string;
   
   constructor(private datePicker: DatePicker, private launchNavigator: LaunchNavigator, private route:ActivatedRoute,private router: Router,
     public alertController: AlertController, public loadingController: LoadingController, public toastController: ToastController,
@@ -66,6 +68,7 @@ export class BrbshopDetailPage implements OnInit {
     public callNumber: CallNumber) {
       this.price = 0;
       this.tab = "main";
+      this.url = Globals.url;
     }
 
   options: LaunchNavigatorOptions = {
@@ -120,6 +123,7 @@ export class BrbshopDetailPage implements OnInit {
       this.address = this.barbershop[0].address;
       this.phone = this.barbershop[0].tlf;
       this.email = this.barbershop[0].email;
+      this.desc = this.barbershop[0].desc;
 
       Globals.api.getComments(this.barbershop[0].id, (comment, msg) => {
         this.comments = comment;        
@@ -211,7 +215,9 @@ export class BrbshopDetailPage implements OnInit {
         this.price = data.data.price;
         this.service_ids = data.data.service_ids;
         this.pay();   
-      }       
+      } else {
+        this.refresh();
+      }     
     });
 
     return await myModal.present();

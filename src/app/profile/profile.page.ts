@@ -23,9 +23,13 @@ export class ProfilePage implements OnInit {
   public phone: string;
   public avatar: string;
   public edited: boolean = false;
+  public url: string;
+  public raw_brb_shops: any[] = [];
+  public brbshops: [{id, img}];
 
   constructor(private route:ActivatedRoute,private router: Router, private alertController: AlertController, public modalController: ModalController) {
     this.globals = Globals;
+    this.url = Globals.url;
   }
 
   ngOnInit() {
@@ -33,7 +37,32 @@ export class ProfilePage implements OnInit {
     
     if(!this.edited) {
       this.getProfile();
-    }    
+    }   
+    this.getBrbShops(); 
+  }   
+
+  getBrbShops() {
+    Globals.api.getListReservations((list, msg) => {
+      list.forEach(element => {
+        Globals.api.reservation(element.id, (status, msg) => {
+          let values = Object.values(status);
+          this.raw_brb_shops.push(values[10]);
+        });        
+      });
+
+      console.log(this.raw_brb_shops)
+
+      let repeat: number[] = [];
+      this.raw_brb_shops.forEach(val => {      
+        console.log(val.id) 
+        if(!repeat.includes(val.id)) {
+          repeat.push(val.id);
+          this.brbshops.push({ id: val.id, img: val.id });
+        }
+      });
+
+      console.log(this.brbshops)
+    });
   }
 
   getProfile() {

@@ -9,7 +9,7 @@ import { Filter } from '../../classes/pojo/filter';
 import { LoadingController } from '@ionic/angular';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
-const url = "http://80.211.65.79:8000/";
+const url_img = "http://80.211.65.79:8000/";
 
 @Component({
   selector: 'app-list',
@@ -33,6 +33,7 @@ export class ListPage implements OnInit {
   public sort_opt: string;
   public services: any[] = [];
   public services_names:string;
+  public url: string;
 
   constructor(private route:ActivatedRoute, private router: Router, 
     public alertController: AlertController, public modalController: ModalController,
@@ -41,7 +42,8 @@ export class ListPage implements OnInit {
     this.filter.lat = 37.183054;
     this.filter.lng = -3.6021928;
     this.mdChipText = 20+"";
-    this.sort_opt = "dist";    
+    this.sort_opt = "dist";  
+    this.url = Globals.url;  
   }
 
   checkPermissions() {

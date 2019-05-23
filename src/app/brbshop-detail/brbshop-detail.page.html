@@ -50,14 +50,14 @@
       
       <ion-item>
         <div class="title">
-          <ion-label text-center class="title" position="stacked">BarberShop Information</ion-label>          
+          <ion-label text-center class="title" position="stacked">{{ 'PAGES.BRBDETAILS.BRB_DESC' | translate }}</ion-label>          
         </div>
-        <ion-text>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularise</ion-text>
+        <ion-text style="text-align: center">{{ desc }}</ion-text>
       </ion-item>
              
       <ion-item lines="none">
         <div class="title">
-            <ion-label text-center class="title" position="stacked">BarberShop Services</ion-label>
+            <ion-label text-center class="title" position="stacked">{{ 'PAGES.BRBDETAILS.BRB_SERVICES' | translate }}</ion-label>
         </div>
       </ion-item>
       
@@ -67,7 +67,7 @@
       </ion-item>
 
       <ion-item>
-        <ion-button (click)="reservation()" style="display: contents;" expand="full" size="large" color="primary">Do Your Reservation</ion-button>
+        <ion-button (click)="reservation()" style="display: contents;" expand="full" size="large" color="primary">{{ 'PAGES.BRBDETAILS.DO_RES' | translate }}</ion-button>
       </ion-item>
       </ion-list>            
   </div>
@@ -87,7 +87,7 @@
             <div class="rating" *ngIf="brb_rating >= 4.85 && brb_rating <= 5"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div>                       
           </ion-item>
           <ion-item>
-            <ion-label text-center style="font-size: 15px;" position="stacked">({{ total_rate }} valuations)</ion-label>         
+            <ion-label text-center style="font-size: 15px;" position="stacked">({{ total_rate }} {{ 'PAGES.BRBDETAILS.VALUATIONS' | translate }})</ion-label>         
             <ion-item lines ="none">
               <ion-label>{{ 'PAGES.BRBDETAILS.RATE_EXPERIENCE' | translate }}</ion-label>
               <ion-select (ionChange)="getRating($event)" [(ngModel)]="rate" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_ONE' | translate }}">
@@ -98,7 +98,7 @@
                 <ion-select-option value="1">{{ 'PAGES.BRBDETAILS.HORRIBLE' | translate }}</ion-select-option>
               </ion-select>
             </ion-item>
-            <ion-button fill style="width:100%; border: solid 1px #ECEBEB;" (click)="singleRate()">rate</ion-button>
+            <ion-button fill style="width:100%; border: solid 1px #ECEBEB;" (click)="singleRate()">{{ 'PAGES.BRBDETAILS.RATE' | translate }}</ion-button>
           </ion-item>  
         
         <div class="title">

@@ -40,6 +40,7 @@ export class ReservationComponent implements OnInit {
   public confirmed: boolean = false;
   public progress: number = 0;
   public isLoged: boolean;
+  public opened = false;
 
   constructor(public modalController: ModalController, public toastController: ToastController, public router:Router) {     
     this.showHourPicker = false;
@@ -54,17 +55,37 @@ export class ReservationComponent implements OnInit {
     this.forward_disabled = false;
     this.disableDate = false;
     this.progress = 0;
+    this.workers.unshift({id: -1, name: "Any Hairdresser"});
   }
 
   back() {
     if(this.showServices) {
+      this.progress = this.progress - 0.3;
       this.back_disabled = true;
       this.forward_disabled = false;
-    } else if(this.showBrbPicker) {
-      this.back_disabled = false;
       this.showDatePicker = false;
       this.showBrbPicker = false;
+      this.showHourPicker = false;
+    } else if(this.showBrbPicker) {
+      this.progress = this.progress - 0.3;
+      this.back_disabled = false;
+      this.showDatePicker = false;
+      this.showHourPicker = false;
+      this.showBrbPicker = false;
       this.showServices = true;
+    } else if (this.showDatePicker || this.showHourPicker) {
+      this.progress = this.progress - 0.3;
+      this.wrk_id = null;
+      this.wrk_name = null;
+      this.disableWrk = false;
+      this.disableDate = false;
+      this.myDate = null;
+      this.myHour = null;
+      this.back_disabled = false;
+      this.showDatePicker = false;
+      this.showHourPicker = false;
+      this.showBrbPicker = true;
+      this.showServices = false;
     }
   }
 
@@ -85,45 +106,87 @@ export class ReservationComponent implements OnInit {
   forward() {
     if(this.showServices) {
       if(this.service_ids.length != 0) {
+        this.progress = this.progress + 0.3;
         this.back_disabled = false;
         this.forward_disabled = false;
   
         this.showDatePicker = false;
+        this.showHourPicker = false;
         this.showServices = false;
         this.showBrbPicker = true;
       } else {
         this.presentToast("Choose some services first");
       }      
     }
+
     if(this.showHourPicker && this.myHour != "") {
       this.confirm();
+      this.progress = this.progress + 0.3;
+    }
+    
+    if(this.showBrbPicker && this.wrk_id != undefined) {
+      this.progress = this.progress + 0.3;
+      this.showBrbPicker = false;      
+      this.showDatePicker = true;
+      this.getHours();
+    } else {
+      if(this.opened){
+        this.presentToast("Choose a barber first")
+        this.opened = false;
+      }     
+      this.opened = true; 
     }
   }
 
   getHours() {
-    Globals.api.getHours(this.wrk_id, (hours, msg) => {
-      this.days = hours;
-      this.days_raw = Object.keys(hours);
-
-      const distinct = (value, index, self) => {
-        return self.indexOf(value) == index;
-      }
-
-      this.days_raw.forEach(element => {
-        let val = element.split("-");
-        this.years.push(+val[0]);
-        this.months.push(+val[1])
+    if(this.wrk_id == -1) {
+      this.workers.forEach(wrk => {
+        if(wrk.id != -1) {
+          Globals.api.getHours(wrk.id, (hours, msg) => {
+            this.days = hours;
+            this.days_raw = Object.keys(hours);
+      
+            const distinct = (value, index, self) => {
+              return self.indexOf(value) == index;
+            }
+      
+            this.days_raw.forEach(element => {
+              let val = element.split("-");
+              this.years.push(+val[0]);
+              this.months.push(+val[1])
+            });
+      
+            this.years = this.years.filter(distinct);
+            this.months = this.months.filter(distinct);
+            this.yearValues = this.years.join(",");
+            this.monthValues = this.months.join(",");
+          });
+        }
       });
-
-      this.years = this.years.filter(distinct);
-      this.months = this.months.filter(distinct);
-      this.yearValues = this.years.join(",");
-      this.monthValues = this.months.join(",");
-    });  
+    } else {
+      Globals.api.getHours(this.wrk_id, (hours, msg) => {
+        this.days = hours;
+        this.days_raw = Object.keys(hours);
+  
+        const distinct = (value, index, self) => {
+          return self.indexOf(value) == index;
+        }
+  
+        this.days_raw.forEach(element => {
+          let val = element.split("-");
+          this.years.push(+val[0]);
+          this.months.push(+val[1])
+        });
+  
+        this.years = this.years.filter(distinct);
+        this.months = this.months.filter(distinct);
+        this.yearValues = this.years.join(",");
+        this.monthValues = this.months.join(",");
+      });
+    }      
   }
 
   gServices(event) {
-    this.progress = 0.2;
     this.showPrice = true;
     this.price = 0;
     this.service_ids = [];
@@ -160,11 +223,11 @@ export class ReservationComponent implements OnInit {
   }
 
   updateDate(event) {   
-    this.progress = 0.6;
     this.disableDate = true;
     let date:string = event.detail.value;    
     date = date.substr(0, date.indexOf("T"));    
     this.myDate = date;
+    console.log(this.myDate)
     let i = 0;
     let pos = 0;
     this.days_raw.forEach(val =>{    
@@ -177,6 +240,7 @@ export class ReservationComponent implements OnInit {
 
     let ar = Object.values(this.days);
     let nice = ar[pos];
+    console.log(nice)
 
     let hours: any[] = [];
 
@@ -185,6 +249,8 @@ export class ReservationComponent implements OnInit {
     });
 
     this.showHourPicker = true;
+
+    console.log(hours)
     
     if(typeof hours[0] !== undefined && hours[0] != undefined) {
       hours[0].forEach(val => {
@@ -196,23 +262,22 @@ export class ReservationComponent implements OnInit {
       hours[1].forEach(val => {
         this.hourValues.push(val);
       }); 
-    }       
+    }   
+    
+    if(typeof hours[2] !== undefined && hours[2] != undefined) {
+      hours[2].forEach(val => {
+        this.hourValues.push(val);
+      }); 
+    }
   }
 
   updateHour(event) {
-    this.progress = 0.8;
     this.myHour = event.detail.value;
   }
 
   updateWorkers(event) {
-    this.progress = 0.4;
     this.wrk_id = +event.detail.value.substr(0, event.detail.value.indexOf(","));
     this.wrk_name = event.detail.value.substr(event.detail.value.indexOf(",") + 1, event.detail.value.length - 1)
-    this.showDatePicker = true;
-    this.disableWrk = true;
-
-    if(this.showDatePicker) {
-      this.getHours();
-    }  
+    this.disableWrk = true;  
   }
 }

@@ -15,9 +15,9 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
-      pullingText="Pull to refresh"
+      pullingText="{{ 'PAGES.LIST.PULL_REFRESH' | translate }}"
       refreshingSpinner="circles"
-      refreshingText="Refreshing...">
+      refreshingText="{{ 'PAGES.LIST.REFRESHING' | translate }}">
     </ion-refresher-content>
   </ion-refresher>
 

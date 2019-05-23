@@ -82,7 +82,16 @@
         "SERVICES": "Servicios: ",
         "RATING": "Valoracion",
         "YOUR_APPOINTMENT": "Tu Reserva",
-        "CANCEL": "CANCELAR"     
+        "CANCEL": "CANCELAR",        
+        "SERVICES": "Servicios: ",
+        "RATING": "Valoracion",
+        "YOUR_APPOINTMENT": "Tu Cita",
+        "CANCEL": "CANCELAR",
+        "BRB_DESC": "Descripcion",
+        "BRB_SERVICES": "Servicios",
+        "DO_RES": "Hay Tu Reserva",
+        "VALUATIONS": "valoraciones",
+        "RATE": "PUNTUA"      
       },
       "LIST": {
         "TITLE": "Peluquerias",
@@ -101,7 +110,9 @@
         "DISTANCE": "Distancia",
         "RATING": "Valoracion",
         "ALPHA": "Alfabeticamente",
-        "SEARCH_FILTER": "Filtro de Busqueda"              
+        "SEARCH_FILTER": "Filtro de Busqueda",
+        "PULL_REFRESH": "Arrastra para Actualizar",
+        "REFRESHING": "Actualizando..."              
       },
       "ACCOUNTSETTINGS": {
         "TITLE": "Tu Perfil",
@@ -145,6 +156,34 @@
         "ALPHA": "Alfabeticamente",
         "APPLY": "Aplicar",
         "SELECT_SERVICES": "Selecciona Servicios"
+      },
+      "PAY": {
+        "YOUR_APP": "Tu Reserva",
+        "APP_WITH": "Cita con: ",
+        "DAY": "Dia",
+        "HOUR": "Hora",
+        "SERVICES": "Servicios",
+        "FINAL_PRICE": "Precio Final",
+        "PAY": "PAGAR"
+      },
+      "RESERVATION": {
+        "DO_YOUR_RESERVATION": "¡Hay tu Reserva!",
+        "CHOOSE_SERVICES": "Elige Servicios",
+        "CHOOSE_HAIRDRESSER": "Elige un/a peluquero/a",
+        "CHOOSE_DATE": "Elige una fecha",
+        "OOPS": "¡Ups, parece que aun no has logeado!",      
+        "PLEASE_LOG": "Por favor haz log in para hacer una reserva.",
+        "LOG_REG": "LOG IN | REGISTRO",
+        "PRICE": "Precio"       
+      },
+      "EMAIL": {
+        "SEND_EMAIL": "Manda un Email",
+        "SUBJECT": "Tema",
+        "MESSAGE": "Mensaje",
+        "OOPS": "¡Ups, parece que aun no has logeado!", 
+        "PLEASE_LOG": "Por favor haz log in para mandar un email.",
+        "LOG_REG": "LOG IN | REGISTRO",
+        "SEND": "Enviar"
       }
     }
   }

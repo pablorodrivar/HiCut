@@ -82,7 +82,12 @@
         "SERVICES": "Services: ",
         "RATING": "Rating",
         "YOUR_APPOINTMENT": "Your Appointment",
-        "CANCEL": "CANCEL"    
+        "CANCEL": "CANCEL",
+        "BRB_DESC": "Hairdressing Description",
+        "BRB_SERVICES": "Hairdressing Services",
+        "DO_RES": "Do Your Reservation",
+        "VALUATIONS": "valuations",
+        "RATE": "RATE"   
       },
       "LIST": {
         "TITLE": "BarberShops",
@@ -101,7 +106,9 @@
         "DISTANCE": "Distance",
         "RATING": "Rating",
         "ALPHA": "Alphabetically",
-        "SEARCH_FILTER": "Search Filter"            
+        "SEARCH_FILTER": "Search Filter",
+        "PULL_REFRESH": "Pull to refresh",
+        "REFRESHING": "Refreshing..."          
       },
       "ACCOUNTSETTINGS": {
         "TITLE": "Your Profile",
@@ -145,6 +152,34 @@
         "ALPHA": "Alphabetically",
         "APPLY": "Apply",
         "SELECT_SERVICES": "Select Services"
+      },
+      "PAY": {
+        "YOUR_APP": "Your Appointment",
+        "APP_WITH": "Appointment With: ",
+        "DAY": "Day",
+        "HOUR": "Hour",
+        "SERVICES": "Services",
+        "FINAL_PRICE": "Final Price",
+        "PAY": "PAY"
+      },
+      "RESERVATION": {
+        "DO_YOUR_RESERVATION": "Do Your Reservation!",
+        "CHOOSE_SERVICES": "Choose Services",
+        "CHOOSE_HAIRDRESSER": "Choose a Hairdresser",
+        "CHOOSE_DATE": "Choose a Date",
+        "OOPS": "Oops, it seems you're not loged in!",      
+        "PLEASE_LOG": "Please log in first to do a reservation.",
+        "LOG_REG": "LOG IN | REGISTER",
+        "PRICE": "Price"       
+      },
+      "EMAIL": {
+        "SEND_EMAIL": "Send an Email",
+        "SUBJECT": "Subject",
+        "MESSAGE": "Message",
+        "OOPS": "Oops, it seems you're not loged in!", 
+        "PLEASE_LOG": "Please log in first to send an email.",
+        "LOG_REG": "LOG IN | REGISTER",
+        "SEND": "Send"
       }
     }
  }
