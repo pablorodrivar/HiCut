@@ -23,7 +23,7 @@
 
   <ion-item lines="none" color="medium" style="color: white">
     <ion-chip outline color="medium"><ion-icon name="walk" color="light"></ion-icon><ion-label color="light" class="chip-text">< {{ mdChipText }} km.</ion-label></ion-chip>
-    <ion-chip outline color="medium"><ion-icon name="compass" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ locChipText }}</ion-label></ion-chip>
+    <!--<ion-chip outline color="medium"><ion-icon name="compass" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ locChipText }}</ion-label></ion-chip>-->
     <ion-chip outline *ngIf="sort_opt == 'dist'" color="medium"><ion-icon name="train" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ 'PAGES.LIST.SORT_BY' | translate }} {{ 'PAGES.LIST.DISTANCE' | translate }}</ion-label></ion-chip>
     <ion-chip outline *ngIf="sort_opt == 'rat'" color="medium"><ion-icon name="star" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ 'PAGES.LIST.SORT_BY' | translate }} {{ 'PAGES.LIST.RATING' | translate }}</ion-label></ion-chip>
     <ion-chip outline *ngIf="sort_opt == 'alp'" color="medium"><ion-icon name="book" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ 'PAGES.LIST.SORT_BY' | translate }} {{ 'PAGES.LIST.ALPHA' | translate }}</ion-label></ion-chip>        

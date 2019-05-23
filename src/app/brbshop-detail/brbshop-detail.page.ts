@@ -115,25 +115,23 @@ export class BrbshopDetailPage implements OnInit {
         console.log(error)
       }
 
-      this.slider = this.barbershop[0].imglist;      
-      this.tb_image = this.slider[0];
-      this.style = "--background: linear-gradient(162deg, transparent 20%, rgba(56, 70, 108, .8) 100%), url('"+url+this.tb_image+"') center no-repeat; filter: blur(5px); -webkit-filter:blur(5px); min-height: 75px; color: white;";
-      this.style = this.domController.bypassSecurityTrustStyle(this.style);
-      this.name = this.barbershop[0].name;   
-      this.address = this.barbershop[0].address;
-      this.phone = this.barbershop[0].tlf;
-      this.email = this.barbershop[0].email;
-      this.desc = this.barbershop[0].desc;
+      this.initBrb();
 
-      Globals.api.getComments(this.barbershop[0].id, (comment, msg) => {
-        this.comments = comment;        
-      });      
+      this.getComments();           
 
-      Globals.api.getRating(this.barbershop[0].id, (rate, error) => {
-        this.brb_rating = rate.stars;
-        this.total_rate = rate.total;
-      });
+      this.rating();      
     });    
+  }
+
+  getComments() {
+    Globals.api.getComments(this.barbershop[0].id, (comment, msg) => {
+      this.comments = comment;      
+      this.comments.forEach(com => {
+        Globals.api.getProfile(com.user, (profile, msg) => {
+          console.log(profile)
+        });
+      });
+    }); 
   }
 
   getRating(event) {
@@ -154,6 +152,18 @@ export class BrbshopDetailPage implements OnInit {
 
   goToLogin() {
     this.router.navigate(["/tabs/login"]);
+  }
+
+  initBrb() {
+    this.slider = this.barbershop[0].imglist;      
+    this.tb_image = this.slider[0];
+    this.style = "--background: linear-gradient(162deg, transparent 20%, rgba(56, 70, 108, .8) 100%), url('"+url+this.tb_image+"') center no-repeat; filter: blur(5px); -webkit-filter:blur(5px); min-height: 75px; color: white;";
+    this.style = this.domController.bypassSecurityTrustStyle(this.style);
+    this.name = this.barbershop[0].name;   
+    this.address = this.barbershop[0].address;
+    this.phone = this.barbershop[0].tlf;
+    this.email = this.barbershop[0].email;
+    this.desc = this.barbershop[0].desc;
   }
 
   async pay() {
@@ -190,6 +200,13 @@ export class BrbshopDetailPage implements OnInit {
       duration: 2000
     });
     toast.present();
+  }
+
+  rating() {
+    Globals.api.getRating(this.barbershop[0].id, (rate, error) => {
+      this.brb_rating = rate.stars;
+      this.total_rate = rate.total;
+    });
   }
 
   refresh() {
