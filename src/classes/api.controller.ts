@@ -304,7 +304,7 @@ export class ApiController {
             return;
         }
         Globals.http.get(ApiController.api_url + 'profile'+(id!==null?'/'+id:''), {headers: new HttpHeaders().set('Authorization', this.token)}).subscribe((data: any) => {
-            callback(data.user, '');
+            if(id === null) callback(data.user, ''); else callback(data.profile, '');
         }, (error) => {
             callback(null, this.errorParse(error.error.msg));
         });

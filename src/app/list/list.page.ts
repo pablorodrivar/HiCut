@@ -57,7 +57,7 @@ export class ListPage implements OnInit {
 
   ngOnInit() {
     //DEVICE FISICO
-   // this.checkPermissions();
+    this.checkPermissions();
     this.locChipText = "";
     this.list = [];
     this.distances = [];
@@ -68,7 +68,7 @@ export class ListPage implements OnInit {
     this.filter.genre = +this.list_id;   
     
     //CUANDO USEMOS EL DEVICE FISICO
-    //this.getGeoLocation();  
+    this.getGeoLocation();  
 
     this.getBrb();
   }

@@ -105,10 +105,10 @@
           <ion-label text-center class="title">{{ 'PAGES.BRBDETAILS.COMMENTS' | translate }}</ion-label>
         </div>    
   
-        <ion-card *ngFor="let com of comments">
+        <ion-card *ngFor="let com of coms">
           <ion-avatar padding>
-            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-            <ion-label class="avatar-label">Usuario {{ com.id }}</ion-label>   
+            <img src="{{ url }}{{ com.avatar }}">
+            <ion-label class="avatar-label">{{ com.name }}</ion-label>   
           </ion-avatar>            
           <ion-card-header>
             <ion-card-subtitle>
@@ -125,15 +125,15 @@
               <div class="comment-rate" *ngIf="com.rate >= 4.35 && com.rate < 4.85"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon></div>
               <div class="comment-rate" *ngIf="com.rate >= 4.85 && com.rate <= 5"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div>               
             </ion-card-subtitle>  
-            <ion-card-title>{{ com.subject }}</ion-card-title>        
+            <ion-card-title>{{ com.comment.subject }}</ion-card-title>        
           </ion-card-header>
           
           <ion-card-content>
             <ion-item>
-              {{ com.comment }}
+              {{ com.comment.comment }}
             </ion-item>
             <ion-item lines="none">
-              <ion-label >{{ com.created_at }}</ion-label>   
+              <ion-label >{{ com.comment.created_at }}</ion-label>   
             </ion-item>                 
           </ion-card-content>        
         </ion-card>      

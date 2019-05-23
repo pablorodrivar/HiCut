@@ -61,6 +61,7 @@ export class BrbshopDetailPage implements OnInit {
   public email: string;
   public url: string;
   public desc: string;
+  public coms: any[] = [];
   
   constructor(private datePicker: DatePicker, private launchNavigator: LaunchNavigator, private route:ActivatedRoute,private router: Router,
     public alertController: AlertController, public loadingController: LoadingController, public toastController: ToastController,
@@ -128,9 +129,11 @@ export class BrbshopDetailPage implements OnInit {
       this.comments = comment;      
       this.comments.forEach(com => {
         Globals.api.getProfile(com.user, (profile, msg) => {
-          console.log(profile)
+          this.coms.push({comment: com, name: profile.name + " " + profile.surname, avatar: profile.avatar})
         });
       });
+
+      console.log(this.coms)
     }); 
   }
 
