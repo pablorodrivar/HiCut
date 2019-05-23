@@ -14,6 +14,7 @@ import { GalleryComponent } from '../gallery/gallery.component';
 import { ReservationComponent } from '../reservation/reservation.component';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { EmailComponent } from '../email/email.component';
+import { InfoComponent } from '../info/info.component';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
 // Configuración de traducción
@@ -42,8 +43,8 @@ const routes: Routes = [
     }),
     RouterModule.forChild(routes)
   ],
-  entryComponents: [PayComponent, GalleryComponent, ReservationComponent, EmailComponent],
-  declarations: [BrbshopDetailPage, PayComponent, GalleryComponent, ReservationComponent, EmailComponent],
-  providers: [PayComponent, GalleryComponent, ReservationComponent, CallNumber, EmailComponent, EmailComposer]
+  entryComponents: [PayComponent, GalleryComponent, ReservationComponent, EmailComponent, InfoComponent],
+  declarations: [BrbshopDetailPage, PayComponent, GalleryComponent, ReservationComponent, EmailComponent, InfoComponent],
+  providers: [PayComponent, GalleryComponent, ReservationComponent, CallNumber, EmailComponent, EmailComposer, InfoComponent]
 })
 export class BrbshopDetailPageModule {}

@@ -13,6 +13,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ReservationComponent } from 'app/reservation/reservation.component';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { EmailComponent } from 'app/email/email.component';
+import { InfoComponent } from '../info/info.component';
 
 const url = "http://80.211.65.79:8000/";
 
@@ -77,12 +78,15 @@ export class BrbshopDetailPage implements OnInit {
   }
 
   ngOnInit() {   
-    this.tab = "main"; 
     this.disableDate = false;
     this.disableWrk = false;
     this.comments = [];
+    this.coms = [];
     this.service_names = [];
     this.snames = "";
+    this.subject = "";
+    this.comment_text = "";
+    this.rate = null;
     this.is_loged = Globals.api.isLoged();
     this.list_id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.id = parseInt(this.route.snapshot.paramMap.get('detail_id'));
@@ -278,6 +282,16 @@ export class BrbshopDetailPage implements OnInit {
     return await modal.present();
   }
 
+  async showInfo(com: any) {
+    const modal = await this.modalController.create({
+      component: InfoComponent,
+      cssClass: 'info-component',
+      componentProps: { avatar: com.avatar, name: com.name }
+    });
+
+    return await modal.present();
+  }
+
   showLocation() {
     let destination = [this.filter.lat, this.filter.lng];
     this.launchNavigator.navigate(destination, this.options)
@@ -287,9 +301,9 @@ export class BrbshopDetailPage implements OnInit {
     );
   }
 
-  singleRate() {
+  singleRate() {    
     Globals.api.rate(this.id, this.rate, (status, msg) => {
-      console.log(status);
+      console.log(status);      
       this.refresh();
     });
   }
