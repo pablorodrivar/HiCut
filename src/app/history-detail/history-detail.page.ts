@@ -53,7 +53,6 @@ export class HistoryDetailPage {
   }
 
   isOld(){
-    console.log(this.currentDate.getTime());
     return Date.parse(this.reservation.date)<this.currentDate.getTime()-7200;
   }
 

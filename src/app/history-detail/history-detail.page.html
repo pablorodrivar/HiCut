@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding *ngIf="reservation!==null && reservation!==undefined">
   
   
   <ion-item>
@@ -54,12 +54,12 @@
       {{ reservation.current_amount }}€
     </ion-note>
   </ion-item>
-  <ion-item *ngIf="isOld()">
+  <ion-item *ngIf="isOld() || reservation.status>0">
       <ion-label class="ion-text-center">
           <span style="color:gray">{{ 'PAGES.HISTORY_DETAILS.NO_CANCEL' | translate }}</span>
       </ion-label>
   </ion-item>
-  <ion-item *ngIf="!isOld()" (click)="cancelReservation()" color="danger">
+  <ion-item *ngIf="!isOld() && reservation.status === 0" (click)="cancelReservation()" color="danger">
       <ion-label class="ion-text-center">
           <span *ngIf="!isOld()">{{ 'PAGES.HISTORY_DETAILS.CANCEL' | translate }}</span>
       </ion-label>

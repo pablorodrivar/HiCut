@@ -43,7 +43,8 @@
         "VIEW":"Ver",
         "NOT_LOGED":"Vaya!, Parece que aún no has entrado en tu cuenta o no estás registrado...",
         "GO_REGISTER":"Registrate ahora",
-        "NO_RESERVATIONS":"Vaya!, Parece que aún no tienen ninguna reserva..."
+        "NO_RESERVATIONS":"Vaya!, Parece que aún no tienen ninguna reserva...",
+        "CANCELLED":"Cancelado"
       },
       "HISTORY_DETAILS":{
         "TITLE":"Información de la reserva",
