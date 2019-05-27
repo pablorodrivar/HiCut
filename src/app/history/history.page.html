@@ -21,7 +21,7 @@
                     : {{ item.date | date: 'dd-MM-yyyy' }}</span>
 
                 <span *ngIf="item.status==2" style="color:gray">{{ 'PAGES.HISTORY.DATE' | translate }}
-                    : {{ item.date | date: 'dd-MM-yyyy' }} <span color="danger">{{ 'PAGES.HISTORY.CANCELLED' | translate }}</span></span>
+                    : {{ item.date | date: 'dd-MM-yyyy' }} <span style="color:red">{{ 'PAGES.HISTORY.CANCELLED' | translate }}</span></span>
             </ion-col>
             <ion-col>
                 <div class="ion-text-right">
