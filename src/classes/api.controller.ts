@@ -13,100 +13,34 @@ export class ApiController {
     public static api_url = 'https://gatito-p07470.c9users.io:8082/';
 
     public cancelreservation(id, callback: (status, msg)=>void){
-        if (!this.isLoged()) {
-            callback(null, this.errorParse('error.not_loged'));
-            return;
-        }
-        Globals.http.delete(ApiController.api_url + 'reservation/'+id, {headers: new HttpHeaders().set('Content-Type', 'application/json').set(
-            'Authorization', this.token)}).subscribe((data: any) => {
-            callback("OK","");
-        }, (error) => {
-            console.log(error);
-            callback(null, this.errorParse(error.error.msg));
-        });
+        this.apiCall('reservation/'+id,null,'delete',true,'msg',callback);
     }
 
     public reservation(id, callback: (status, msg)=>void){
-        if (!this.isLoged()) {
-            callback(null, this.errorParse('error.not_loged'));
-            return;
-        }
-        Globals.http.get(ApiController.api_url + 'reservation/'+id, {headers: new HttpHeaders().set('Content-Type', 'application/json').set(
-            'Authorization', this.token)}).subscribe((data: any) => {
-            callback(data.reservation,"");
-        }, (error) => {
-            console.log(error);
-            callback(null, this.errorParse(error.error.msg));
-        });
+        this.apiCall('reservation/'+id,null,'get',true,'reservation',callback);
     }
 
     public postReservation(hairdresser,date,paid,services, callback: (status, msg)=>void){
-        if (!this.isLoged()) {
-            callback(null, this.errorParse('error.not_loged'));
-            return;
-        }
         var data = JSON.stringify({hairdresser:hairdresser,date:date,paid:paid,services:services});
-        Globals.http.post(ApiController.api_url + 'reservation',data, {headers: new HttpHeaders().set('Content-Type', 'application/json').set(
-            'Authorization', this.token)}).subscribe((data: any) => {
-            callback("OK","");
-        }, (error) => {
-            console.log(error);
-            callback(null, this.errorParse(error.error.msg));
-        });
+        this.apiCall('reservation',data,'post',true,'msg',callback);
     }
 
     public rate(hairdressing: number,rate: number,callback: (status, msg) => void){
-        if (!this.isLoged()) {
-            callback(null, this.errorParse('error.not_loged'));
-            return;
-        }
-        var r = JSON.stringify({hairdressing:hairdressing,rate:rate});
-        Globals.http.post(ApiController.api_url + 'rating',r, {headers: new HttpHeaders().set('Content-Type', 'application/json').set(
-            'Authorization', this.token)}).subscribe((data: any) => {
-            callback("OK","");
-        }, (error) => {
-            console.log(error);
-            callback(null, this.errorParse(error.error.msg));
-        });
+        var data = JSON.stringify({hairdressing:hairdressing,rate:rate});
+        this.apiCall('rating',data,'post',true,'msg',callback);
     }
 
     public setProfile(user:User, callback: (status,msg) => void){
-        if (!this.isLoged()) {
-            callback(null, this.errorParse('error.not_loged'));
-            return;
-        }
-        var newUserData = JSON.stringify(user);
-        Globals.http.post(ApiController.api_url+"profile", 
-        newUserData,{headers:new HttpHeaders().set("Authorization",this.token)}).subscribe((data) => {
-            callback("OK","");
-        },(error)=>{
-            console.log(error);
-            callback(null, this.errorParse(error.error.msg));
-        });
+        var data = JSON.stringify(user);
+        this.apiCall('profile',data,'post',true,'msg',callback);
     }
 
     public getHairdressers(brb_id: number,callback: (hairdressers, msg) => void){
-        Globals.http.get(ApiController.api_url + 'hairdressers/'+brb_id, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
-            callback(data.hairdressers,"");
-        }, (error) => {
-            console.log(error);
-            callback(null, this.errorParse(error.error.msg));
-        });
+        this.apiCall('hairdressers/'+brb_id,null,'get',false,'hairdressers',callback);
     }
 
     public comment(comment: any,callback: (msg) => void){
-        if (!this.isLoged()) {
-            callback(this.errorParse('error.not_loged'));
-            return;
-        }
-        //var c: any = JSON.stringify(comment);
-        Globals.http.put(ApiController.api_url + 'comment',comment, {headers: new HttpHeaders().set('Content-Type', 'application/json').set(
-            'Authorization', this.token)}).subscribe((data: any) => {
-            callback(data.msg);
-        }, (error) => {
-            console.log(error);
-            callback(this.errorParse(error.error.msg));
-        });
+        this.apiCall('comment',comment,'put',true,'msg',callback);
     }
 
     private getHEveryFifteen(start,end){
@@ -116,7 +50,7 @@ export class ApiController {
         var max_h = parseInt(end.split(':')[0]);
         var max_m = parseInt(end.split(':')[1]);
         while(h<max_h || h==max_h && m<max_m){
-            hours.push(h+':'+(m<10?'0'+m:m));
+            hours.push((h<10?'0'+h:h)+':'+(m<10?'0'+m:m));
             m+=15;
             if (m>=60){
                 h++;
@@ -128,25 +62,19 @@ export class ApiController {
     }
 
     public getComments(brb_id: number,callback: (comments, msg) => void){
-        Globals.http.get(ApiController.api_url + 'comments/'+brb_id, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
-            callback(data.comments,"");
-        }, (error) => {
-            console.log(error);
-            callback(null, this.errorParse(error.error.msg));
-        });
+        this.apiCall('comments/'+brb_id,null,'get',false,'comments',callback);
     }
     
     public getServices(brb_id: number,callback: (services, msg) => void){
-        Globals.http.get(ApiController.api_url + 'services/'+brb_id, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
-            callback(data.services,"");
-        }, (error) => {
-            console.log(error);
-            callback(null, this.errorParse(error.error.msg));
-        });
+        this.apiCall('services/'+brb_id,null,'get',false,'services',callback);
     }
 
     public getHours(brb_id: number,callback: (hours, msg) => void){
-        Globals.http.get(ApiController.api_url + 'hours/'+brb_id, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
+        this.apiCall('hours/'+brb_id,null,'get',false,null,(data,msg)=>{
+            if (msg.length>0){
+                callback(null, msg);
+                return;
+            }
             for (var key in data.hours) {
                 var day = data.hours[key];
                 for(var i = 0;i<day.length;i++){
@@ -155,43 +83,24 @@ export class ApiController {
                 }
             }
             callback(data.hours,"");
-        }, (error) => {
-            console.log(error);
-            callback(null, this.errorParse(error.error.msg));
         });
     }
 
     public getListReservations(callback: (list, msg) => void) {
-        if (!this.isLoged()) {
-            callback(null, this.errorParse('error.not_loged'));
-            return;
-        }
-        Globals.http.get(ApiController.api_url + 'reservations',
-            {
-                headers:
-                    new HttpHeaders().set(
-                        'Authorization', this.token)
-            }).subscribe((data: any) => {
-            callback(data.reservations, '');
-            return;
-        }, (error) => {
-            console.log(error);
-            callback(null, this.errorParse(error.error.msg));
-        });
+        this.apiCall('reservations',null,'get',true,'reservations',callback);
     }
 
     public getRating(hairdressing_id, callback: (rate, error) => void) {
-        Globals.http.get(ApiController.api_url + 'rating/' + hairdressing_id, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
-            if (data.status === 200 && data.msg === 'OK') {
-                callback(data.rating, '');
-                return;
-            }
-            callback(null, this.errorParse('error.unknown'));
-        }, (error) => {
-            console.log(error);
-            callback(null, this.errorParse(error.error.msg));
-            return;
-        });
+        this.apiCall('rating/' + hairdressing_id,null,'get',false,'rating',callback);
+    }
+
+    public getProfile(id,callback: (profile, msg) => void) {
+        this.apiCall('profile'+(id!==null?'/'+id:''),null,"get",id===null,(id===null?'user':'profile'),callback);
+    }
+
+    public getHairdressing(filter, callback: (list, error) => void) {
+        var data = JSON.stringify(filter);
+        this.apiCall('hairdressing',data,'post',false,'list',callback);
     }
 
     public doRegister(user: User, password: string, password_confirmation: string, callback: (token, msg) => void) {
@@ -249,21 +158,6 @@ export class ApiController {
         });
     }
 
-    public getHairdressing(filter, callback: (list, error) => void) {
-        const filterData = JSON.stringify(filter);
-        Globals.http.post(ApiController.api_url + 'hairdressing', filterData, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
-            if (data.status === 200 && data.msg === 'OK') {
-                callback(data.list, '');
-                return;
-            }
-            callback(null, this.errorParse('error.unknown'));
-        }, (error) => {
-            console.log(error);
-            callback(null, this.errorParse(error.error.msg));
-            return;
-        });
-    }
-
     private errorParse(error) {
         if (error === null) {
             return 'error.unknown';
@@ -290,29 +184,10 @@ export class ApiController {
                 });
             } else {// no hay token
                 this.token = null;
-                this.token = null;
                 this.currentUser = null;
             }
         }, (error) => { // error de lectura?
             console.log(error);
-        });
-    }
-
-    public getProfile(id,callback: (profile, msg) => void) {
-        if (!this.isLoged() && id === null) {
-            callback(null, this.errorParse('error.not_loged'));
-            return;
-        }
-        Globals.http.get(ApiController.api_url + 'profile'+(id!==null?'/'+id:''), {headers: new HttpHeaders().set('Authorization', this.token)}).subscribe((data: any) => {
-            if(id === null) {
-                callback(data.user, '');
-            }
-            else {
-                callback(data.profile, '');
-            }
-                
-        }, (error) => {
-            callback(null, this.errorParse(error.error.msg));
         });
     }
 
@@ -366,15 +241,42 @@ export class ApiController {
             return;
         });
     }
+
+
+    private apiCall(url:string,data:any,method:string,needLogin:Boolean,dataBackName:string, callback: (status, msg)=>void){
+        if (needLogin){
+            if (!this.isLoged()) {
+                callback(null, this.errorParse('error.not_loged'));
+                return;
+            }
+        }
+
+        var headers: HttpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+        if (needLogin){
+            headers=headers.set('Authorization', this.token)
+        }
+
+        var request;
+        if (data!=null){
+            request = Globals.http[method](ApiController.api_url + url, data, {headers: headers});
+        }
+        else{
+            request = Globals.http[method](ApiController.api_url + url, {headers: headers});
+        }
+
+        request.subscribe((data: any) => {
+            if (dataBackName===null){
+                callback(data,"");
+            }
+            else{
+                callback(data[dataBackName],"");
+            }
+        }, (error) => {
+            console.log(error);
+            callback(null, this.errorParse(error.error.msg));
+        });
+    }
+
 }
 
 
-/*this.currentStorage.set("user", "something").then((data) => {
-    this.currentUser = new User(5, "paco", "Paco", "Hernandez", "a@a.a");
-    callback();
-}, (error) => {
-    console.log(error);
-})*/
-/*
-{ responseType: 'text' }
-*/

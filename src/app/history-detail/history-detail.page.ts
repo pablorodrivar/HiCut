@@ -29,7 +29,6 @@ export class HistoryDetailPage {
         this.presentToast(error);
       }
       else{
-        console.log(reservation);
         this.reservation=reservation;
       }
     });
