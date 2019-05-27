@@ -40,10 +40,20 @@
       "HISTORY":{
         "TITLE":"My reservations",
         "DATE":"Date",
-        "VIEW":"View"
+        "VIEW":"View",
+        "NOT_LOGED":"Oh!, It seems that you have not yet entered your account or you are not registered...",
+        "GO_REGISTER":"Registrate ahora",
+        "NO_RESERVATIONS":"Oh!, It seems that they still do not have any reservations..."
       },
       "HISTORY_DETAILS":{
-        "TITLE":"Info of the reservation"
+        "TITLE":"Info of the reservation",
+        "ID":"Identifier",
+        "SERVICES":"Services",
+        "PAID":"Paid",
+        "TOTAL":"Total",
+        "DATE":"Date",
+        "CANCEL":"Cancel reservation",
+        "NO_CANCEL":"You can no longer cancel"
       },
       "BRBDETAILS": {
         "TITLE": "Barbershop",

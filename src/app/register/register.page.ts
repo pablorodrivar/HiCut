@@ -3,7 +3,7 @@ import { Filter } from 'classes/pojo/filter';
 import { User } from 'classes/pojo/user';
 import { Globals } from '../globals';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ToastController, LoadingController } from '@ionic/angular';
 import { Rate } from 'classes/pojo/rate';
 
 @Component({
@@ -25,7 +25,7 @@ export class RegisterPage {
   password: string = "";
   password_confirmation: string = "";
 
-  constructor(private router:Router,public toastController: ToastController) {
+  constructor(private router:Router,public toastController: ToastController,public loadingController: LoadingController) {
 
   }
 
@@ -43,9 +43,12 @@ export class RegisterPage {
     this.password_confirmation = "";
   }
 
-  doRegister(){
+  async doRegister(){
     var user:User = new User(null,this.email,this.name,this.surname,this.country,this.state,this.city,this.address,this.phone,this.dni);
+    var loading = await this.loadingController.create();
+    await loading.present();
     Globals.api.doRegister(user,this.password,this.password_confirmation,(ok,msg)=>{
+      loading.dismiss();
       if (ok!=null){
         this.router.navigate(["/tabs/profile"]);
         return;

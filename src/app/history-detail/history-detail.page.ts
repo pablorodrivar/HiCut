@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import { Globals } from 'app/globals';
-import { ToastController } from '@ionic/angular';
+import { ToastController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-history-detail',
@@ -14,13 +14,17 @@ export class HistoryDetailPage {
   reservation:any;
   hairdresser:any;
   hairdressing:any;
-
-  constructor( private route:ActivatedRoute,public toastController: ToastController) {
+  currentDate=new Date();
+  constructor(private router:Router, private route:ActivatedRoute,public toastController: ToastController,public loadingController: LoadingController) {
   }
 
-  ionViewWillEnter(){
+  async ionViewWillEnter(){
+    var loading = await this.loadingController.create();
+    await loading.present();
+    this.currentDate=new Date();
     this.id = parseInt(this.route.snapshot.paramMap.get('id'));
     Globals.api.reservation(this.id,(reservation,error)=>{
+      loading.dismiss();
       if (error != ""){
         this.presentToast(error);
       }
@@ -29,6 +33,28 @@ export class HistoryDetailPage {
         this.reservation=reservation;
       }
     });
+  }
+
+  async cancelReservation(){
+    if (!this.isOld()){
+      var loading = await this.loadingController.create();
+      await loading.present();
+      Globals.api.cancelreservation(this.reservation.id,(status,msg)=>{
+        loading.dismiss();
+        if (status==="OK"){
+          this.presentToast("Reserva cancelada");
+          this.router.navigate(["/tabs/history"]);
+        }
+        else{
+          this.presentToast("No se puede cancelar esta reserva");
+        }
+      });
+    }
+  }
+
+  isOld(){
+    console.log(this.currentDate.getTime());
+    return Date.parse(this.reservation.date)<this.currentDate.getTime()-7200;
   }
 
   async presentToast(msg) {

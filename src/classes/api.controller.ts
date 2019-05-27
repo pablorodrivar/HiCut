@@ -17,7 +17,7 @@ export class ApiController {
             callback(null, this.errorParse('error.not_loged'));
             return;
         }
-        Globals.http.get(ApiController.api_url + 'cancelreservation/'+id, {headers: new HttpHeaders().set('Content-Type', 'application/json').set(
+        Globals.http.delete(ApiController.api_url + 'reservation/'+id, {headers: new HttpHeaders().set('Content-Type', 'application/json').set(
             'Authorization', this.token)}).subscribe((data: any) => {
             callback("OK","");
         }, (error) => {
