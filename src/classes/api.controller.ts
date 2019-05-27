@@ -10,7 +10,7 @@ export class ApiController {
     public currentUser: User = null;
     public token: string = null;
 
-    private static api_url = 'http://80.211.65.79:8000/api/v1/';
+    public static api_url = 'https://gatito-p07470.c9users.io:8082/';
 
     public cancelreservation(id, callback: (status, msg)=>void){
         if (!this.isLoged()) {
@@ -76,7 +76,7 @@ export class ApiController {
             return;
         }
         var newUserData = JSON.stringify(user);
-        Globals.http.post(ApiController.api_url+"editprofile", 
+        Globals.http.post(ApiController.api_url+"profile", 
         newUserData,{headers:new HttpHeaders().set("Authorization",this.token)}).subscribe((data) => {
             callback("OK","");
         },(error)=>{
@@ -116,7 +116,7 @@ export class ApiController {
         var max_h = parseInt(end.split(':')[0]);
         var max_m = parseInt(end.split(':')[1]);
         while(h<max_h || h==max_h && m<max_m){
-            hours.push(h+':'+m);
+            hours.push(h+':'+(m<10?'0'+m:m));
             m+=15;
             if (m>=60){
                 h++;
@@ -128,7 +128,7 @@ export class ApiController {
     }
 
     public getComments(brb_id: number,callback: (comments, msg) => void){
-        Globals.http.get(ApiController.api_url + 'getcomments/'+brb_id, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
+        Globals.http.get(ApiController.api_url + 'comments/'+brb_id, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
             callback(data.comments,"");
         }, (error) => {
             console.log(error);
@@ -137,7 +137,7 @@ export class ApiController {
     }
     
     public getServices(brb_id: number,callback: (services, msg) => void){
-        Globals.http.get(ApiController.api_url + 'getservices/'+brb_id, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
+        Globals.http.get(ApiController.api_url + 'services/'+brb_id, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
             callback(data.services,"");
         }, (error) => {
             console.log(error);
@@ -146,7 +146,7 @@ export class ApiController {
     }
 
     public getHours(brb_id: number,callback: (hours, msg) => void){
-        Globals.http.get(ApiController.api_url + 'gethours/'+brb_id, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
+        Globals.http.get(ApiController.api_url + 'hours/'+brb_id, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
             for (var key in data.hours) {
                 var day = data.hours[key];
                 for(var i = 0;i<day.length;i++){
@@ -221,7 +221,7 @@ export class ApiController {
         Globals.http.put(ApiController.api_url + 'register', u,
             {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
             if (data.status === 201 && data.msg === 'OK') {
-                this.token = data.token;
+                this.token = 'Bearer: '+ data.token;
                 this.getProfile(null,(user, msg) => {
                     if (user != null) {
                         this.currentUser = user;
@@ -304,7 +304,13 @@ export class ApiController {
             return;
         }
         Globals.http.get(ApiController.api_url + 'profile'+(id!==null?'/'+id:''), {headers: new HttpHeaders().set('Authorization', this.token)}).subscribe((data: any) => {
-            if(id === null) callback(data.user, ''); else callback(data.profile, '');
+            if(id === null) {
+                callback(data.user, '');
+            }
+            else {
+                callback(data.profile, '');
+            }
+                
         }, (error) => {
             callback(null, this.errorParse(error.error.msg));
         });
@@ -331,7 +337,7 @@ export class ApiController {
         var loginData = JSON.stringify({'email': login, 'password': password});
         Globals.http.post(ApiController.api_url + 'login', loginData, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
             if (data.status == 200) {
-                this.token = data.token;
+                this.token = 'Bearer: '+ data.token;
                 this.getProfile(null,(user: User, msg) => {
                     if (user == null) {
                         this.token = null;

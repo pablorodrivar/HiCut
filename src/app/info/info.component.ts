@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Globals } from 'app/globals';
+import { ApiController } from 'classes/api.controller';
 
 @Component({
   selector: 'app-info',
@@ -11,7 +12,7 @@ export class InfoComponent implements OnInit {
   public url;
 
   constructor() {
-    this.url = Globals.url;
+    this.url = ApiController.api_url;
   }
 
   ngOnInit() {}
