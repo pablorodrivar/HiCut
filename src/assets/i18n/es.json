@@ -30,7 +30,8 @@
         "PHONE_PLACEHOLDER": "Telefono móvil",
         "DNI_PLACEHOLDER": "DNI",
         "SURNAME_PLACEHOLDER": "Apellidos",
-        "NAME_PLACEHOLDER": "Nombre"
+        "NAME_PLACEHOLDER": "Nombre",
+        "DONE": "Listo!, Ahora revisa tu correo para activar la cuenta"
       },
       "TABS": {
         "HOME": "Inicio",

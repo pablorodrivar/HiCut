@@ -30,7 +30,8 @@
         "PHONE_PLACEHOLDER": "Mobile Phone",
         "DNI_PLACEHOLDER": "Identity card",
         "SURNAME_PLACEHOLDER": "Surname",
-        "NAME_PLACEHOLDER": "First Name"
+        "NAME_PLACEHOLDER": "First Name",
+        "DONE": "Ready! Now check your email to activate the account"
       },
       "TABS": {
         "HOME": "Home",

@@ -103,59 +103,15 @@ export class ApiController {
         this.apiCall('hairdressing',data,'post',false,'list',callback);
     }
 
-    public doRegister(user: User, password: string, password_confirmation: string, callback: (token, msg) => void) {
-        var u: any = JSON.stringify(user);
-        if (u.address === '' ||
-            u.city === '' ||
-            u.country === '' ||
-            u.dni === '' ||
-            u.email === '' ||
-            u.name === '' ||
-            password === '' ||
-            password_confirmation === '' ||
-            u.phone === '' ||
-            u.state === '' ||
-            u.surname === '') {
-            callback(null, this.errorParse('error.all_fields_required'));
-            return;
-        }
+    public doRegister(user: any, password: string, password_confirmation: string, callback: (token, msg) => void) {
         if (password != password_confirmation) {
             callback(null, this.errorParse('error.password_not_match'));
             return;
         }
-        u = JSON.parse(u);
-        u.password = password;
-        u.password_confirmation = password_confirmation;
-        u = JSON.stringify(u);
-        Globals.http.put(ApiController.api_url + 'register', u,
-            {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
-            if (data.status === 201 && data.msg === 'OK') {
-                this.token = 'Bearer: '+ data.token;
-                this.getProfile(null,(user, msg) => {
-                    if (user != null) {
-                        this.currentUser = user;
-                        this.currentStorage.set('token', this.token).then((data) => {
-                            callback('OK', '');
-                            return;
-                        }, (error) => {
-                            this.token = null;
-                            this.currentUser = null;
-                            callback(null, this.errorParse('error.error_saving'));
-                            return;
-                        });
-                        return;
-                    } else {
-                        callback(null, this.errorParse('error.connecting'));
-                    }
-                });
-                return;
-            }
-            callback(null, this.errorParse('error.unknown'));
-        }, (error) => {
-            console.log(error);
-            callback(null, this.errorParse(error.error.msg));
-            return;
-        });
+        user.password = password;
+        user.password_confirmation = password;
+        user = JSON.stringify(user);
+        this.apiCall('register',user,'put',false,'msg',callback);
     }
 
     private errorParse(error) {
@@ -209,36 +165,32 @@ export class ApiController {
             callback(false, this.errorParse('error.no_input_data'));
             return;
         }
-        var loginData = JSON.stringify({'email': login, 'password': password});
-        Globals.http.post(ApiController.api_url + 'login', loginData, {headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data: any) => {
-            if (data.status == 200) {
-                this.token = 'Bearer: '+ data.token;
+        var data = JSON.stringify({'email': login, 'password': password});
+        this.apiCall('login',data,'post',false,'token',(data,msg)=>{
+            if (data!=null){
+                this.token = 'Bearer: '+ data;
                 this.getProfile(null,(user: User, msg) => {
                     if (user == null) {
+                        this.currentUser = null;
                         this.token = null;
-                        callback(false, this.errorParse('error.unknown'));
-                        return;
+                        callback(false, msg);
                     } else {
                         this.currentUser = user;
                         this.currentStorage.set('token', this.token).then((data) => {
                             callback(true, '');
-                            return;
                         }, (error) => {
                             this.token = null;
                             this.currentUser = null;
                             callback(false, this.errorParse('storage.error_saving'));
-                            return;
                         });
-                        return;
                     }
                 });
-                return;
             }
-            callback(false, this.errorParse('error.unknown'));
-            return;
-        }, (error) => {
-            callback(false, this.errorParse(error.error.msg));
-            return;
+            else{
+                this.currentUser = null;
+                this.token = null;
+                callback(false, msg);
+            }
         });
     }
 
