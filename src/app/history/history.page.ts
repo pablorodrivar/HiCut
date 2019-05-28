@@ -26,7 +26,7 @@ export class HistoryPage {
       loading.dismiss();
       this.history_list = list;
       if (list==null){
-        if (msg!=="error.not_loged"){
+        if (msg!=="ERROR.NOT_LOGED"){
           this.presentToast(msg);
         }
       }

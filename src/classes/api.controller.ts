@@ -105,7 +105,7 @@ export class ApiController {
 
     public doRegister(user: any, password: string, password_confirmation: string, callback: (token, msg) => void) {
         if (password != password_confirmation) {
-            callback(null, this.errorParse('error.password_not_match'));
+            callback(null, this.errorParse('ERROR.PASSWORD_NOT_MATCH'));
             return;
         }
         user.password = password;
@@ -116,7 +116,7 @@ export class ApiController {
 
     private errorParse(error) {
         if (error === null) {
-            return 'error.unknown';
+            return 'ERROR.UNKNOWN';
         }
         if (typeof error === 'string') {
             return error;
@@ -162,7 +162,7 @@ export class ApiController {
 
     public doLogin(login: string, password: string, callback: (loged, msg) => void) {
         if (login == null || login == '' || password == null || password == '') {
-            callback(false, this.errorParse('error.no_input_data'));
+            callback(false, this.errorParse('ERROR.NO_INPUT_DATA'));
             return;
         }
         var data = JSON.stringify({'email': login, 'password': password});
@@ -198,7 +198,7 @@ export class ApiController {
     private apiCall(url:string,data:any,method:string,needLogin:Boolean,dataBackName:string, callback: (status, msg)=>void){
         if (needLogin){
             if (!this.isLoged()) {
-                callback(null, this.errorParse('error.not_loged'));
+                callback(null, this.errorParse('ERROR.NOT_LOGED'));
                 return;
             }
         }
