@@ -26,6 +26,7 @@ export class HistoryDetailPage {
     Globals.api.reservation(this.id,(reservation,error)=>{
       loading.dismiss();
       if (error != ""){
+        this.router.navigate(["/tabs/history"]);
         this.presentToast(error);
       }
       else{

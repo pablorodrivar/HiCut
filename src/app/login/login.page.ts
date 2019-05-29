@@ -31,7 +31,7 @@ export class loginPage {
       Globals.api.doLogin(this.email,this.password,((loged,msg)=>{
         this.doingLogin=false;
         loading.dismiss();
-        if (loged){
+        if (loged===true){
           this.email = "";
           this.password = "";
           this.router.navigate(["/tabs/profile"]);
@@ -51,7 +51,7 @@ export class loginPage {
   async presentToast(msg) {
     const toast = await this.toastController.create({
       message: msg,
-      duration: 1000
+      duration: 2000
     });
     toast.present();
   }
