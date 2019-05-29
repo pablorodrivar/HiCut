@@ -30,7 +30,8 @@
         "PHONE_PLACEHOLDER": "Mobile Phone",
         "DNI_PLACEHOLDER": "Identity card",
         "SURNAME_PLACEHOLDER": "Surname",
-        "NAME_PLACEHOLDER": "First Name"
+        "NAME_PLACEHOLDER": "First Name",
+        "DONE": "Ready! Now check your email to activate the account"
       },
       "TABS": {
         "HOME": "Home",
@@ -40,10 +41,21 @@
       "HISTORY":{
         "TITLE":"My reservations",
         "DATE":"Date",
-        "VIEW":"View"
+        "VIEW":"View",
+        "NOT_LOGED":"Oh!, It seems that you have not yet entered your account or you are not registered...",
+        "GO_REGISTER":"Registrate ahora",
+        "NO_RESERVATIONS":"Oh!, It seems that they still do not have any reservations...",
+        "CANCELLED":"Cancelled"
       },
       "HISTORY_DETAILS":{
-        "TITLE":"Info of the reservation"
+        "TITLE":"Info of the reservation",
+        "ID":"Identifier",
+        "SERVICES":"Services",
+        "PAID":"Paid",
+        "TOTAL":"Total",
+        "DATE":"Date",
+        "CANCEL":"Cancel reservation",
+        "NO_CANCEL":"You can no longer cancel"
       },
       "BRBDETAILS": {
         "TITLE": "Barbershop",

@@ -30,7 +30,8 @@
         "PHONE_PLACEHOLDER": "Telefono móvil",
         "DNI_PLACEHOLDER": "DNI",
         "SURNAME_PLACEHOLDER": "Apellidos",
-        "NAME_PLACEHOLDER": "Nombre"
+        "NAME_PLACEHOLDER": "Nombre",
+        "DONE": "Listo!, Ahora revisa tu correo para activar la cuenta"
       },
       "TABS": {
         "HOME": "Inicio",
@@ -40,10 +41,21 @@
       "HISTORY":{
         "TITLE":"Mis citas",
         "DATE":"Fecha",
-        "VIEW":"Ver"
+        "VIEW":"Ver",
+        "NOT_LOGED":"Vaya!, Parece que aún no has entrado en tu cuenta o no estás registrado...",
+        "GO_REGISTER":"Registrate ahora",
+        "NO_RESERVATIONS":"Vaya!, Parece que aún no tienen ninguna reserva...",
+        "CANCELLED":"Cancelado"
       },
       "HISTORY_DETAILS":{
-        "TITLE":"Información de la reserva"
+        "TITLE":"Información de la reserva",
+        "ID":"Identificador",
+        "SERVICES":"Servicios",
+        "PAID":"Pagado",
+        "TOTAL":"Total",
+        "DATE":"Fecha",
+        "CANCEL":"Cancelar reserva",
+        "NO_CANCEL":"Ya no se puede cancelar"
       },
       "BRBDETAILS": {
         "TITLE": "Peluqueria",

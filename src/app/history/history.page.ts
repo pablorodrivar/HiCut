@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Reservation } from '../../classes/pojo/reservation';
 import { Router } from '@angular/router';
 import { Globals } from '../globals';
-import { ToastController } from '@ionic/angular';
+import { ToastController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-history',
@@ -10,21 +10,23 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['history.page.scss']
 })
 
-
-
 export class HistoryPage {
   public history_list:Reservation[];
   public currentDate = new Date();
-  constructor(private router:Router,public toastController: ToastController){
+
+  constructor(private router:Router,public toastController: ToastController,public loadingController: LoadingController){
 
   }
 
-  ionViewWillEnter(){
+  async ionViewWillEnter(){
+    var loading = await this.loadingController.create();
+    await loading.present();
     this.currentDate=new Date();
     Globals.api.getListReservations((list,msg)=>{
+      loading.dismiss();
       this.history_list = list;
       if (list==null){
-        if (msg!=="error.not_loged"){
+        if (msg!=="ERROR.NOT_LOGED"){
           this.presentToast(msg);
         }
       }
@@ -42,7 +44,7 @@ export class HistoryPage {
   goToHistoryDetail(event, item){
     this.router.navigate(["/tabs/history/history_detail/"+item.id]);
   }
-  
+
   async presentToast(msg) {
     const toast = await this.toastController.create({
       message: msg,

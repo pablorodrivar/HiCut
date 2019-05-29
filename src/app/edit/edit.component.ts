@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Globals } from 'app/globals';
 import { User } from '../../classes/pojo/user';
+import { ApiController } from 'classes/api.controller';
 
 @Component({
   selector: 'app-edit',
@@ -22,7 +23,7 @@ export class EditComponent implements OnInit {
   public url: string;
 
   constructor(public modalController: ModalController) {
-    this.url = Globals.url;
+    this.url = ApiController.api_url;
   }
 
   ngOnInit() {   

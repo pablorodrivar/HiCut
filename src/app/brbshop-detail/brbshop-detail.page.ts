@@ -14,8 +14,8 @@ import { ReservationComponent } from 'app/reservation/reservation.component';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { EmailComponent } from 'app/email/email.component';
 import { InfoComponent } from '../info/info.component';
+import { ApiController } from 'classes/api.controller';
 
-const url = "http://80.211.65.79:8000/";
 
 @Component({
   selector: 'app-brbshop-detail',
@@ -70,7 +70,7 @@ export class BrbshopDetailPage implements OnInit {
     public callNumber: CallNumber) {
       this.price = 0;
       this.tab = "main";
-      this.url = Globals.url;
+      this.url = ApiController.api_url;
     }
 
   options: LaunchNavigatorOptions = {
@@ -164,7 +164,7 @@ export class BrbshopDetailPage implements OnInit {
   initBrb() {
     this.slider = this.barbershop[0].imglist;      
     this.tb_image = this.slider[0];
-    this.style = "--background: linear-gradient(162deg, transparent 20%, rgba(56, 70, 108, .8) 100%), url('"+url+this.tb_image+"') center no-repeat; filter: blur(5px); -webkit-filter:blur(5px); min-height: 75px; color: white;";
+    this.style = "--background: linear-gradient(162deg, transparent 20%, rgba(56, 70, 108, .8) 100%), url('"+this.url+this.tb_image+"') center no-repeat; filter: blur(5px); -webkit-filter:blur(5px); min-height: 75px; color: white;";
     this.style = this.domController.bypassSecurityTrustStyle(this.style);
     this.name = this.barbershop[0].name;   
     this.address = this.barbershop[0].address;

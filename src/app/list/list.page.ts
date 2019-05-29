@@ -8,8 +8,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Filter } from '../../classes/pojo/filter';
 import { LoadingController } from '@ionic/angular';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
-
-const url_img = "http://80.211.65.79:8000/";
+import { ApiController } from 'classes/api.controller';
 
 @Component({
   selector: 'app-list',
@@ -43,7 +42,7 @@ export class ListPage implements OnInit {
     this.filter.lng = -3.6021928;
     this.mdChipText = 20+"";
     this.sort_opt = "dist";  
-    this.url = Globals.url;  
+    this.url = ApiController.api_url;  
   }
 
   checkPermissions() {
@@ -75,8 +74,8 @@ export class ListPage implements OnInit {
 
   getGeoLocation() {
     this.geolocation.getCurrentPosition().then(loc => {
-      this.filter.lat = loc.coords.latitude;
-      this.filter.lng = loc.coords.longitude;
+      //this.filter.lat = loc.coords.latitude;
+      //this.filter.lng = loc.coords.longitude;
     });   
   }
 

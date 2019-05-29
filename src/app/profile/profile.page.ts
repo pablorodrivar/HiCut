@@ -4,6 +4,7 @@ import { Globals } from '../globals';
 import { AlertController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { EditComponent } from '../edit/edit.component';
+import { ApiController } from 'classes/api.controller';
 
 @Component({
   selector: 'app-profile',
@@ -29,7 +30,7 @@ export class ProfilePage implements OnInit {
 
   constructor(private route:ActivatedRoute,private router: Router, private alertController: AlertController, public modalController: ModalController) {
     this.globals = Globals;
-    this.url = Globals.url;
+    this.url = ApiController.api_url;
   }
 
   ngOnInit() {

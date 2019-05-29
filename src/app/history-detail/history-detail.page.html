@@ -7,23 +7,61 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <h3><b>Información de la reserva</b></h3>
-  <h4><b>Peluqueria:</b> {{ reservation.hairdressing.name }}</h4>
-  <p style="font-size:0.7em"><em><b>Identificador:</b> {{ reservation.id }}</em></p>
-  <p><b>Servicios:</b></p>
-  <ul>
-    <li *ngFor="let item of reservation.services">{{ item.name }}</li>
-  </ul>
-
-  <p><b>Fecha:</b> {{ reservation.date }}</p>
-  <p *ngIf="reservation.paid == 1"><b>Pagado:</b>&nbsp;<ion-icon color="success" name="checkmark-circle"></ion-icon></p>
-  <p *ngIf="reservation.paid == 0"><b>Pagado:</b>&nbsp;<ion-icon color="danger" name="close-circle"></ion-icon></p>
-  <div class="ion-text-right">
-    <p><b>Total:</b> {{ reservation.current_amount }}€</p>
-  </div>
-  <div class="ion-text-center">
-    <br>
-    <h1 *ngIf="" style="color:gray">La reserva ya ha expirado</h1>
-  </div>
+<ion-content padding *ngIf="reservation!==null && reservation!==undefined">
+  
+  
+  <ion-item>
+    <ion-label class="ion-text-center">
+      <b style="font-size:1.14em">{{ reservation.hairdressing.name }}</b>
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>
+      <b>{{ 'PAGES.HISTORY_DETAILS.ID' | translate }}:</b>
+    </ion-label>
+    <ion-note slot="end" style="font-size:1.14em">
+        {{ reservation.id }}
+    </ion-note>
+  </ion-item>
+  <ion-item>
+    <ion-label>
+        <b>{{ 'PAGES.HISTORY_DETAILS.SERVICES' | translate }}:</b>
+    </ion-label>
+    <ion-note slot="end">
+        <span *ngFor="let item of reservation.services; index as i">{{ item.name }}<span *ngIf="i !== reservation.services.length-1">, </span></span>
+    </ion-note>
+  </ion-item>
+  <ion-item>
+    <ion-label>
+        <b>{{ 'PAGES.HISTORY_DETAILS.DATE' | translate }}:</b>
+    </ion-label>
+    <ion-note slot="end" style="font-size:1.14em">
+      {{ reservation.date | date: 'dd-MM-yyyy HH:mm' }}
+    </ion-note>
+  </ion-item>
+  <ion-item>
+    <ion-label>
+        <b>{{ 'PAGES.HISTORY_DETAILS.PAID' | translate }}:</b>
+    </ion-label>
+    <ion-icon *ngIf="reservation.paid == 1" name="checkmark-circle" slot="end" color="success"></ion-icon>
+    <ion-icon *ngIf="reservation.paid == 0" name="close-circle" slot="end" color="danger"></ion-icon>
+  </ion-item>
+  <ion-item>
+    <ion-label>
+        <b>{{ 'PAGES.HISTORY_DETAILS.TOTAL' | translate }}:</b>
+    </ion-label>
+    <ion-note slot="end" style="font-size:1.14em">
+      {{ reservation.current_amount }}€
+    </ion-note>
+  </ion-item>
+  <ion-item *ngIf="isOld() || reservation.status>0">
+      <ion-label class="ion-text-center">
+          <span style="color:gray">{{ 'PAGES.HISTORY_DETAILS.NO_CANCEL' | translate }}</span>
+      </ion-label>
+  </ion-item>
+  <ion-item *ngIf="!isOld() && reservation.status === 0" (click)="cancelReservation()" color="danger">
+      <ion-label class="ion-text-center">
+          <span *ngIf="!isOld()">{{ 'PAGES.HISTORY_DETAILS.CANCEL' | translate }}</span>
+      </ion-label>
+  </ion-item>
 </ion-content>
