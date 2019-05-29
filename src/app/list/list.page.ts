@@ -67,7 +67,7 @@ export class ListPage implements OnInit {
     this.filter.genre = +this.list_id;   
     
     //CUANDO USEMOS EL DEVICE FISICO
-    this.getGeoLocation();  
+    //this.getGeoLocation();  
 
     this.getBrb();
   }
