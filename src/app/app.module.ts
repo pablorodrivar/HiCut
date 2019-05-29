@@ -29,6 +29,8 @@ import { BarRatingModule } from "ngx-bar-rating";
 import { Globals } from "./globals";
 import { PipesModule } from './pipes/pipes.module';
 
+import { ImagePicker } from '@ionic-native/image-picker/ngx'
+
 export function customTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -61,6 +63,7 @@ export function customTranslateLoader(http: HttpClient) {
     StatusBar,
     SplashScreen,
     AlertController,
+    ImagePicker,
     LaunchNavigator,
     Geolocation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
