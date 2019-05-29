@@ -17,9 +17,9 @@ export class ProfilePage implements OnInit {
   public id: number;
   public name: string;
   public surname: string;
-  public city: string;
-  public country: string;
-  public address: string;
+  public city: string = null;
+  public country: string = null;
+  public address: string = null;
   public email: string;
   public phone: string;
   public avatar: string;

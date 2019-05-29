@@ -21,7 +21,7 @@
   <ion-item class="title">
     <ion-label text-center>{{ 'PAGES.ACCOUNTSETTINGS.PERSONAL_INFO' | translate }}</ion-label>            
   </ion-item>   
-  <ion-item>
+  <ion-item *ngIf="address != null && city != null && country != null">
     <ion-icon name="pin"></ion-icon><ion-label class="title-label">{{ 'PAGES.ACCOUNTSETTINGS.LOCATION' | translate }}</ion-label><ion-label class="sub-label">{{ address }}, {{ city }}, {{ country }}</ion-label>
     <ion-chip outline color="danger" class="chip"><ion-icon name="lock" style="width: 15px;"></ion-icon><ion-label>{{ 'PAGES.ACCOUNTSETTINGS.PRIVATE' | translate }}</ion-label></ion-chip>
   </ion-item>
