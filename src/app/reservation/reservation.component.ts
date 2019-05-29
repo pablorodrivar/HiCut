@@ -41,6 +41,7 @@ export class ReservationComponent implements OnInit {
   public progress: number = 0;
   public isLoged: boolean;
   public opened = false;
+  public valid_date: boolean = true;
 
   constructor(public modalController: ModalController, public toastController: ToastController, public router:Router) {     
     this.showHourPicker = false;
@@ -227,48 +228,60 @@ export class ReservationComponent implements OnInit {
     let date:string = event.detail.value;    
     date = date.substr(0, date.indexOf("T"));    
     this.myDate = date;
-    console.log(this.myDate)
-    let i = 0;
-    let pos = 0;
-    this.days_raw.forEach(val =>{    
-      if(date == val) {
-        pos = i;
-      }
+    let today_day = new Date().getDate();
+    let today_month = new Date().getMonth() + 1;
+    let today_year = new Date().getFullYear();        
 
-      i = i + 1;
-    });
+    if(today_year <= +this.myDate.substr(0, 4) && today_month <= +this.myDate.substring(5,7) && today_day <= +this.myDate.substr(8,9)) {
+      this.valid_date = true;
 
-    let ar = Object.values(this.days);
-    let nice = ar[pos];
-    console.log(nice)
+      let i = 0;
+      let pos = 0;
+      this.days_raw.forEach(val =>{    
+        if(date == val) {
+          pos = i;
+        }
 
-    let hours: any[] = [];
-
-    nice.forEach(val => {
-      hours.push(val.hours)
-    });
-
-    this.showHourPicker = true;
-
-    console.log(hours)
-    
-    if(typeof hours[0] !== undefined && hours[0] != undefined) {
-      hours[0].forEach(val => {
-        this.hourValues.push(val);
+        i = i + 1;
       });
-    }    
 
-    if(typeof hours[1] !== undefined && hours[1] != undefined) {
-      hours[1].forEach(val => {
-        this.hourValues.push(val);
-      }); 
-    }   
-    
-    if(typeof hours[2] !== undefined && hours[2] != undefined) {
-      hours[2].forEach(val => {
-        this.hourValues.push(val);
-      }); 
-    }
+      let ar = Object.values(this.days);
+      let nice = ar[pos];
+      console.log(nice)
+
+      let hours: any[] = [];
+
+      nice.forEach(val => {
+        hours.push(val.hours)
+      });
+
+      this.showHourPicker = true;
+
+      console.log(hours)
+      
+      if(typeof hours[0] !== undefined && hours[0] != undefined) {
+        hours[0].forEach(val => {
+          this.hourValues.push(val);
+        });
+      }    
+
+      if(typeof hours[1] !== undefined && hours[1] != undefined) {
+        hours[1].forEach(val => {
+          this.hourValues.push(val);
+        }); 
+      }   
+      
+      if(typeof hours[2] !== undefined && hours[2] != undefined) {
+        hours[2].forEach(val => {
+          this.hourValues.push(val);
+        }); 
+      }    
+    } else {
+      this.valid_date = false;
+      this.showHourPicker = false;
+      this.myHour = null;
+      this.disableDate = false;
+    }    
   }
 
   updateHour(event) {
