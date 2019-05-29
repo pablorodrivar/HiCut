@@ -68,7 +68,7 @@ export class EditComponent implements OnInit {
       //height: 200,
  
       // quality of resized image, defaults to 100
-      quality: 100,
+      quality: 25,
  
       // output type, defaults to FILE_URIs.
       // available options are 
