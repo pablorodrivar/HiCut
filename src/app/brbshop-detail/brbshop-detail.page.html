@@ -129,17 +129,16 @@
           </ion-card-header>
           
           <ion-card-content (click)="showInfo(com)">
-            <ion-item>
-              {{ com.comment.comment }}
-            </ion-item>
             <ion-item lines="none">
-              <ion-label >{{ com.comment.created_at }}</ion-label>   
-            </ion-item>                 
+              {{ com.comment.comment }}
+            </ion-item>                
           </ion-card-content>        
         </ion-card>      
         
-        <div *ngIf="is_loged">
-          <ion-item style="text-align: center;"><ion-label>{{ 'PAGES.BRBDETAILS.LEAVE_YOUR_COMMENT' | translate }}</ion-label></ion-item>
+        <ion-item *ngIf="is_loged" style="text-align: center;"><ion-label>{{ 'PAGES.BRBDETAILS.LEAVE_YOUR_COMMENT' | translate }}</ion-label></ion-item>
+        <ion-item *ngIf="is_loged && already_com && !edit_comment" lines="none"><ion-button fill (click)="editComment()" style="width: 100%; color: blue;" color="primary">EDIT YOUR COMMENT</ion-button></ion-item>
+
+        <div *ngIf="is_loged && !already_com">          
           <ion-item><ion-label>{{ 'PAGES.BRBDETAILS.SUBJECT' | translate }}</ion-label><ion-input [(ngModel)]="subject" placeholder="{{ 'PAGES.BRBDETAILS.SUBJECT' | translate }}"></ion-input></ion-item>
           <ion-item style="height: 16%;"><ion-textarea [(ngModel)]="comment_text" rows="6" placeholder="{{ 'PAGES.BRBDETAILS.LEAVE_YOUR_COMMENT' | translate }}" maxlength="280" [(ngModel)]="comment"></ion-textarea></ion-item>
           <ion-item lines ="none">
@@ -154,7 +153,39 @@
           </ion-item>
           <ion-item lines="none"><ion-button fill style="width:100%; border: solid 1px #ECEBEB;" (click)="sendComment()">{{ 'PAGES.BRBDETAILS.COMMENT' | translate }}</ion-button></ion-item>
         </div> 
-        
+
+        <div *ngIf="is_loged && already_com && !edit_comment" class="opaque">          
+          <ion-item value="Disabled"><ion-label>{{ 'PAGES.BRBDETAILS.SUBJECT' | translate }}</ion-label><ion-input value="Disabled" [(ngModel)]="subject" placeholder="{{ 'PAGES.BRBDETAILS.SUBJECT' | translate }}"></ion-input></ion-item>
+          <ion-item style="height: 16%;"><ion-textarea disabled [(ngModel)]="comment_text" rows="6" placeholder="{{ 'PAGES.BRBDETAILS.LEAVE_YOUR_COMMENT' | translate }}" maxlength="280" [(ngModel)]="comment"></ion-textarea></ion-item>
+          <ion-item lines ="none">
+            <ion-label>{{ 'PAGES.BRBDETAILS.RATE_EXPERIENCE' | translate }}</ion-label>
+            <ion-select disabled="true" (ionChange)="getRating($event)" [(ngModel)]="rate" placeholder="{{ rate }}">
+              <ion-select-option value="5">{{ 'PAGES.BRBDETAILS.EXCELLENT' | translate }}</ion-select-option>
+              <ion-select-option value="4">{{ 'PAGES.BRBDETAILS.SO_GOOD' | translate }}</ion-select-option>
+              <ion-select-option value="3">{{ 'PAGES.BRBDETAILS.NOT_BAD' | translate }}</ion-select-option>
+              <ion-select-option value="2">{{ 'PAGES.BRBDETAILS.SO_BAD' | translate }}</ion-select-option>
+              <ion-select-option value="1">{{ 'PAGES.BRBDETAILS.HORRIBLE' | translate }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item lines="none"><ion-button fill disabled="true" style="width:100%; border: solid 1px #ECEBEB;" (click)="sendComment()">{{ 'PAGES.BRBDETAILS.COMMENT' | translate }}</ion-button></ion-item>
+        </div>
+
+        <div *ngIf="is_loged && already_com && edit_comment">          
+            <ion-item ><ion-label>{{ 'PAGES.BRBDETAILS.SUBJECT' | translate }}</ion-label><ion-input value="Disabled" [(ngModel)]="subject" placeholder="{{ 'PAGES.BRBDETAILS.SUBJECT' | translate }}"></ion-input></ion-item>
+            <ion-item style="height: 16%;"><ion-textarea [(ngModel)]="comment_text" rows="6" placeholder="{{ 'PAGES.BRBDETAILS.LEAVE_YOUR_COMMENT' | translate }}" maxlength="280" [(ngModel)]="comment"></ion-textarea></ion-item>
+            <ion-item lines ="none">
+              <ion-label>{{ 'PAGES.BRBDETAILS.RATE_EXPERIENCE' | translate }}</ion-label>
+              <ion-select (ionChange)="getRating($event)" [(ngModel)]="rate" placeholder="{{ rate_placeholder }}">
+                <ion-select-option value="5">{{ 'PAGES.BRBDETAILS.EXCELLENT' | translate }}</ion-select-option>
+                <ion-select-option value="4">{{ 'PAGES.BRBDETAILS.SO_GOOD' | translate }}</ion-select-option>
+                <ion-select-option value="3">{{ 'PAGES.BRBDETAILS.NOT_BAD' | translate }}</ion-select-option>
+                <ion-select-option value="2">{{ 'PAGES.BRBDETAILS.SO_BAD' | translate }}</ion-select-option>
+                <ion-select-option value="1">{{ 'PAGES.BRBDETAILS.HORRIBLE' | translate }}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item lines="none"><ion-button fill style="width:100%; border: solid 1px #ECEBEB;" (click)="sendComment()">{{ 'PAGES.BRBDETAILS.COMMENT' | translate }}</ion-button></ion-item>
+          </div>
+
         <div *ngIf="!is_loged">
           <ion-item lines="none"><ion-button fill style="width:100%; border: solid 1px #ECEBEB;" (click)="goToLogin()">{{ 'PAGES.BRBDETAILS.LOG_IN_TO' | translate }}</ion-button></ion-item>
         </div>

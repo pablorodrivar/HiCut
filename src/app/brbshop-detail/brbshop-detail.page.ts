@@ -63,6 +63,10 @@ export class BrbshopDetailPage implements OnInit {
   public url: string;
   public desc: string;
   public coms: any[] = [];
+  public already_com: boolean = false;
+  public user_id: number;
+  public edit_comment: boolean = false;
+  public rate_placeholder: string;
   
   constructor(private datePicker: DatePicker, private launchNavigator: LaunchNavigator, private route:ActivatedRoute,private router: Router,
     public alertController: AlertController, public loadingController: LoadingController, public toastController: ToastController,
@@ -95,6 +99,7 @@ export class BrbshopDetailPage implements OnInit {
 
     this.filter.id = this.id;
 
+    this.getUserId();
     this.getBrbShop();   
     this.getWorkers();
     this.getServices();
@@ -110,6 +115,10 @@ export class BrbshopDetailPage implements OnInit {
     this.confirmed = false;
     this.wrk_id = null;
     this.refresh(); 
+  }
+
+  editComment() {
+    this.edit_comment = true;    
   }
 
   getBrbShop() {
@@ -131,7 +140,31 @@ export class BrbshopDetailPage implements OnInit {
   getComments() {
     Globals.api.getComments(this.barbershop[0].id, (comment, msg) => {
       this.comments = comment;      
-      this.comments.forEach(com => {
+      this.comments.forEach(com => {  
+        if(com.user == this.user_id) {
+          this.already_com = true;
+          this.subject = com.subject;
+          this.comment_text = com.comment;
+          this.rate = com.rate;
+          switch(this.rate) {
+            case 5:
+              this.rate_placeholder = "Excellent"
+            break;
+            case 4:
+              this.rate_placeholder = "So Good"
+            break;
+            case 3:
+              this.rate_placeholder = "Not Bad"
+            break;
+            case 2:
+              this.rate_placeholder = "So Bad"
+            break;
+            case 1:
+              this.rate_placeholder = "Horrible"
+            break;
+          }
+        }
+
         Globals.api.getProfile(com.user, (profile, msg) => {
           this.coms.push({comment: com, name: profile.name + " " + profile.surname, avatar: profile.avatar})
         });
@@ -149,6 +182,12 @@ export class BrbshopDetailPage implements OnInit {
     Globals.api.getServices(this.id, (services, msg) => {
       this.services = services;      
     });
+  }
+
+  getUserId() {
+    if(Globals.api.currentUser != null) {
+      this.user_id = Globals.api.currentUser.id;
+    }    
   }
 
   getWorkers() {
@@ -250,11 +289,13 @@ export class BrbshopDetailPage implements OnInit {
   sendComment() {
     if(typeof this.subject === undefined || this.subject == undefined || typeof this.comment_text === undefined
       || this.comment_text == undefined || typeof this.rate === undefined || this.rate == undefined) {
-        this.presentToast('Fill all the flieds please.');
+        this.presentToast('Fill all the fields please.');
     } else {
       this.comment = {hairdressing: this.id, subject: this.subject, comment: this.comment, rate: this.rate};
       Globals.api.comment(this.comment, (msg) => {
         console.log(msg)
+        this.already_com = true;
+        this.edit_comment = false;
       });
 
       this.refresh();
