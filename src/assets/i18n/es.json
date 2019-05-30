@@ -55,7 +55,9 @@
         "TOTAL":"Total",
         "DATE":"Fecha",
         "CANCEL":"Cancelar reserva",
-        "NO_CANCEL":"Ya no se puede cancelar"
+        "NO_CANCEL":"Ya no se puede cancelar",
+        "CANCEL_OK":"Reserva cancelada",
+        "CANCEL_ERROR":"No se puede cancelar esta reserva"
       },
       "BRBDETAILS": {
         "TITLE": "Peluqueria",

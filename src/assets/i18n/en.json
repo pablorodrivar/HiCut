@@ -55,7 +55,9 @@
         "TOTAL":"Total",
         "DATE":"Date",
         "CANCEL":"Cancel reservation",
-        "NO_CANCEL":"You can no longer cancel"
+        "NO_CANCEL":"You can no longer cancel",
+        "CANCEL_OK":"Reservation cancelled",
+        "CANCEL_ERROR":"This reservation can't be cancelled"
       },
       "BRBDETAILS": {
         "TITLE": "Barbershop",

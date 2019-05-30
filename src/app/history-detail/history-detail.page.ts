@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import { Globals } from 'app/globals';
 import { ToastController, LoadingController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-history-detail',
@@ -15,7 +16,7 @@ export class HistoryDetailPage {
   hairdresser:any;
   hairdressing:any;
   currentDate=new Date();
-  constructor(private router:Router, private route:ActivatedRoute,public toastController: ToastController,public loadingController: LoadingController) {
+  constructor(private router:Router, private route:ActivatedRoute,public toastController: ToastController,public loadingController: LoadingController,public trans: TranslateService) {
   }
 
   async ionViewWillEnter(){
@@ -42,11 +43,16 @@ export class HistoryDetailPage {
       Globals.api.cancelreservation(this.reservation.id,(status,msg)=>{
         loading.dismiss();
         if (status==="OK"){
-          this.presentToast("Reserva cancelada");
+          this.trans.get('PAGES.HISTORY_DETAILS.CANCEL_OK').subscribe((res: string) => {
+            this.presentToast(res);
+          });
+          
           this.router.navigate(["/tabs/history"]);
         }
         else{
-          this.presentToast("No se puede cancelar esta reserva");
+          this.trans.get('PAGES.HISTORY_DETAILS.CANCEL_ERROR').subscribe((res: string) => {
+            this.presentToast(res);
+          });
         }
       });
     }
