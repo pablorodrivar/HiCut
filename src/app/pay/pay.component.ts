@@ -45,6 +45,7 @@ export class PayComponent implements OnInit {
   pay() {
     //console.log("Trabajaor: " + this.wrk_id + "\nFecha: " + this.myDate + "\nPagado: " + this.paid + "\nServicios: " + this.service_ids)
     Globals.api.postReservation(this.wrk_id, this.myDate, this.paid, this.service_ids, (status, msg) => {
+      console.log(status + ": " + msg)
       this.modalController.dismiss({ paid: true });
     });
   }

@@ -169,8 +169,6 @@ export class BrbshopDetailPage implements OnInit {
           this.coms.push({comment: com, name: profile.name + " " + profile.surname, avatar: profile.avatar})
         });
       });
-
-      console.log(this.coms)
     }); 
   }
 

@@ -26,7 +26,7 @@ export class ProfilePage implements OnInit {
   public edited: boolean = false;
   public url: string;
   public raw_brb_shops: any[] = [];
-  public brbshops: [{id, img}];
+  public brbshops: [{id, img}] = [{id: "", img: ""}];
 
   constructor(private route:ActivatedRoute,private router: Router, private alertController: AlertController, public modalController: ModalController) {
     this.globals = Globals;
@@ -40,28 +40,23 @@ export class ProfilePage implements OnInit {
       this.getProfile();
     }   
     this.getBrbShops(); 
-  }   
+  }     
 
   getBrbShops() {
     Globals.api.getListReservations((list, msg) => {
+      let repeat: number[] = [];
       list.forEach(element => {
         Globals.api.reservation(element.id, (status, msg) => {
           let values = Object.values(status);
-          this.raw_brb_shops.push(values[10]);
+          
+          if(repeat.indexOf(values[10][0].id) <= -1) {
+            repeat.push(values[10][0].id);
+            this.brbshops.push({ id: values[10][0].id, img: values[11].imglist[0] });
+          }          
         });        
-      });
-
-      console.log(this.raw_brb_shops)
-
-      let repeat: number[] = [];
-      this.raw_brb_shops.forEach(val => {      
-        console.log(val.id) 
-        if(!repeat.includes(val.id)) {
-          repeat.push(val.id);
-          this.brbshops.push({ id: val.id, img: val.id });
-        }
-      });
-
+      });      
+      
+      this.brbshops.shift();
       console.log(this.brbshops)
     });
   }

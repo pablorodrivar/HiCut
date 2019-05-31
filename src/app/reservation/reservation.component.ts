@@ -13,7 +13,7 @@ export class ReservationComponent implements OnInit {
   @Input("workers") workers;
   public showServices = true;
   public price: number;
-  public service_ids: any[] = [];
+  public service_ids: number[] = [];
   public selectedServices: any[] = [];
   public service_names: any[] = [];
   public snames: string;
