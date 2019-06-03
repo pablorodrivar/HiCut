@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/home"></ion-back-button>  
     </ion-buttons>
@@ -7,6 +7,10 @@
     <ion-title *ngIf="list_id == 1"><div class="subtitle">{{ 'PAGES.LIST.FOR_MEN' | translate }}</div></ion-title>
     <ion-title *ngIf="list_id == 2"><div class="subtitle">{{ 'PAGES.LIST.FOR_WOMEN' | translate }}</div></ion-title>
     <ion-title *ngIf="list_id == 3"><div class="subtitle">{{ 'PAGES.LIST.ALL' | translate }}</div></ion-title>
+    <ion-searchbar animated (ionChange)="searchBrb($event)"></ion-searchbar>    
+      <ion-buttons slot="end">
+        <ion-button (click)="presentModal()"><ion-icon name="funnel" size="medium"></ion-icon></ion-button>
+      </ion-buttons>
   </ion-toolbar>
 
 
@@ -21,9 +25,8 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <ion-item lines="none" color="medium" style="color: white">
+  <!--<ion-item lines="none" color="medium" style="color: white">
     <ion-chip outline color="medium"><ion-icon name="walk" color="light"></ion-icon><ion-label color="light" class="chip-text">< {{ mdChipText }} km.</ion-label></ion-chip>
-    <!--<ion-chip outline color="medium"><ion-icon name="compass" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ locChipText }}</ion-label></ion-chip>-->
     <ion-chip outline *ngIf="sort_opt == 'dist'" color="medium"><ion-icon name="train" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ 'PAGES.LIST.SORT_BY' | translate }} {{ 'PAGES.LIST.DISTANCE' | translate }}</ion-label></ion-chip>
     <ion-chip outline *ngIf="sort_opt == 'rat'" color="medium"><ion-icon name="star" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ 'PAGES.LIST.SORT_BY' | translate }} {{ 'PAGES.LIST.RATING' | translate }}</ion-label></ion-chip>
     <ion-chip outline *ngIf="sort_opt == 'alp'" color="medium"><ion-icon name="book" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ 'PAGES.LIST.SORT_BY' | translate }} {{ 'PAGES.LIST.ALPHA' | translate }}</ion-label></ion-chip>        
@@ -31,9 +34,7 @@
   </ion-item>
   <ion-item *ngIf="services.length > 0" lines="none" color="tertiary" style="color: white">
     <ion-chip color="medium"><ion-icon name="cut" color="light"></ion-icon><ion-label color="light" class="chip-text">{{ services_names }}</ion-label></ion-chip>
-  </ion-item>  
-
-  <ion-searchbar animated (ionChange)="searchBrb($event)"></ion-searchbar>
+  </ion-item>-->    
   <div
     class="search-results"
     infiniteScroll
