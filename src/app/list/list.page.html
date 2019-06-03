@@ -46,7 +46,7 @@
     <ion-card *ngFor="let brb of brbshops | filter: searchText" (click)="toDetail(brb.brb.id)">
       <ion-badge class="badge" color="light"><ion-icon name="walk"></ion-icon>{{ brb.dist }} km.</ion-badge>
       <!--<ion-chip class="badge" outline color="light"><ion-icon name="walk"></ion-icon><ion-label>{{ brb.dist }} km.</ion-label></ion-chip>-->
-      <ion-card-header>
+      <ion-card-header style="z-index: 100;">
         <ion-card-title>{{ brb.brb.name }}                    
         </ion-card-title>         
         <div *ngIf="brb.rate.stars >= 0 && brb.rate.stars < 0.5"><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>

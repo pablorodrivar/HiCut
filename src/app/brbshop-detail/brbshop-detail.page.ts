@@ -67,6 +67,7 @@ export class BrbshopDetailPage implements OnInit {
   public user_id: number;
   public edit_comment: boolean = false;
   public rate_placeholder: string;
+  public showD = true;
   
   constructor(private datePicker: DatePicker, private launchNavigator: LaunchNavigator, private route:ActivatedRoute,private router: Router,
     public alertController: AlertController, public loadingController: LoadingController, public toastController: ToastController,
@@ -75,6 +76,7 @@ export class BrbshopDetailPage implements OnInit {
       this.price = 0;
       this.tab = "main";
       this.url = ApiController.api_url;
+      this.showD = true;
     }
 
   options: LaunchNavigatorOptions = {
@@ -125,6 +127,7 @@ export class BrbshopDetailPage implements OnInit {
     Globals.api.getHairdressing(this.filter, (list, error) => {
       if(list != null) {
         this.barbershop = list;
+        console.log(this.barbershop)
       } else {
         console.log(error)
       }
@@ -222,6 +225,8 @@ export class BrbshopDetailPage implements OnInit {
       if(typeof data.data !== undefined && data.data != undefined) {
         if(data.data.paid) {
           this.presentToast('Reservation done!');
+        } else {
+          this.presentToast('Error in reservation');
         }
       }
       this.cancel();
@@ -308,6 +313,14 @@ export class BrbshopDetailPage implements OnInit {
     });
 
     return await myModal.present();
+  }
+
+  showData() {
+    if(this.showD) {
+      this.showD = false;
+    } else {
+      this.showD = true;
+    }
   }
 
   async showImage(event) {

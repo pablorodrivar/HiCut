@@ -125,3 +125,44 @@ ion-content {
     right: 5px;
     top: 5px;
   }
+
+  .info-btn {
+      position: absolute;
+      center: 50%;
+      top: 0;
+      width: 100%;
+  }
+
+  .info-item{
+    position: absolute;
+    center: 50%;
+    top: 25%;
+    width: 100%; 
+    max-width: 100%;
+    background-color: transparent;
+    padding: 3%;
+  }
+
+  .email {
+    position: absolute;
+    center: 50%;
+    bottom: 15%;
+    width: 100%; 
+  }
+
+  .phone {
+    position: absolute;
+    center: 50%;
+    bottom: 25%;
+    width: 100%; 
+  }
+
+  .img-cont::after {
+    display: block;
+    position: absolute;
+    background-image: linear-gradient(to top, transparent -200%, black 250%);
+    top: 0%;
+    height: 300px;
+    width: 100%;
+    content: '';
+  }

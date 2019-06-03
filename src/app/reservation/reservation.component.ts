@@ -130,13 +130,13 @@ export class ReservationComponent implements OnInit {
       this.showBrbPicker = false;      
       this.showDatePicker = true;
       this.getHours();
-    } else {
+    } /*else {
       if(this.opened){
         this.presentToast("Choose a barber first")
         this.opened = false;
       }     
       this.opened = true; 
-    }
+    }*/
   }
 
   getHours() {

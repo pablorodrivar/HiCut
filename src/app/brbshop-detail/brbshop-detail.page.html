@@ -27,22 +27,31 @@
   <div *ngIf="tab === 'main'">
     <ion-list>              
       <ion-slides pager="true">        
-        <ion-slide *ngFor="let slide of slider">
-          <ion-badge class="badge" color="light"><ion-icon name="mail"></ion-icon>{{ email }}</ion-badge>
-          <ion-badge class="badge" style="top: 35px !important;" color="light"><ion-icon name="call"></ion-icon>{{ phone }}</ion-badge>
-          <img src="{{ url }}{{ slide }}">
+        <ion-slide *ngFor="let slide of slider; let i = index;">
+          <ion-button style="z-index: 100;" (click)="showData()" fill="clear" expand="full" color="light" *ngIf="i == 0 && showD" class="info-btn"><ion-icon name="arrow-up"></ion-icon></ion-button>
+          <ion-button style="z-index: 100;" (click)="showData()" fill="clear" expand="full" color="light" *ngIf="i == 0 && !showD" class="info-btn"><ion-icon name="arrow-down"></ion-icon></ion-button>                   
+          <div class="img-cont" *ngIf="i == 0 && showD">
+            <div class="opaque-class" *ngIf="showD">
+              <div class="info-item" style="z-index: 100;" *ngIf="i == 0">
+                <ion-label style="text-align: center; z-index: 100;" color="light">{{ desc }}"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna...</ion-label>            
+              </div>
+              <div class="email" style="z-index: 100;" *ngIf="i == 0">
+                <ion-label style="text-align: center; z-index: 100;" color="light"><ion-icon name="mail"></ion-icon>{{ email }}pablorodriguez12150@gmail.com</ion-label>            
+              </div>
+              <div class="phone" style="z-index: 100;" *ngIf="i == 0">
+                <ion-label style="text-align: center; z-index: 100;" color="light"><ion-icon name="call"></ion-icon>{{ phone }}609 533 504</ion-label>            
+              </div>
+            </div> 
+            <img src="{{ url }}{{ slide }}">
+          </div>  
+          <div *ngIf="i != 0 || !showD">
+            <img src="{{ url }}{{ slide }}">
+          </div>        
         </ion-slide>
       </ion-slides>  
       <ion-item>
         <ion-button style="display: inline-block; width: 100%;" fill="clear" size="small" expand="full" (click)="showLocation()">{{ 'PAGES.BRBDETAILS.SHOW_LOCATION' | translate }}</ion-button>        
-      </ion-item>        
-      
-      <ion-item>
-        <div class="title">
-          <ion-label text-center class="title" position="stacked">{{ 'PAGES.BRBDETAILS.BRB_DESC' | translate }}</ion-label>          
-        </div>
-        <ion-text style="text-align: center">{{ desc }}</ion-text>
-      </ion-item>
+      </ion-item>              
              
       <ion-item lines="none">
         <div class="title">
