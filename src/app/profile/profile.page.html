@@ -35,7 +35,7 @@
     <ion-button fill style="width: 100%; color:blue" (click)="presentModal()">{{ 'PAGES.ACCOUNTSETTINGS.EDIT_PROFILE' | translate }}</ion-button>
   </ion-item>
 
-  <ion-item lines ="none" class="title">
+  <ion-item lines ="none" class="title" *ngIf="brbshops.length != 0">
     <ion-label text-center>{{ 'PAGES.ACCOUNTSETTINGS.LAST_BRBSHOPS' | translate }}</ion-label>    
   </ion-item>
   <ion-item lines="none">

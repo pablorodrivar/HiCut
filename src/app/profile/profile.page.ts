@@ -51,13 +51,14 @@ export class ProfilePage implements OnInit {
           
           if(repeat.indexOf(values[10][0].id) <= -1) {
             repeat.push(values[10][0].id);
-            //this.brbshops.push({ id: values[10][0].id, img: values[11].imglist[0] });
+            let vals = Object.values(values[11]);
+            let img = vals[9][0];
+            this.brbshops.push({ id: values[10][0].id, img: img });
           }          
         });        
       });      
       
       this.brbshops.shift();
-      console.log(this.brbshops)
     });
   }
 
