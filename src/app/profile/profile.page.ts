@@ -48,12 +48,13 @@ export class ProfilePage implements OnInit {
       list.forEach(element => {
         Globals.api.reservation(element.id, (status, msg) => {
           let values = Object.values(status);
+          let v = Object.values(values[8])
           
-          if(repeat.indexOf(values[10][0].id) <= -1) {
-            repeat.push(values[10][0].id);
-            let vals = Object.values(values[11]);
+          if(repeat.indexOf(v[0]) <= -1) {
+            repeat.push(v[0]);
+            let vals = Object.values(values[8]);
             let img = vals[9][0];
-            this.brbshops.push({ id: values[10][0].id, img: img });
+            this.brbshops.push({ id: v[0], img: img });
           }          
         });        
       });      
