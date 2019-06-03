@@ -9,10 +9,34 @@
     max-height: 100%;     
     margin-left: auto; 
     margin-right: auto;
-    margin-bottom: 30px;
-    margin-top: 15px;
 }
+
+.img-cont::after {
+    display: block;
+    position: relative;
+    background-image: linear-gradient(to bottom, transparent 0%, black 175%);
+    margin-top: -150px;
+    height: 100px;
+    width: 100%;
+    content: '';
+  }
 
 .chip-text {
     font-size: 12px;
+}
+
+ion-card-header {
+    position: absolute;
+    bottom: 0px; 
+    color: white;
+}
+
+ion-card-title {
+    color: white;
+}
+
+.badge {
+    position: absolute;
+    right: 5px;
+    top: 5px;
 }

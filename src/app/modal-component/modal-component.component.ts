@@ -42,7 +42,7 @@ export class ModalComponent implements OnInit {
     }
   }
 
-  getServices(event) {
+  /*getServices(event) {
     this.services = event.detail.value;    
-  }
+  }*/
 }
