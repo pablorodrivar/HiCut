@@ -116,6 +116,7 @@ export class ListPage {
         loading.dismiss();
         console.log(error)
         this.presentToast(error);
+        this.router.navigate(["/tabs/home"]);
         return;
       }
     });
