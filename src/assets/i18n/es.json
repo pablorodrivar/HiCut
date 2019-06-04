@@ -1,5 +1,8 @@
 {
   "PAGES": {
+    "APP":{
+      "EXIT":"Presiona de nuevo para salir!"
+    },
     "HOME": {
         "TITLE": "Inicio - HiCut",
         "WELCOME": "Bienvenido a HiCut",

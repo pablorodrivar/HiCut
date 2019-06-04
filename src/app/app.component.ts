@@ -17,7 +17,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private _translate: TranslateService
+    private _translate: TranslateService,
+    public toastController: ToastController
   ) {
 
     this.initializeApp();
@@ -26,10 +27,30 @@ export class AppComponent {
     this._translate.use(userLang);
   }
 
+  public static lastTimeBackPress:number = new Date().getTime();
+  public static timePeriodToExit:number = 2000;
+
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+    });
+    var exit_text="";
+    this._translate.get('PAGES.APP.EXIT').subscribe(async (res: string) => {
+      exit_text=res;
+    });
+    this.platform.backButton.subscribe(async () => {
+      
+      if (new Date().getTime() - AppComponent.lastTimeBackPress < AppComponent.timePeriodToExit) {
+        navigator['app'].exitApp(); // work for ionic 4
+      } else {
+        const toast = await this.toastController.create({
+          message: exit_text,
+          duration: 1000
+        });
+        toast.present();
+        AppComponent.lastTimeBackPress = new Date().getTime();
+      }
     });
   }
 }
