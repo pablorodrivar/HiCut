@@ -148,7 +148,6 @@ export class BrbshopDetailPage implements OnInit {
           this.subject = com.subject;
           this.comment_text = com.comment;
           this.rate = com.rate.stars;
-          this.total_rate = com.rate.total;
           switch(this.rate) {
             case 5:
               var text;
@@ -232,7 +231,8 @@ export class BrbshopDetailPage implements OnInit {
     this.phone = this.barbershop[0].tlf;
     this.email = this.barbershop[0].email;
     this.desc = this.barbershop[0].desc;
-    this.rate = this.barbershop[0].rate;
+    this.brb_rating = this.barbershop[0].rate.stars;
+    this.total_rate = this.barbershop[0].rate.total;
   }
 
   async pay() {
