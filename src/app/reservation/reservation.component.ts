@@ -126,10 +126,12 @@ export class ReservationComponent implements OnInit {
     }
     
     if(this.showBrbPicker && this.wrk_id != undefined) {
-      this.progress = this.progress + 0.3;
-      this.showBrbPicker = false;      
-      this.showDatePicker = true;
-      this.getHours();
+      this.getHours();      
+      setTimeout(()=> {  
+        this.progress = this.progress + 0.3;
+        this.showBrbPicker = false;      
+        this.showDatePicker = true;
+      }, 1000);            
     } /*else {
       if(this.opened){
         this.presentToast("Choose a barber first")
@@ -224,6 +226,7 @@ export class ReservationComponent implements OnInit {
   }
 
   updateDate(event) {   
+    this.hourValues = [];
     this.disableDate = true;
     let date:string = event.detail.value;    
     date = date.substr(0, date.indexOf("T"));    
@@ -253,29 +256,48 @@ export class ReservationComponent implements OnInit {
 
       nice.forEach(val => {
         hours.push(val.hours)
-      });
+      });      
 
-      this.showHourPicker = true;
-
-      console.log(hours)
+      let clock = { hour: new Date().getHours(), minutes: new Date().getMinutes() };
+      console.log(clock)
+      console.log(this.myDate + " " + new Date().getDate())
+      let is_today = today_month == +this.myDate.substring(5,7) && today_day == +this.myDate.substr(8,9);
+      console.log(is_today)
       
       if(typeof hours[0] !== undefined && hours[0] != undefined) {
         hours[0].forEach(val => {
-          this.hourValues.push(val);
+          //console.log("Hora: " + val.substr(0, 2) + " Minuto: " + val.substr(3,4))  
+          if(clock.hour <= +val.substr(0,2) && clock.minutes <= +val.substr(3,4) && is_today) {
+            this.hourValues.push(val);
+          } else if(!is_today) {
+            this.hourValues.push(val);
+          }                  
         });
       }    
 
       if(typeof hours[1] !== undefined && hours[1] != undefined) {
         hours[1].forEach(val => {
-          this.hourValues.push(val);
+          if(clock.hour <= +val.substr(0,2) && clock.minutes <= +val.substr(3,4) && is_today) {
+            this.hourValues.push(val);
+          } else if(!is_today) {
+            this.hourValues.push(val);
+          }  
         }); 
       }   
       
       if(typeof hours[2] !== undefined && hours[2] != undefined) {
         hours[2].forEach(val => {
-          this.hourValues.push(val);
+          if(clock.hour <= +val.substr(0,2) && clock.minutes <= +val.substr(3,4) && is_today) {
+            this.hourValues.push(val);
+          } else if(!is_today) {
+            this.hourValues.push(val);
+          }  
         }); 
-      }    
+      }   
+      
+      setTimeout(() => {
+        this.showHourPicker = true;
+      }, 1000);
     } else {
       this.valid_date = false;
       this.showHourPicker = false;
