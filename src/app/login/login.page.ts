@@ -19,6 +19,8 @@ export class loginPage {
   }
 
   ionViewWillEnter(){
+    console.log(this.router.url);
+    
     this.email = "";
     this.password = "";
   }
