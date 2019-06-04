@@ -105,7 +105,8 @@
         "BRB_SERVICES": "Servicios",
         "DO_RES": "Haz Tu Reserva",
         "VALUATIONS": "valoraciones",
-        "RATE": "PUNTUA"      
+        "RATE": "PUNTUA",
+        "NO_COMMENTS": "Todavia no hay comentarios, se el primero en comentar!"        
       },
       "LIST": {
         "TITLE": "Peluquerias",

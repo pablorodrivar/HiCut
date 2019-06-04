@@ -74,16 +74,17 @@ export class EditComponent implements OnInit {
       // available options are 
       // window.imagePicker.OutputType.FILE_URI (0) or 
       // window.imagePicker.OutputType.BASE64_STRING (1)
-      outputType: 1
+      outputType: 0
     };
 
     this.imageResponse = [];
     this.imagePicker.getPictures(this.options).then((results) => {
       for (var i = 0; i < results.length; i++) {
-        this.imageResponse.push('data:image/jpeg;base64,' + results[i]);
+        this.imageResponse.push(results[i]);
         this.image_picked = true;
       }
       this.image = this.imageResponse[0];
+      this.avatar = this.image;
     }, (err) => {
       alert(err);
     });

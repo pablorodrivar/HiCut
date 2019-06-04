@@ -193,6 +193,7 @@ export class BrbshopDetailPage implements OnInit {
 
   getWorkers() {
     Globals.api.getHairdressers(this.id, (hairdressers, msg) => {
+      console.log(hairdressers)
       this.workers = hairdressers;      
     });         
   }
