@@ -45,7 +45,7 @@ export class AppComponent {
       switch (this.router.url){
         case "/tabs/home":
         case "/tabs/history":
-        case "/tabs/login/profile":
+        case "/tabs/profile":
         case "/tabs/login":
             if (new Date().getTime() - AppComponent.lastTimeBackPress < AppComponent.timePeriodToExit) {
               navigator['app'].exitApp(); // work for ionic 4
