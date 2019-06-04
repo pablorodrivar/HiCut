@@ -126,7 +126,8 @@
         "ALPHA": "Alfabeticamente",
         "SEARCH_FILTER": "Filtro de Busqueda",
         "PULL_REFRESH": "Arrastra para Actualizar",
-        "REFRESHING": "Actualizando..."              
+        "REFRESHING": "Actualizando...",
+        "LOADING_HAIRDRESSING":"Cargando lista de peluquerias..."          
       },
       "ACCOUNTSETTINGS": {
         "TITLE": "Tu Perfil",

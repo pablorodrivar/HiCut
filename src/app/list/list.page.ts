@@ -1,6 +1,6 @@
 import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { ModalComponent } from '../modal-component/modal-component.component';
 import { ModalController } from '@ionic/angular';
 import { Globals } from '../globals';
@@ -9,6 +9,9 @@ import { Filter } from '../../classes/pojo/filter';
 import { LoadingController } from '@ionic/angular';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { ApiController } from 'classes/api.controller';
+import { delay } from 'rxjs/operators';
+import { async } from '@angular/core/testing';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-list',
@@ -16,8 +19,11 @@ import { ApiController } from 'classes/api.controller';
   styleUrls: ['./list.page.scss'],
 })
 
-export class ListPage implements OnInit {
+export class ListPage {
+
   private globals;
+  private viewLoaded;
+
   public list_id; 
   public searchText = '';
   public list: any[] = [];
@@ -26,17 +32,14 @@ export class ListPage implements OnInit {
   public locationChip: boolean = false;
   public mdChipText: string;
   public locChipText: string;
-  public distances: any[] = [];
-  public brbshops: any[] = [];
-  public ratings: any[] = [];
   public sort_opt: string;
   public services: any[] = [];
   public services_names:string;
   public url: string;
 
   constructor(private route:ActivatedRoute, private router: Router, 
-    public alertController: AlertController, public modalController: ModalController,
-    public geolocation: Geolocation, public loadingController: LoadingController, public androidPermissions: AndroidPermissions) { 
+    public alertController: AlertController, public modalController: ModalController,public trans: TranslateService,
+    public geolocation: Geolocation, public loadingController: LoadingController, public androidPermissions: AndroidPermissions,public toastController: ToastController) { 
     this.globals = Globals;    
     this.filter.lat = 37.183054;
     this.filter.lng = -3.6021928;
@@ -54,90 +57,88 @@ export class ListPage implements OnInit {
     this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.LOCATION, this.androidPermissions.PERMISSION.GET_ACCOUNTS]);
   }
 
-  ngOnInit() {
-    //DEVICE FISICO
-    this.checkPermissions();
+  ionViewWillEnter(){
+    this.viewLoaded=false;
     this.locChipText = "";
     this.list = [];
-    this.distances = [];
-    this.brbshops = [];
-    this.ratings = [];
-    this.presentLoading();
-    this.list_id = this.route.snapshot.paramMap.get('id');    
+    this.list_id = this.route.snapshot.paramMap.get('id');
+    if (this.list_id===undefined || this.list_id === null){//evitamos bugazon de ionic
+      this.router.navigate(["/tabs/home/"]);
+    }
     this.filter.genre = +this.list_id;   
     
     //CUANDO USEMOS EL DEVICE FISICO
+    //this.checkPermissions();
     //this.getGeoLocation();  
 
-    this.getBrb();
+    this.loadBrb();
   }
 
   getGeoLocation() {
-    this.geolocation.getCurrentPosition().then(loc => {
+    //this.geolocation.getCurrentPosition().then(loc => {
       //this.filter.lat = loc.coords.latitude;
       //this.filter.lng = loc.coords.longitude;
-    });   
+    //});   
   }
 
-  getBrb() {
-    Globals.api.getHairdressing(this.filter, (list, error) => {
-      if(list != null) {        
+  async loadBrb() {
+    var text;
+    await this.trans.get('PAGES.LIST.LOADING_HAIRDRESSING').subscribe(async (res: string) => {
+      text=res;
+    });
+    const loading = await this.loadingController.create({
+      message: text
+    });
+    await loading.present();
+    this.getLocation(this.filter.lat, this.filter.lng).then(data => {
+      if(typeof data.results !== undefined && data.results != undefined) {
+        this.locChipText = data.results[0].components.city;
+      }        
+    });
+
+    Globals.api.getHairdressing(this.filter, async (list, error) => {
+      
+      
+      if(list !== null) {        
         this.list = list;
         this.locChipText = this.list[0]
-      } else {
-        console.log(error)
-      }
 
-      this.getLocation(this.filter.lat, this.filter.lng).then(data => {
-        if(typeof data.results !== undefined && data.results != undefined) {
-          this.locChipText = data.results[0].components.city;
-        }        
-      });
 
-      this.list.forEach(val => {
-        Globals.api.getRating(val.id, (rate, error) => {
-          this.ratings.push(rate);          
+        for (let index = 0; index < list.length; index++) {
+          const element = list[index];
+          Globals.api.getRating(element.id,  (rate, error) => {
+            element['rate']=rate;
+          });
+          element['distance']=this.distance(element.lat, element.lng, this.filter.lat, this.filter.lng, "K");
+        }
+
+        this.sort(this.list, this.sort_opt, true, (brbs, error) => {
+          this.list = brbs;
+          this.viewLoaded=true;
+          loading.dismiss();
         });
-      });
-
-      this.list.forEach(val => {
-        this.distances.push(this.distance(val.lat, val.lng, this.filter.lat, this.filter.lng, "K"));
-      });     
-
-      this.merge(this.sort_opt, true);      
-      
-      console.log(this.brbshops)
+      } else {
+        loading.dismiss();
+        console.log(error)
+        this.presentToast(error);
+        return;
+      }
     });
   }
-
+  async presentToast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 1000
+    });
+    toast.present();
+  }
   doRefresh(event) {
     setTimeout(() => {
       this.list = [];
-      this.ngOnInit();
-      event.target.complete();
-    }, 1000);
-  }
-
-  refresh() {
-    setTimeout(() => {
-      this.list = [];
-      this.ngOnInit();
-    }, 1000);
-  }
-
-  merge(opt: string, asc: boolean) {
-    setTimeout(() => {
-      for(var _i = 0; _i < this.list.length; _i++) {
-        this.brbshops.push({
-          brb: this.list[_i],
-          dist: this.distances[_i],
-          rate: this.ratings[_i]
-        });
+      this.ionViewWillEnter();
+      if (event!==null){
+        event.target.complete();
       }
-
-      this.sort(this.brbshops, opt, asc, (brbs, error) => {
-        this.brbshops = brbs;
-      });
     }, 1000);
   }
 
@@ -173,19 +174,11 @@ export class ListPage implements OnInit {
           this.services_names = this.services.join(", ");    
         }
   
-        this.refresh();
+        this.doRefresh(null);
       }      
     })
 
     return await modal.present();
-  }
-
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      duration: 1000,
-      message: "Loading List of Hairdressers"
-    });
-    await loading.present();
   }
 
   searchBrb(event) {    
@@ -240,7 +233,7 @@ export class ListPage implements OnInit {
   sort(array: any[], opt: string, asc: boolean, callback: (array, error) => any) {
     if(opt == "dist") {   
       array = array.sort((item1, item2) => {
-        return item1.dist - item2.dist;
+        return item1.distance - item2.distance;
       });  
     } else if (opt == "rat") {
       array = array.sort((item1, item2) => {
@@ -255,10 +248,10 @@ export class ListPage implements OnInit {
       });
     } else if (opt == "alp") {
       array = array.sort((item1, item2) => {
-        if(item1.brb.name > item2.brb.name) {
+        if(item1.name > item2.name) {
           return 1;
         }
-        if(item1.brb.name < item2.brb.name) {
+        if(item1.name < item2.name) {
           return -1;
         }
         return 0;

@@ -11,8 +11,8 @@ export class FilterPipe implements PipeTransform {
     text = text.toLocaleLowerCase();
 
    return data.filter( element => {
-      return element.brb.name.toLocaleLowerCase().includes(text) 
-      || element.brb.address.toLocaleLowerCase().includes(text);
+      return element.name.toLocaleLowerCase().includes(text) 
+      || element.address.toLocaleLowerCase().includes(text);
     });
   }
 

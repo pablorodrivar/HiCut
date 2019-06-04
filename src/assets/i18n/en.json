@@ -122,7 +122,8 @@
         "ALPHA": "Alphabetically",
         "SEARCH_FILTER": "Search Filter",
         "PULL_REFRESH": "Pull to refresh",
-        "REFRESHING": "Refreshing..."          
+        "REFRESHING": "Refreshing...",
+        "LOADING_HAIRDRESSING":"Loading hairdressing list..."    
       },
       "ACCOUNTSETTINGS": {
         "TITLE": "Your Profile",

@@ -15,7 +15,7 @@
 
 
 </ion-header>
-<ion-content *ngIf="brbshops !== undefined && brbshops !== null">
+<ion-content *ngIf="viewLoaded !== undefined && viewLoaded !== null  && viewLoaded !== false">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
@@ -44,27 +44,29 @@
   >            
 
     <!-- | filter: searchText -->
-    <ion-card *ngFor="let brb of brbshops | filter: searchText" (click)="toDetail(brb.brb.id)">
-      <ion-badge class="badge" color="light"><ion-icon name="walk"></ion-icon>{{ brb.dist }} km.</ion-badge>
+    <ion-card *ngFor="let brb of list | filter: searchText" (click)="toDetail(brb.id)">
+      <ion-badge class="badge" color="light"><ion-icon name="walk"></ion-icon>{{ brb.distance }} km.</ion-badge>
       <!--<ion-chip class="badge" outline color="light"><ion-icon name="walk"></ion-icon><ion-label>{{ brb.dist }} km.</ion-label></ion-chip>-->
       <ion-card-header style="z-index: 100;">
-        <ion-card-title>{{ brb.brb.name }}                    
-        </ion-card-title>         
-        <div *ngIf="brb.rate.stars >= 0 && brb.rate.stars < 0.5"><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>
-        <div *ngIf="brb.rate.stars >= 0.5 && brb.rate.stars < 1"><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>
-        <div *ngIf="brb.rate.stars >= 1 && brb.rate.stars < 1.35"><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>
-        <div *ngIf="brb.rate.stars >= 1.35 && brb.rate.stars < 1.85"><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>  
-        <div *ngIf="brb.rate.stars >= 1.85 && brb.rate.stars < 2.35"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>
-        <div *ngIf="brb.rate.stars >= 2.35 && brb.rate.stars < 2.85"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>         
-        <div *ngIf="brb.rate.stars >= 2.85 && brb.rate.stars < 3.35"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>         
-        <div *ngIf="brb.rate.stars >= 3.35 && brb.rate.stars < 3.85"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>         
-        <div *ngIf="brb.rate.stars >= 3.85 && brb.rate.stars < 4.35"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>         
-        <div *ngIf="brb.rate.stars >= 4.35 && brb.rate.stars < 4.85"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>   
-        <div *ngIf="brb.rate.stars >= 4.85 && brb.rate.stars <= 5"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>           
+        <ion-card-title>{{ brb.name }}                    
+        </ion-card-title>
+        <div *ngIf="brb.rate!==undefined && brb.rate!==null">
+          <div *ngIf="brb.rate.stars >= 0 && brb.rate.stars < 0.5"><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>
+          <div *ngIf="brb.rate.stars >= 0.5 && brb.rate.stars < 1"><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>
+          <div *ngIf="brb.rate.stars >= 1 && brb.rate.stars < 1.35"><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>
+          <div *ngIf="brb.rate.stars >= 1.35 && brb.rate.stars < 1.85"><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>  
+          <div *ngIf="brb.rate.stars >= 1.85 && brb.rate.stars < 2.35"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>
+          <div *ngIf="brb.rate.stars >= 2.35 && brb.rate.stars < 2.85"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>         
+          <div *ngIf="brb.rate.stars >= 2.85 && brb.rate.stars < 3.35"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>         
+          <div *ngIf="brb.rate.stars >= 3.35 && brb.rate.stars < 3.85"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon><ion-icon name="star-outline"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>         
+          <div *ngIf="brb.rate.stars >= 3.85 && brb.rate.stars < 4.35"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>         
+          <div *ngIf="brb.rate.stars >= 4.35 && brb.rate.stars < 4.85"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>   
+          <div *ngIf="brb.rate.stars >= 4.85 && brb.rate.stars <= 5"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon> ({{ brb.rate.total }} {{ 'PAGES.LIST.VALUATIONS' | translate }})</div>           
+        </div>
       </ion-card-header>
     
       <div class="img-cont">
-        <img src="{{ url }}{{ brb.brb.imglist[0] }}" class="brb-img">
+        <img src="{{ url }}{{ brb.imglist[0] }}" class="brb-img">
       </div>      
     </ion-card>
   </div>
