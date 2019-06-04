@@ -142,13 +142,13 @@ export class ProfilePage implements OnInit {
 
   async showAlert() {
     var logout, sure, yes;
-    this.trans.get('PAGES.ACCOUNT_SETTINGS.LOGOUT').subscribe(async (res: string) => {
+    await this.trans.get('PAGES.ACCOUNTSETTINGS.LOGOUT').subscribe(async (res: string) => {
       logout=res;
     });
-    this.trans.get('PAGES.ACCOUNT_SETTINGS.SURE').subscribe(async (res: string) => {
+    await this.trans.get('PAGES.ACCOUNTSETTINGS.SURE').subscribe(async (res: string) => {
       sure=res;
     });
-    this.trans.get('PAGES.ACCOUNT_SETTINGS.YES').subscribe(async (res: string) => {
+    await this.trans.get('PAGES.ACCOUNTSETTINGS.YES').subscribe(async (res: string) => {
       yes=res;
     });
     const alert = await this.alertController.create({
