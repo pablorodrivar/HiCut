@@ -101,9 +101,6 @@ export class ListPage {
 
         for (let index = 0; index < list.length; index++) {
           const element = list[index];
-          Globals.api.getRating(element.id,  (rate, error) => {
-            element['rate']=rate;
-          });
           element['distance']=this.distance(element.lat, element.lng, this.filter.lat, this.filter.lng, "K");
         }
 
