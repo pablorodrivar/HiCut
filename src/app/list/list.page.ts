@@ -68,7 +68,6 @@ export class ListPage {
     this.filter.genre = +this.list_id;   
     
     //CUANDO USEMOS EL DEVICE FISICO
-    //this.checkPermissions();
     //this.getGeoLocation();  
 
     this.loadBrb();
@@ -90,11 +89,6 @@ export class ListPage {
       message: text
     });
     await loading.present();
-    this.getLocation(this.filter.lat, this.filter.lng).then(data => {
-      if(typeof data.results !== undefined && data.results != undefined) {
-        this.locChipText = data.results[0].components.city;
-      }        
-    });
 
     Globals.api.getHairdressing(this.filter, async (list, error) => {
       
