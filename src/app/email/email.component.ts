@@ -3,6 +3,7 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import { ModalController, ToastController } from '@ionic/angular';
 import { Globals } from 'app/globals';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-email',
@@ -16,7 +17,7 @@ export class EmailComponent implements OnInit {
   public isLoged: boolean;
 
   constructor(private emailComposer: EmailComposer, private modalController: ModalController, public toastController: ToastController,
-    public router: Router) { }
+    public router: Router, public trans: TranslateService) { }
 
   ngOnInit() {
     this.isLoged = Globals.api.isLoged();
@@ -51,10 +52,18 @@ export class EmailComponent implements OnInit {
       this.subject != undefined && typeof this.subject !== undefined &&
       this.body != undefined && typeof this.body !== undefined) {
         this.emailComposer.open(email);
-        this.presentToast('Email sent')
+        var text;
+        this.trans.get('PAGES.EMAIL.EMAIL_SENT').subscribe(async (res: string) => {
+          text=res;
+        });
+        this.presentToast(text)
         this.modalController.dismiss();
     } else {
-      this.presentToast('Fill all the fields');
+      var text;
+      this.trans.get('PAGES.EMAIL.FILL_FIELDS').subscribe(async (res: string) => {
+        text=res;
+      });
+      this.presentToast(text);
     }
   }
 

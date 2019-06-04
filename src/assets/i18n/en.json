@@ -102,7 +102,16 @@
         "DO_RES": "Do Your Reservation",
         "VALUATIONS": "valuations",
         "RATE": "RATE",
-        "NO_COMMENTS": "No comments yet, be the first to comment!"   
+        "NO_COMMENTS": "No comments yet, be the first to comment!",
+        "LOADING_HAIRDRESSER": "Loading Hairdresser",
+        "RESERVATION_DONE": "Reservation Done!",
+        "ERROR_IN_RESERVATION": "Error in Reservation",
+        "EXCELLENT": "Excellent",
+        "SO_GOOD": "So Good",
+        "NOT BAD": "Not Bad",
+        "SO_BAD": "So Bad",
+        "HORRIBLE": "Horrible",
+        "FILL_FIELDS": "Fill all the fields please."   
       },
       "LIST": {
         "TITLE": "Hairdressings",
@@ -137,7 +146,10 @@
         "LOCATION": "Location: ",
         "EMAIL": "Email: ",
         "PHONE": "Phone: ",
-        "PRIVATE": "Private"
+        "PRIVATE": "Private",
+        "LOGOUT": "Log Out",
+        "SURE": "Are you sure you want to log out?",
+        "YES": "YES"
       },
       "EDIT_PROFILE": {
         "TITLE":"Edit Profile",
@@ -176,7 +188,9 @@
         "HOUR": "Hour",
         "SERVICES": "Services",
         "FINAL_PRICE": "Final Price",
-        "PAY": "PAY"
+        "PAY": "PAY",
+        "RESERVATION_ON": "Reservation on ",
+        "WITH": " with "
       },
       "RESERVATION": {
         "DO_YOUR_RESERVATION": "Do Your Reservation!",
@@ -186,7 +200,11 @@
         "OOPS": "Oops, it seems you're not loged in!",      
         "PLEASE_LOG": "Please log in first to do a reservation.",
         "LOG_REG": "LOG IN | REGISTER",
-        "PRICE": "Price"       
+        "PRICE": "Price",
+        "ANY_HAIRDRESSER": "Any Hairdresser",
+        "CHOOSE_DATE_FIRST": "Choose a Date First",
+        "CHOOSE_SERVICES_FIRST": "Choose some services first",
+        "AVAILABLE_HOURS": "This day hasn't got available hours."       
       },
       "EMAIL": {
         "SEND_EMAIL": "Send an Email",
@@ -195,7 +213,9 @@
         "OOPS": "Oops, it seems you're not loged in!", 
         "PLEASE_LOG": "Please log in first to send an email.",
         "LOG_REG": "LOG IN | REGISTER",
-        "SEND": "Send"
+        "SEND": "Send",
+        "EMAIL_SENT": "Email sent.",
+        "FILL_FIELDS": "Fill all the fields please."
       }
     }
  }

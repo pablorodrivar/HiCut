@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
 import { Globals } from 'app/globals';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-reservation',
@@ -43,7 +44,7 @@ export class ReservationComponent implements OnInit {
   public opened = false;
   public valid_date: boolean = true;
 
-  constructor(public modalController: ModalController, public toastController: ToastController, public router:Router) {     
+  constructor(public modalController: ModalController, public toastController: ToastController, public router:Router, public trans: TranslateService) {     
     this.showHourPicker = false;
     this.progress = 0;
   }
@@ -56,7 +57,11 @@ export class ReservationComponent implements OnInit {
     this.forward_disabled = false;
     this.disableDate = false;
     this.progress = 0;
-    this.workers.unshift({id: -1, name: "Any Hairdresser"});
+    var text;
+    this.trans.get('PAGES.RESERVATION.ANY_HAIRDRESSER').subscribe(async (res: string) => {
+      text=res;
+    });
+    this.workers.unshift({id: -1, name: text});
   }
 
   back() {
@@ -92,7 +97,11 @@ export class ReservationComponent implements OnInit {
 
   confirm() {
     if(typeof this.myHour === undefined || this.myHour == undefined) {
-      this.presentToast("Choose a date first");
+      var text;
+      this.trans.get('PAGES.RESERVATION.CHOOSE_DATE_FIRST').subscribe(async (res: string) => {
+        text=res;
+      });
+      this.presentToast(text);
     } else {
       this.confirmed = true;
       this.modalController.dismiss({ wrk_id: this.wrk_id, wrk_name: this.wrk_name, hour: this.myHour, date: this.myDate,  paid: 1, services: this.snames,
@@ -116,7 +125,11 @@ export class ReservationComponent implements OnInit {
         this.showServices = false;
         this.showBrbPicker = true;
       } else {
-        this.presentToast("Choose some services first");
+        var text;
+        this.trans.get('PAGES.RESERVATION.CHOOSE_SERVICES_FIRST').subscribe(async (res: string) => {
+          text=res;
+        });
+        this.presentToast(text);
       }      
     }
 
@@ -300,7 +313,11 @@ export class ReservationComponent implements OnInit {
           this.showHourPicker = false;
           this.myHour = null;
           this.disableDate = false;
-          this.presentToast("This day hasn't got available hours.")
+          var text;
+          this.trans.get('PAGES.RESERVATION.AVAILABLE_HOURS').subscribe(async (res: string) => {
+            text=res;
+          });
+          this.presentToast(text)
         } else {
           this.showHourPicker = true;
         }        

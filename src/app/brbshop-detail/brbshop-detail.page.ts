@@ -15,6 +15,7 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
 import { EmailComponent } from 'app/email/email.component';
 import { InfoComponent } from '../info/info.component';
 import { ApiController } from 'classes/api.controller';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -72,7 +73,7 @@ export class BrbshopDetailPage implements OnInit {
   constructor(private datePicker: DatePicker, private launchNavigator: LaunchNavigator, private route:ActivatedRoute,private router: Router,
     public alertController: AlertController, public loadingController: LoadingController, public toastController: ToastController,
     public modalController: ModalController, public payComponent: PayComponent, public domController: DomSanitizer, public galleryComponent: GalleryComponent,
-    public callNumber: CallNumber) {
+    public callNumber: CallNumber, public trans: TranslateService) {
       this.price = 0;
       this.tab = "main";
       this.url = ApiController.api_url;
@@ -151,19 +152,39 @@ export class BrbshopDetailPage implements OnInit {
           this.rate = com.rate;
           switch(this.rate) {
             case 5:
-              this.rate_placeholder = "Excellent"
+              var text;
+              this.trans.get('PAGES.BRBDETAILS.EXCELLENT').subscribe(async (res: string) => {
+                text=res;
+              });
+              this.rate_placeholder = text;
             break;
             case 4:
-              this.rate_placeholder = "So Good"
+              var text;
+              this.trans.get('PAGES.BRBDETAILS.SO_GOOD').subscribe(async (res: string) => {
+                text=res;
+              });
+              this.rate_placeholder = text;
             break;
             case 3:
-              this.rate_placeholder = "Not Bad"
+              var text;
+              this.trans.get('PAGES.BRBDETAILS.NOT_BAD').subscribe(async (res: string) => {
+                text=res;
+              });
+              this.rate_placeholder = text;
             break;
             case 2:
-              this.rate_placeholder = "So Bad"
+              var text;
+              this.trans.get('PAGES.BRBDETAILS.SO_BAD').subscribe(async (res: string) => {
+                text=res;
+              });
+              this.rate_placeholder = text;
             break;
             case 1:
-              this.rate_placeholder = "Horrible"
+              var text;
+              this.trans.get('PAGES.BRBDETAILS.HORRIBLE').subscribe(async (res: string) => {
+                text=res;
+              });
+              this.rate_placeholder = text;
             break;
           }
         }
@@ -225,9 +246,17 @@ export class BrbshopDetailPage implements OnInit {
     myModal.onDidDismiss().then((data) => {
       if(typeof data.data !== undefined && data.data != undefined) {
         if(data.data.paid) {
-          this.presentToast('Reservation done!');
+          var text;
+          this.trans.get('PAGES.BRBDETAILS.RESERVATION_DONE').subscribe(async (res: string) => {
+            text=res;
+          });
+          this.presentToast(text);
         } else {
-          this.presentToast('Error in reservation');
+          var text;
+          this.trans.get('PAGES.BRBDETAILS.ERROR_IN_RESERVATION').subscribe(async (res: string) => {
+            text=res;
+          });
+          this.presentToast(text);
         }
       }
       this.cancel();
@@ -237,9 +266,13 @@ export class BrbshopDetailPage implements OnInit {
   }
 
   async presentLoading() {
+    var text;
+    await this.trans.get('PAGES.BRBDETAILS.LOADING_HAIRDRESSER').subscribe(async (res: string) => {
+      text=res;
+    });
     const loading = await this.loadingController.create({
       duration: 1000,
-      message: "Loading Hairdresser"
+      message: text
     });
     await loading.present();
   }
@@ -293,7 +326,11 @@ export class BrbshopDetailPage implements OnInit {
   sendComment() {
     if(typeof this.subject === undefined || this.subject == undefined || typeof this.comment_text === undefined
       || this.comment_text == undefined || typeof this.rate === undefined || this.rate == undefined) {
-        this.presentToast('Fill all the fields please.');
+        var text;
+        this.trans.get('PAGES.BRBDETAILS.FILL_FIELDS').subscribe(async (res: string) => {
+          text=res;
+        });
+        this.presentToast(text);
     } else {
       this.comment = {hairdressing: this.id, subject: this.subject, comment: this.comment, rate: this.rate};
       Globals.api.comment(this.comment, (msg) => {

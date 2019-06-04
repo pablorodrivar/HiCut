@@ -5,6 +5,7 @@ import { AlertController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { EditComponent } from '../edit/edit.component';
 import { ApiController } from 'classes/api.controller';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile',
@@ -30,7 +31,8 @@ export class ProfilePage implements OnInit {
   public id_brb;
   public img_list;
 
-  constructor(private route:ActivatedRoute,private router: Router, private alertController: AlertController, public modalController: ModalController) {
+  constructor(private route:ActivatedRoute,private router: Router, private alertController: AlertController, public modalController: ModalController,
+    public trans: TranslateService) {
     this.globals = Globals;
     this.url = ApiController.api_url;
   }
@@ -139,9 +141,19 @@ export class ProfilePage implements OnInit {
   }
 
   async showAlert() {
+    var logout, sure, yes;
+    this.trans.get('PAGES.ACCOUNT_SETTINGS.LOGOUT').subscribe(async (res: string) => {
+      logout=res;
+    });
+    this.trans.get('PAGES.ACCOUNT_SETTINGS.SURE').subscribe(async (res: string) => {
+      sure=res;
+    });
+    this.trans.get('PAGES.ACCOUNT_SETTINGS.YES').subscribe(async (res: string) => {
+      yes=res;
+    });
     const alert = await this.alertController.create({
-      header: 'Cerrar Sesion',
-      message: 'Seguro que quiere cerrar sesion?',
+      header: logout,
+      message: sure,
       buttons: [
         {
           text: 'NO',
@@ -152,7 +164,7 @@ export class ProfilePage implements OnInit {
           }
         },
         {
-          text: 'SI',
+          text: yes,
           handler: () => {
             this.logout();
           }

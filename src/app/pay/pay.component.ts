@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Globals } from 'app/globals';
 import { ToastController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-pay',
@@ -19,7 +20,7 @@ export class PayComponent implements OnInit {
   @Input("service_ids") service_ids;
   public myDate;
 
-  constructor(public modalController: ModalController, public toastController: ToastController) {
+  constructor(public modalController: ModalController, public toastController: ToastController, public trans: TranslateService) {
   }
 
   ngOnInit() {    
@@ -55,8 +56,15 @@ export class PayComponent implements OnInit {
   }
 
   async presentToast() {
-    const toast = await this.toastController.create({
-      message: 'Reservation on ' + this.myDate + ' with ' + this.wkr_name,
+    var text1, text2;
+    this.trans.get('PAGES.PAY.RESERVATION_ON').subscribe(async (res: string) => {
+      text1=res;
+    });
+    this.trans.get('PAGES.PAY.WITH').subscribe(async (res: string) => {
+      text2=res;
+    });
+    const toast = await this.toastController.create({      
+      message: text1 + this.myDate + text2 + this.wkr_name,
       duration: 2000
     });
     toast.present();

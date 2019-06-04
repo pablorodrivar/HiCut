@@ -106,7 +106,16 @@
         "DO_RES": "Haz Tu Reserva",
         "VALUATIONS": "valoraciones",
         "RATE": "PUNTUA",
-        "NO_COMMENTS": "Todavia no hay comentarios, se el primero en comentar!"        
+        "NO_COMMENTS": "Todavia no hay comentarios, se el primero en comentar!",
+        "LOADING_HAIRDRESSER": "Cargando Peluquero/a",
+        "RESERVATION_DONE": "Reserva Realizada!",
+        "ERROR_IN_RESERVATION": "Error en la Reserva",
+        "EXCELLENT": "Excelente",
+        "SO_GOOD": "Muy Buena",
+        "NOT BAD": "No esta mal",
+        "SO_BAD": "Bastante mala",
+        "HORRIBLE": "Horrible",
+        "FILL_FIELDS": "Rellene todos los campos por favor."             
       },
       "LIST": {
         "TITLE": "Peluquerias",
@@ -141,7 +150,10 @@
         "LOCATION": "Direccion: ",
         "EMAIL": "Email: ",
         "PHONE": "Telefono: ",
-        "PRIVATE": "Privado"
+        "PRIVATE": "Privado",
+        "LOGOUT": "Cerrar Sesion",
+        "SURE": "Seguro que quiere cerrar sesion?",
+        "YES": "SI"
       },
       "EDIT_PROFILE": {
         "TITLE":"Editar Perfil",
@@ -180,7 +192,9 @@
         "HOUR": "Hora",
         "SERVICES": "Servicios",
         "FINAL_PRICE": "Precio Final",
-        "PAY": "PAGAR"
+        "PAY": "PAGAR",
+        "RESERVATION_ON": "Reserva el ",
+        "WITH": " con "
       },
       "RESERVATION": {
         "DO_YOUR_RESERVATION": "¡Hay tu Reserva!",
@@ -190,7 +204,11 @@
         "OOPS": "¡Ups, parece que aun no has logeado!",      
         "PLEASE_LOG": "Por favor haz log in para hacer una reserva.",
         "LOG_REG": "LOG IN | REGISTRO",
-        "PRICE": "Precio"       
+        "PRICE": "Precio",
+        "ANY_HAIRDRESSER": "Cualquier Peluquero/a",
+        "CHOOSE_DATE_FIRST": "Elige una fecha primero",
+        "CHOOSE_SERVICES_FIRST": "Elige algunos servicios primero",
+        "AVAILABLE_HOURS": "Este dia no tiene horas disponibles."          
       },
       "EMAIL": {
         "SEND_EMAIL": "Manda un Email",
@@ -199,7 +217,8 @@
         "OOPS": "¡Ups, parece que aun no has logeado!", 
         "PLEASE_LOG": "Por favor haz log in para mandar un email.",
         "LOG_REG": "LOG IN | REGISTRO",
-        "SEND": "Enviar"
+        "SEND": "Enviar",
+        "EMAIL_SENT": "Email enviado."
       }
     }
   }
