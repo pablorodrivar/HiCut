@@ -135,9 +135,7 @@ export class BrbshopDetailPage implements OnInit {
 
       this.initBrb();
 
-      this.getComments();           
-
-      this.rating();      
+      this.getComments();       
     });    
   }
 
@@ -149,7 +147,8 @@ export class BrbshopDetailPage implements OnInit {
           this.already_com = true;
           this.subject = com.subject;
           this.comment_text = com.comment;
-          this.rate = com.rate;
+          this.rate = com.rate.stars;
+          this.total_rate = com.rate.total;
           switch(this.rate) {
             case 5:
               var text;
@@ -233,6 +232,7 @@ export class BrbshopDetailPage implements OnInit {
     this.phone = this.barbershop[0].tlf;
     this.email = this.barbershop[0].email;
     this.desc = this.barbershop[0].desc;
+    this.rate = this.barbershop[0].rate;
   }
 
   async pay() {
@@ -283,13 +283,6 @@ export class BrbshopDetailPage implements OnInit {
       duration: 2000
     });
     toast.present();
-  }
-
-  rating() {
-    Globals.api.getRating(this.barbershop[0].id, (rate, error) => {
-      this.brb_rating = rate.stars;
-      this.total_rate = rate.total;
-    });
   }
 
   refresh() {
