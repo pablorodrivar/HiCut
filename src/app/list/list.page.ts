@@ -36,6 +36,7 @@ export class ListPage {
   public services: any[] = [];
   public services_names:string;
   public url: string;
+  public sClicked = false;
 
   constructor(private route:ActivatedRoute, private router: Router, 
     public alertController: AlertController, public modalController: ModalController,public trans: TranslateService,
@@ -178,6 +179,14 @@ export class ListPage {
   searchBrb(event) {    
     const text = event.target.value;
     this.searchText= text;
+  }
+
+  searchClicked() {
+    if(this.sClicked) {
+      this.sClicked = false;
+    } else {
+      this.sClicked = true;
+    }
   }
 
   async getLocation(lat: any, long: any) {

@@ -321,7 +321,7 @@ export class BrbshopDetailPage implements OnInit {
     });
 
     return await myModal.present();
-  }
+  }  
 
   sendComment() {
     if(typeof this.subject === undefined || this.subject == undefined || typeof this.comment_text === undefined
