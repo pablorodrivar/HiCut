@@ -266,7 +266,6 @@ export class ReservationComponent implements OnInit {
       
       if(typeof hours[0] !== undefined && hours[0] != undefined) {
         hours[0].forEach(val => {
-          //console.log("Hora: " + val.substr(0, 2) + " Minuto: " + val.substr(3,4))  
           if(clock.hour <= +val.substr(0,2) && clock.minutes <= +val.substr(3,4) && is_today) {
             this.hourValues.push(val);
           } else if(!is_today) {
@@ -294,10 +293,18 @@ export class ReservationComponent implements OnInit {
           }  
         }); 
       }   
-      
+
       setTimeout(() => {
-        this.showHourPicker = true;
-      }, 1000);
+        if(this.hourValues.length < 1) {
+          this.valid_date = false;
+          this.showHourPicker = false;
+          this.myHour = null;
+          this.disableDate = false;
+          this.presentToast("This day hasn't got available hours.")
+        } else {
+          this.showHourPicker = true;
+        }        
+      }, 1000);      
     } else {
       this.valid_date = false;
       this.showHourPicker = false;
@@ -308,6 +315,9 @@ export class ReservationComponent implements OnInit {
 
   updateHour(event) {
     this.myHour = event.detail.value;
+    let v = Object.values(this.workers)
+    console.log(v)
+    //Globals.api.getHours()
   }
 
   updateWorkers(event) {

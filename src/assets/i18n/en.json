@@ -101,7 +101,8 @@
         "BRB_SERVICES": "Hairdressing Services",
         "DO_RES": "Do Your Reservation",
         "VALUATIONS": "valuations",
-        "RATE": "RATE"   
+        "RATE": "RATE",
+        "NO_COMMENTS": "No comments yet, be the first to comment!"   
       },
       "LIST": {
         "TITLE": "Hairdressings",

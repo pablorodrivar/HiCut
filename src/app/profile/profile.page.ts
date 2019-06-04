@@ -27,6 +27,8 @@ export class ProfilePage implements OnInit {
   public url: string;
   public raw_brb_shops: any[] = [];
   public brbshops: [{id, img}] = [{id: "", img: ""}];
+  public id_brb;
+  public img_list;
 
   constructor(private route:ActivatedRoute,private router: Router, private alertController: AlertController, public modalController: ModalController) {
     this.globals = Globals;
@@ -48,15 +50,33 @@ export class ProfilePage implements OnInit {
       list.forEach(element => {
         Globals.api.reservation(element.id, (status, msg) => {
           let values = Object.values(status);
-          let v = Object.values(values[13])
-          console.log(v[3])
+          let bshop: any[] = [];
+          let repeated: string[] = [];
           
-          if(repeat.indexOf(v[3]) <= -1) {
-            repeat.push(v[3]);
-            let vals = Object.values(values[8]);
-            let img = vals[1][0];
-            this.brbshops.push({ id: v[3], img: img });
-          }          
+          for(let st in status) {
+            if(st == "hairdressing") {
+              let brbshop = { key: Object.keys(status[st]), value: Object.values(status[st]) }
+              for(let i = 0; i < brbshop.key.length; i++) {
+                if(brbshop.key[i] == "id") {                  
+                  this.id_brb = brbshop.value[i];
+                }
+                if(brbshop.key[i] == "imglist") {                  
+                  this.img_list = brbshop.value[i][0]; 
+                }                
+              }              
+              bshop.push({ id: this.id_brb, img: this.img_list });
+              bshop.forEach(val => {
+                if(repeated.indexOf(val.id) <= -1) {
+                  console.log(repeated.indexOf(val.id))
+                  this.brbshops.push({ id: this.id_brb, img: this.img_list });
+                  repeated.push(val.id); 
+                }
+              });         
+
+              console.log(repeated)
+              console.log(this.brbshops)    
+            }
+          }         
         });        
       });      
       

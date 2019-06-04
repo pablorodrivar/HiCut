@@ -81,7 +81,9 @@ export class ListPage implements OnInit {
 
   getBrb() {
     Globals.api.getHairdressing(this.filter, (list, error) => {
-      if(list != null) {        
+      if(list != null) {     
+        console.log(this.filter)
+        console.log(list)   
         this.list = list;
         this.locChipText = this.list[0]
       } else {

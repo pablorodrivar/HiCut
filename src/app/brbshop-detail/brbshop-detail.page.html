@@ -86,7 +86,7 @@
           </ion-item>
           <ion-item>
             <ion-label text-center style="font-size: 15px;" position="stacked">({{ total_rate }} {{ 'PAGES.BRBDETAILS.VALUATIONS' | translate }})</ion-label>         
-            <ion-item lines ="none">
+            <ion-item *ngIf="is_loged" lines ="none">
               <ion-label>{{ 'PAGES.BRBDETAILS.RATE_EXPERIENCE' | translate }}</ion-label>
               <ion-select (ionChange)="getRating($event)" [(ngModel)]="rate" placeholder="{{ 'PAGES.BRBDETAILS.SELECT_ONE' | translate }}">
                 <ion-select-option value="5">{{ 'PAGES.BRBDETAILS.EXCELLENT' | translate }}</ion-select-option>
@@ -96,12 +96,17 @@
                 <ion-select-option value="1">{{ 'PAGES.BRBDETAILS.HORRIBLE' | translate }}</ion-select-option>
               </ion-select>
             </ion-item>
-            <ion-button fill style="width:100%; border: solid 1px #ECEBEB;" (click)="singleRate()">{{ 'PAGES.BRBDETAILS.RATE' | translate }}</ion-button>
+            <ion-button *ngIf="is_loged" fill style="width:100%; border: solid 1px #ECEBEB;" (click)="singleRate()">{{ 'PAGES.BRBDETAILS.RATE' | translate }}</ion-button>
+            <ion-button *ngIf="!is_loged" fill style="width:100%; border: solid 1px #ECEBEB;" (click)="goToLogin()">{{ 'PAGES.BRBDETAILS.LOG_IN_TO' | translate }}</ion-button>
           </ion-item>  
         
-        <div class="title" *ngIf="coms.length != 0">
+        <div class="title">
           <ion-label text-center class="title">{{ 'PAGES.BRBDETAILS.COMMENTS' | translate }}</ion-label>
-        </div>    
+        </div>   
+        
+        <ion-item *ngIf="coms.length < 1">
+          <ion-label style="text-align: center">{{ 'PAGES.BRBDETAILS.NO_COMMENTS' | translate }}</ion-label>
+        </ion-item>
   
         <ion-card *ngFor="let com of coms">
           <ion-avatar padding>
