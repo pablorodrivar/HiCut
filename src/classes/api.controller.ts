@@ -215,7 +215,7 @@ export class ApiController {
 
             var request;
             if (data != null) {
-                headers.set('Content-Type', 'application/json');
+                headers = headers.set('Content-Type', 'application/json');
                 request = Globals.http[method](ApiController.api_url + url, data, { headers: headers });
             }
             else {
