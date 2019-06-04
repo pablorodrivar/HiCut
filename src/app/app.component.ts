@@ -20,11 +20,11 @@ export class AppComponent {
     private _translate: TranslateService,
     public toastController: ToastController
   ) {
-
-    this.initializeApp();
     let userLang = navigator.language.split('-')[0];
     userLang = /(en|es)/gi.test(userLang) ? userLang : 'en';
     this._translate.use(userLang);
+    this.initializeApp();
+
   }
 
   public static lastTimeBackPress:number = new Date().getTime();
