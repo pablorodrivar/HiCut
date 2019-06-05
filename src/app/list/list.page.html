@@ -34,6 +34,9 @@
   >            
 
     <!-- | filter: searchText -->
+    <ion-item lines="none" *ngIf="noResults">
+      <ion-label style="text-align: center;">Couldn't find hairdressings.</ion-label>
+    </ion-item>
     <ion-card *ngFor="let brb of list | filter: searchText" (click)="toDetail(brb.id)">
       <ion-badge class="badge" color="light"><ion-icon name="walk"></ion-icon>{{ brb.distance }} km.</ion-badge>
       <!--<ion-chip class="badge" outline color="light"><ion-icon name="walk"></ion-icon><ion-label>{{ brb.dist }} km.</ion-label></ion-chip>-->

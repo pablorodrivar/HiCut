@@ -46,7 +46,7 @@
         "DATE":"Date",
         "VIEW":"View",
         "NOT_LOGED":"Oh!, It seems that you have not yet entered your account or you are not registered...",
-        "GO_REGISTER":"Registrate ahora",
+        "GO_REGISTER":"Register now",
         "NO_RESERVATIONS":"Oh!, It seems that they still do not have any reservations...",
         "CANCELLED":"Cancelled"
       },

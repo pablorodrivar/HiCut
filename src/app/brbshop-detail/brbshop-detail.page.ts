@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DatePicker } from '@ionic-native/date-picker/ngx';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator/ngx';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
@@ -70,7 +69,7 @@ export class BrbshopDetailPage implements OnInit {
   public rate_placeholder: string;
   public showD = true;
   
-  constructor(private datePicker: DatePicker, private launchNavigator: LaunchNavigator, private route:ActivatedRoute,private router: Router,
+  constructor(private launchNavigator: LaunchNavigator, private route:ActivatedRoute,private router: Router,
     public alertController: AlertController, public loadingController: LoadingController, public toastController: ToastController,
     public modalController: ModalController, public payComponent: PayComponent, public domController: DomSanitizer, public galleryComponent: GalleryComponent,
     public callNumber: CallNumber, public trans: TranslateService) {

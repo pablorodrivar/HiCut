@@ -233,6 +233,25 @@ export class ReservationComponent implements OnInit {
     toast.present();
   }
 
+  shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
+
   toLogin() {
     this.router.navigate(["/tabs/login"]);
     this.modalController.dismiss();
@@ -332,8 +351,14 @@ export class ReservationComponent implements OnInit {
 
   updateHour(event) {
     this.myHour = event.detail.value;
-    let v = Object.values(this.workers)
-    console.log(v)
+
+    if(this.wrk_id == -1) {
+      let v = Object.values(this.workers)  
+      v = this.shuffle(v);    
+      for(let i = 0; i < v.length; i++) {
+        console.log("Key: " + Object.keys(v[i]) + " Val: " + Object.values(v[i]))
+      }
+    }    
     //Globals.api.getHours()
   }
 

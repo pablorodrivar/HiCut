@@ -36,6 +36,7 @@ export class ListPage {
   public services: any[] = [];
   public services_names:string;
   public url: string;
+  public noResults = false;
 
   constructor(private route:ActivatedRoute, private router: Router, 
     public alertController: AlertController, public modalController: ModalController,public trans: TranslateService,
@@ -91,13 +92,14 @@ export class ListPage {
     await loading.present();
 
     Globals.api.getHairdressing(this.filter, async (list, error) => {
-      
-      
       if(list !== null) { 
         console.log(list)       
         this.list = list;
-        this.locChipText = this.list[0]
+        if(this.list == []) {
+          this.noResults = true;
+        }
 
+        this.locChipText = this.list[0]
 
         for (let index = 0; index < list.length; index++) {
           const element = list[index];
