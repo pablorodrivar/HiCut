@@ -297,8 +297,26 @@ export class ReservationComponent implements OnInit {
 
       let clock = { hour: new Date().getHours(), minutes: new Date().getMinutes() };
       let is_today = today_month == +this.myDate.substring(5,7) && today_day == +this.myDate.substr(8,9);
+
+      hours.forEach(hour => {
+        if(typeof hour !== undefined && hour != undefined) {
+          hour.forEach(val => {
+            if(typeof hour !== undefined && hour != undefined) {
+              let one = clock.hour <= +val.substr(0,2);
+              let two = clock.hour <= +val.substr(3,4);
+              if(one && two && is_today) {
+                this.hourValues.push(val);
+              }
+              
+              if(!is_today) {
+                this.hourValues.push(val);
+              }   
+            }
+          });
+        }        
+      });
       
-      if(typeof hours[0] !== undefined && hours[0] != undefined) {
+      /*if(typeof hours[0] !== undefined && hours[0] != undefined) {
         hours[0].forEach(val => {
           let one = clock.hour <= +val.substr(0,2);
           let two = clock.hour <= +val.substr(3,4);
@@ -334,7 +352,7 @@ export class ReservationComponent implements OnInit {
             this.hourValues.push(val);
           }  
         }); 
-      }   
+      }*/   
 
       setTimeout(() => {
         if(this.hourValues.length < 1) {
