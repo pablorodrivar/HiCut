@@ -11,13 +11,13 @@
         <ion-row style="border-bottom: 1px solid gray;" (click)="goToHistoryDetail($event,item)"
                  *ngFor="let item of history_list">
             <ion-col style="display: flex!important;align-content: center!important;align-items: center!important;">
-                <span *ngIf="!isOld(item.date) && item.status==0">{{ 'PAGES.HISTORY.DATE' | translate }}
+                <span *ngIf="!isOld(item.datetime) && item.status==0">{{ 'PAGES.HISTORY.DATE' | translate }}
                     : {{ item.date | date: 'dd-MM-yyyy' }}</span>
 
-                <span *ngIf="isOld(item.date) && item.status==1" style="color:gray">{{ 'PAGES.HISTORY.DATE' | translate }}
+                <span *ngIf="isOld(item.datetime) && item.status==1" style="color:gray">{{ 'PAGES.HISTORY.DATE' | translate }}
                     : {{ item.date | date: 'dd-MM-yyyy' }}</span>
 
-                <span *ngIf="isOld(item.date) && item.status==0" style="color:red">{{ 'PAGES.HISTORY.DATE' | translate }}
+                <span *ngIf="isOld(item.datetime) && item.status==0" style="color:red">{{ 'PAGES.HISTORY.DATE' | translate }}
                     : {{ item.date | date: 'dd-MM-yyyy' }}</span>
 
                 <span *ngIf="item.status==2" style="color:gray">{{ 'PAGES.HISTORY.DATE' | translate }}

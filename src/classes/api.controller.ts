@@ -82,6 +82,7 @@ export class ApiController {
                     range.hours = this.getHEveryFifteen(range.range_start, range.range_end)
                 }
             }
+            console.log(data.hours);
             callback(data.hours, "");
         });
     }
