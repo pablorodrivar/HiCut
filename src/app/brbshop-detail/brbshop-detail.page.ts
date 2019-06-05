@@ -230,6 +230,10 @@ export class BrbshopDetailPage implements OnInit {
     this.phone = this.barbershop[0].tlf;
     this.email = this.barbershop[0].email;
     this.desc = this.barbershop[0].desc;
+    if(describe.length > 202) {
+      this.desc = this.desc.substr(0, 202);
+    }
+    console.log(this.desc)
     this.brb_rating = this.barbershop[0].rate.stars;
     this.total_rate = this.barbershop[0].rate.total;
   }
