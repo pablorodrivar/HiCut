@@ -354,6 +354,8 @@ export class ReservationComponent implements OnInit {
 
     if(this.wrk_id == -1) {
       console.log(this.workers)
+      let contain_day = false;
+      let contain_hour = false;
       this.workers = this.shuffle(this.workers); 
       let ids: number[] = [];
 
@@ -370,10 +372,7 @@ export class ReservationComponent implements OnInit {
         Globals.api.getHours(id, (hours, msg) => {
           let days = Object.keys(hours);
           let h = Object.values(hours);
-          let contain_day = days.indexOf(this.myDate) > -1;
-          let contain_hour = false;
-          console.log(days)
-          console.log(h)
+          contain_day = days.indexOf(this.myDate) > -1;
           var horas;
 
           if(typeof h[days.indexOf(this.myDate)] !== undefined && h[days.indexOf(this.myDate)] != undefined) {
@@ -389,14 +388,15 @@ export class ReservationComponent implements OnInit {
 
           if(contain_day && contain_hour) {
             this.wrk_id = id;
-            console.log(this.wrk_id)
             return;
-          } else {
-            this.disableDate = false;
-            this.valid_date = false;
-          }          
+          }        
         });
       });
+
+      if(!contain_day || !contain_hour) {
+        this.disableDate = false;
+        this.valid_date = false;
+      }
     }    
   }
 
