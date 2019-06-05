@@ -302,57 +302,23 @@ export class ReservationComponent implements OnInit {
         if(typeof hour !== undefined && hour != undefined) {
           hour.forEach(val => {
             if(typeof hour !== undefined && hour != undefined) {
-              let one = clock.hour <= +val.substr(0,2);
-              let two = clock.hour <= +val.substr(3,4);
-              if(one && two && is_today) {
+              let one = clock.hour < +val.substr(0,2);
+              let two = clock.minutes <= +val.substr(3,4);
+              console.log(val + " - " + clock.hour + ":" + clock.minutes + ": " + one + " " + two + " " + is_today)
+              if(is_today) {
+                if(one) {
+                  this.hourValues.push(val);
+                }
+                if(clock.hour == +val.substr(0,2) && two) {
+                  this.hourValues.push(val);
+                }
+              } else {
                 this.hourValues.push(val);
-              }
-              
-              if(!is_today) {
-                this.hourValues.push(val);
-              }   
+              }  
             }
           });
         }        
-      });
-      
-      /*if(typeof hours[0] !== undefined && hours[0] != undefined) {
-        hours[0].forEach(val => {
-          let one = clock.hour <= +val.substr(0,2);
-          let two = clock.hour <= +val.substr(3,4);
-          if(one && two && is_today) {
-            this.hourValues.push(val);
-          }
-          
-          if(!is_today) {
-            this.hourValues.push(val);
-          }                  
-        });
-      }    
-
-      if(typeof hours[1] !== undefined && hours[1] != undefined) {
-        hours[1].forEach(val => {
-          let one = clock.hour <= +val.substr(0,2);
-          let two = clock.hour <= +val.substr(3,4);
-          if(one && two && is_today) {
-            this.hourValues.push(val);
-          } else if(!is_today) {
-            this.hourValues.push(val);
-          }  
-        }); 
-      }   
-      
-      if(typeof hours[2] !== undefined && hours[2] != undefined) {
-        hours[2].forEach(val => {
-          let one = clock.hour <= +val.substr(0,2);
-          let two = clock.hour <= +val.substr(3,4);
-          if(one && two && is_today) {
-            this.hourValues.push(val);
-          } else if(!is_today) {
-            this.hourValues.push(val);
-          }  
-        }); 
-      }*/   
+      });  
 
       setTimeout(() => {
         if(this.hourValues.length < 1) {
