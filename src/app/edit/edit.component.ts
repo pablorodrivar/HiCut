@@ -22,7 +22,7 @@ export class EditComponent implements OnInit {
   @Input("avatar") avatar;
   public data: any[] = [];
   public url: string;
-  public imageResponse: any;
+  public imageResponse: any = [];
   public options: any;
   public image_picked: boolean = false;
   public image: any;
