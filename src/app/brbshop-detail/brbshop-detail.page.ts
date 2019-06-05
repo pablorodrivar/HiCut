@@ -80,7 +80,7 @@ export class BrbshopDetailPage implements OnInit {
     }
 
   options: LaunchNavigatorOptions = {
-    start: 'Spain, ON'
+    start: [this.filter.lat, this.filter.lng]    
   }
 
   ngOnInit() {   
@@ -375,8 +375,8 @@ export class BrbshopDetailPage implements OnInit {
   }
 
   showLocation() {
-    let destination = [this.filter.lat, this.filter.lng];
-    this.launchNavigator.navigate(destination, this.options)
+    //let destination = [this.filter.lat, this.filter.lng];
+    this.launchNavigator.navigate(this.address, this.options)
     .then(
       success => console.log('Launched navigator'),
       error => console.log('Error launching navigator', error)

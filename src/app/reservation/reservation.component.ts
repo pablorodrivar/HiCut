@@ -353,7 +353,6 @@ export class ReservationComponent implements OnInit {
     this.myHour = event.detail.value;
 
     if(this.wrk_id == -1) {
-      console.log(this.workers)
       let contain_day = false;
       let contain_hour = false;
       this.workers = this.shuffle(this.workers); 

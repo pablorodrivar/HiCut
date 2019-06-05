@@ -42,9 +42,11 @@
         "cordova-android": "8.0.0",
         "cordova-browser": "6.0.0",
         "cordova-ios": "5.0.0",
+        "cordova-plugin-actionsheet": "^2.3.3",
         "cordova-plugin-android-permissions": "1.0.0",
         "cordova-plugin-datepicker": "0.9.3",
         "cordova-plugin-device": "^2.0.2",
+        "cordova-plugin-dialogs": "^2.0.1",
         "cordova-plugin-email-composer": "0.9.2",
         "cordova-plugin-firebase": "git+https://github.com/dpa99c/cordova-plugin-firebase.git#GH-1057-April-05-android-build-issue",
         "cordova-plugin-geolocation": "4.0.1",
@@ -110,7 +112,10 @@
             },
             "cordova-plugin-ionic-keyboard": {},
             "cordova-plugin-datepicker": {},
-            "uk.co.workingedge.phonegap.plugin.launchnavigator": {},
+            "uk.co.workingedge.phonegap.plugin.launchnavigator": {
+                "GOOGLE_API_KEY_FOR_ANDROID": "{AIzaSyALADXtI2bV2P0_8QT79ZT7bhpHaN0Ikjc}",
+                "OKHTTP_VERSION": "3.12.0"
+            },
             "cordova-sqlite-storage": {},
             "cordova-plugin-telerik-imagepicker": {},
             "cordova-plugin-geolocation": {},
