@@ -266,13 +266,22 @@ export class ReservationComponent implements OnInit {
 
       let i = 0;
       let pos = 0;
+      console.log(this.days_raw)
+      let found = false;      
       this.days_raw.forEach(val =>{    
         if(date == val) {
           pos = i;
+          found = true;
         }
 
         i = i + 1;
       });
+
+      if(!found) {
+        this.disableDate = false;
+        this.valid_date = false;
+        return;
+      }
 
       let ar = Object.values(this.days);
       let nice = ar[pos];
