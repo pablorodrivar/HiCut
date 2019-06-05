@@ -3,6 +3,7 @@ import { ModalController, ToastController } from '@ionic/angular';
 import { Globals } from 'app/globals';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { validateConfig } from '@angular/router/src/config';
 
 @Component({
   selector: 'app-reservation',
@@ -299,7 +300,9 @@ export class ReservationComponent implements OnInit {
       
       if(typeof hours[0] !== undefined && hours[0] != undefined) {
         hours[0].forEach(val => {
-          if(clock.hour <= +val.substr(0,2) && clock.minutes <= +val.substr(3,4) && is_today) {
+          let one = clock.hour <= +val.substr(0,2);
+          let two = clock.hour <= +val.substr(3,4);
+          if(one && two && is_today) {
             this.hourValues.push(val);
           }
           
@@ -311,7 +314,9 @@ export class ReservationComponent implements OnInit {
 
       if(typeof hours[1] !== undefined && hours[1] != undefined) {
         hours[1].forEach(val => {
-          if(clock.hour <= +val.substr(0,2) && clock.minutes <= +val.substr(3,4) && is_today) {
+          let one = clock.hour <= +val.substr(0,2);
+          let two = clock.hour <= +val.substr(3,4);
+          if(one && two && is_today) {
             this.hourValues.push(val);
           } else if(!is_today) {
             this.hourValues.push(val);
@@ -321,7 +326,9 @@ export class ReservationComponent implements OnInit {
       
       if(typeof hours[2] !== undefined && hours[2] != undefined) {
         hours[2].forEach(val => {
-          if(clock.hour <= +val.substr(0,2) && clock.minutes <= +val.substr(3,4) && is_today) {
+          let one = clock.hour <= +val.substr(0,2);
+          let two = clock.hour <= +val.substr(3,4);
+          if(one && two && is_today) {
             this.hourValues.push(val);
           } else if(!is_today) {
             this.hourValues.push(val);
