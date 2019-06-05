@@ -60,8 +60,13 @@ export class EditComponent implements OnInit {
       outputType: 1
     }).then((results) => {
       for (var i = 0; i < results.length; i++) {
+        this.imageResponse.push(results[i]);
+        this.image_picked = true;
           console.log('Image URI: ' + results[i]);
       }
+
+      this.image = this.imageResponse[0];
+      this.avatar = this.image;
     }, (err) => { });
 /*
     this.options = {
