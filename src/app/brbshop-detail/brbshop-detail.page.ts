@@ -230,7 +230,7 @@ export class BrbshopDetailPage implements OnInit {
     this.phone = this.barbershop[0].tlf;
     this.email = this.barbershop[0].email;
     this.desc = this.barbershop[0].desc;
-    if(describe.length > 202) {
+    if(this.desc.length > 202) {
       this.desc = this.desc.substr(0, 202) + "...";
     }
     console.log(this.desc)
