@@ -291,19 +291,19 @@ export class ReservationComponent implements OnInit {
 
       nice.forEach(val => {
         hours.push(val.hours)
-      });      
+      });     
+      console.log(hours) 
 
       let clock = { hour: new Date().getHours(), minutes: new Date().getMinutes() };
-      console.log(clock)
-      console.log(this.myDate + " " + new Date().getDate())
       let is_today = today_month == +this.myDate.substring(5,7) && today_day == +this.myDate.substr(8,9);
-      console.log(is_today)
       
       if(typeof hours[0] !== undefined && hours[0] != undefined) {
         hours[0].forEach(val => {
           if(clock.hour <= +val.substr(0,2) && clock.minutes <= +val.substr(3,4) && is_today) {
             this.hourValues.push(val);
-          } else if(!is_today) {
+          }
+          
+          if(!is_today) {
             this.hourValues.push(val);
           }                  
         });
