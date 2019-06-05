@@ -41,7 +41,6 @@
         "call-number": "1.0.1",
         "cordova-android": "8.0.0",
         "cordova-browser": "6.0.0",
-        "cordova-ios": "5.0.0",
         "cordova-plugin-actionsheet": "^2.3.3",
         "cordova-plugin-android-permissions": "1.0.0",
         "cordova-plugin-datepicker": "0.9.3",
@@ -125,7 +124,6 @@
             "cordova-plugin-telerik-imagepicker": {}
         },
         "platforms": [
-            "ios",
             "browser",
             "android"
         ]

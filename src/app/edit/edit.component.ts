@@ -54,6 +54,16 @@ export class EditComponent implements OnInit {
   }
 
   getImage() {
+    this.imagePicker.getPictures({
+      width: 200,
+      quality: 25,
+      outputType: 1
+    }).then((results) => {
+      for (var i = 0; i < results.length; i++) {
+          console.log('Image URI: ' + results[i]);
+      }
+    }, (err) => { });
+/*
     this.options = {
       // Android only. Max images to be selected, defaults to 15. If this is set to 1, upon
       // selection of a single image, the plugin will return it.
@@ -87,6 +97,6 @@ export class EditComponent implements OnInit {
       this.avatar = this.image;
     }, (err) => {
       alert(err);
-    });
+    });*/
   }
 }
