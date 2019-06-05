@@ -353,13 +353,51 @@ export class ReservationComponent implements OnInit {
     this.myHour = event.detail.value;
 
     if(this.wrk_id == -1) {
-      let v = Object.values(this.workers)  
-      v = this.shuffle(v);    
-      for(let i = 0; i < v.length; i++) {
-        console.log("Key: " + Object.keys(v[i]) + " Val: " + Object.values(v[i]))
-      }
+      console.log(this.workers)
+      this.workers = this.shuffle(this.workers); 
+      let ids: number[] = [];
+
+      this.workers.forEach(wrk => {
+        let vals = Object.values(wrk);
+        vals.forEach(val => {
+          if(typeof val === "number" && val != -1) {
+            ids.push(val);
+          }
+        });
+      });
+
+      ids.forEach(id => {
+        Globals.api.getHours(id, (hours, msg) => {
+          let days = Object.keys(hours);
+          let h = Object.values(hours);
+          let contain_day = days.indexOf(this.myDate) > -1;
+          let contain_hour = false;
+          console.log(days)
+          console.log(h)
+          var horas;
+
+          if(typeof h[days.indexOf(this.myDate)] !== undefined && h[days.indexOf(this.myDate)] != undefined) {
+            horas = h[days.indexOf(this.myDate)][0].hours;
+            console.log(horas)
+
+            for(let i = 0; i < horas.length || !contain_hour; i++) {
+              if(horas[i] == this.myHour) {
+                contain_hour = true;
+              }
+            }
+          } 
+
+          if(contain_day && contain_hour) {
+            this.wrk_id = id;
+            console.log(this.wrk_id)
+            return;
+          } else {
+            this.disableDate = false;
+            this.valid_date = false;
+          }          
+        });
+      });
     }    
-    //Globals.api.getHours()
   }
 
   updateWorkers(event) {

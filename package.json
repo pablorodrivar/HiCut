@@ -1,7 +1,7 @@
 {
     "name": "hicut",
-    "version": "0.0.1",
-    "author": "DAM IZV",
+    "version": "1.0.1",
+    "author": "Pablo Rodriguez & Manuel Herrera",
     "homepage": "http://xxx",
     "scripts": {
         "ng": "ng",
