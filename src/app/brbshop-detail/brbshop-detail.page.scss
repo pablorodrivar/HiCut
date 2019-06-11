@@ -157,6 +157,11 @@ ion-content {
     width: 100%; 
   }
 
+  .img-cont {
+    object-fit: cover;
+    max-height: 300px !important;
+  }
+
   .img-cont::after {
     display: block;
     position: absolute;
@@ -165,4 +170,9 @@ ion-content {
     height: 300px;
     width: 100%;
     content: '';
+  }
+
+  .img-resize {
+    object-fit: cover;
+    max-height: 300px !important;
   }
