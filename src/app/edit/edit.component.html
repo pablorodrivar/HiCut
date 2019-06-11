@@ -21,7 +21,7 @@
         <img *ngIf="image_picked" class="circle-pic" [src]="image" />
       </ion-item>    
       <ion-item style="margin-left: auto;margin-right: auto;" lines="none">
-        <ion-button block clear class="button-no-background" color="transparent">{{ 'PAGES.EDIT_PROFILE.CHANGE_AVATAR' | translate }}</ion-button>
+        <ion-button block clear (click)="getImage()" class="button-no-background" color="transparent">{{ 'PAGES.EDIT_PROFILE.CHANGE_AVATAR' | translate }}</ion-button>
       </ion-item>
   
       <div class="title">
