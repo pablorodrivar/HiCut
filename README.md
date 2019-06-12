@@ -29,3 +29,14 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Inspiration
 * etc
 
+## Install
+
+    npm i
+    ionic cordova platform add android
+    ionic cordova plugin add uk.co.workingedge.phonegap.plugin.launchnavigator --variable GOOGLE_API_KEY_FOR_ANDROID="{AIzaSyALADXtI2bV2P0_8QT79ZT7bhpHaN0Ikjc}"
+    ionic cordova plugin add cordova-plugin-email-composer
+    ionic cordova plugin add call-number
+
+## Build
+
+    ionic cordova build android
