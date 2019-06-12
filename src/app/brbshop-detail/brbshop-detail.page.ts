@@ -83,6 +83,7 @@ export class BrbshopDetailPage implements OnInit {
     start: [this.filter.lat, this.filter.lng]    
   }
 
+  // Runs when screen creates
   ngOnInit() {   
     this.disableDate = false;
     this.disableWrk = false;
@@ -107,22 +108,26 @@ export class BrbshopDetailPage implements OnInit {
     this.getServices();
   }
 
+  // Triggered by call button, it calls the barbershop
   call() {
     this.callNumber.callNumber(this.phone, true)
     .then(res => console.log('Launched dialer!', res))
     .catch(err => console.log('Error launching dialer', err));
   }
 
+  // Cancel the reservation
   cancel() {    
     this.confirmed = false;
     this.wrk_id = null;
     this.refresh(); 
   }
 
+  // Allows the user to comment 
   editComment() {
     this.edit_comment = true;    
   }
 
+  // Get the data from the selected hairdresser
   getBrbShop() {
     Globals.api.getHairdressing(this.filter, (list, error) => {
       if(list != null) {
@@ -138,6 +143,7 @@ export class BrbshopDetailPage implements OnInit {
     });    
   }
 
+  // Get comments from the barbershop
   getComments() {
     Globals.api.getComments(this.barbershop[0].id, (comment, msg) => {
       this.comments = comment;      
@@ -193,22 +199,26 @@ export class BrbshopDetailPage implements OnInit {
     }); 
   }
 
+  // Get the rating selected in the rating field
   getRating(event) {
     this.rate = event.detail.value;
   }
 
+  // Get services of the barbershop
   getServices() {
     Globals.api.getServices(this.id, (services, msg) => {
       this.services = services;      
     });
   }
 
+  // Get the user id
   getUserId() {
     if(Globals.api.currentUser != null) {
       this.user_id = Globals.api.currentUser.id;
     }    
   }
 
+  // Get the hairdressers of the hairdressing
   getWorkers() {
     Globals.api.getHairdressers(this.id, (hairdressers, msg) => {
       console.log(hairdressers)
@@ -216,10 +226,12 @@ export class BrbshopDetailPage implements OnInit {
     });         
   }
 
+  // Send you to login screen
   goToLogin() {
     this.router.navigate(["/tabs/login"]);
   }
 
+  // Initialize the main fields
   initBrb() {
     this.slider = this.barbershop[0].imglist;      
     this.tb_image = this.slider[0];
@@ -233,11 +245,11 @@ export class BrbshopDetailPage implements OnInit {
     if(this.desc.length > 202) {
       this.desc = this.desc.substr(0, 202) + "...";
     }
-    console.log(this.desc)
     this.brb_rating = this.barbershop[0].rate.stars;
     this.total_rate = this.barbershop[0].rate.total;
   }
 
+  // Sends you to pay modal
   async pay() {
     const myModal = await this.modalController.create({
       component: PayComponent,
@@ -268,6 +280,7 @@ export class BrbshopDetailPage implements OnInit {
     return await myModal.present();
   }
 
+  // Shows the loading screen
   async presentLoading() {
     var text;
     await this.trans.get('PAGES.BRBDETAILS.LOADING_HAIRDRESSER').subscribe(async (res: string) => {
@@ -330,7 +343,6 @@ export class BrbshopDetailPage implements OnInit {
     } else {
       this.comment = {hairdressing: this.id, subject: this.subject, comment: this.comment, rate: this.rate};
       Globals.api.comment(this.comment, (msg) => {
-        console.log(msg)
         this.already_com = true;
         this.edit_comment = false;
       });
@@ -379,7 +391,6 @@ export class BrbshopDetailPage implements OnInit {
   }
 
   showLocation() {
-    //let destination = [this.filter.lat, this.filter.lng];
     this.launchNavigator.navigate(this.address, this.options)
     .then(
       success => console.log('Launched navigator'),

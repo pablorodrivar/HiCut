@@ -42,10 +42,10 @@
                 <ion-label style="text-align: center; z-index: 100;" color="light"><ion-icon name="call"></ion-icon>{{ phone }}</ion-label>            
               </div>
             </div> 
-            <img src="{{ url }}{{ slide }}">
+            <img class="img-resize" src="{{ url }}{{ slide }}">
           </div>  
           <div *ngIf="i != 0 || !showD">
-            <img src="{{ url }}{{ slide }}">
+            <img class="img-resize" src="{{ url }}{{ slide }}">
           </div>        
         </ion-slide>
       </ion-slides>  
